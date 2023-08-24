@@ -1,0 +1,27 @@
+select#operator#qualityMetric option {
+  text-align: center;
+  direction: rtl;
+}
+
+.btn-constraint {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  width: 50px;
+}
+
+.constraint {
+  margin-left: 35px;
+}
+
+#qualityMetric {
+  width: 240px;
+}
+
+#operator {
+  width: 60px;
+}
+
+#threshold {
+  width: 90px;
+}
+

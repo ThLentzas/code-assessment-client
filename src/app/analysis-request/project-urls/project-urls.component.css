@@ -1,0 +1,8 @@
+.project-url-input::placeholder {
+  color: #aaa;
+}
+
+.icon-large {
+  font-size: 22px;
+  line-height: 0;
+}

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row w-50">
+    <h4 class="text-center my-2 mb-2  fs-5 fw-light">Preferences</h4>
+    <div class="col-md-4">
+      <label class="form-label required">Preference</label>
+    </div>
+
+    <div class="col-md-2">
+      <label class="form-label " style="margin-left: 65px;">Weight</label>
+
+    </div>
+  </div>
+
+  <div *ngFor="let preference of preferences; let i = index;">
+    <div class="row w-50">
+      <div class="col-md-4">
+        <select class="form-control" [(ngModel)]="preference.selectedPreference" id="qualityAttribute">
+          <option *ngFor="let qualityAttribute of qualityAttributes" [value]="qualityAttribute">
+            {{ qualityAttribute | titlecase }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-3 d-flex flex-column align-items-center">
+        <div class="preference">
+          <input type="text" class="form-control text-center" [(ngModel)]="preference.weight" id="weight">
+        </div>
+      </div>
+
+      <div class="col-md-4 d-flex align-items-end">
+        <button
+          (click)="onAddPreference()"
+          class="btn btn-success btn-add-preference"
+          *ngIf="preferences.length < 5">
+          <ng-icon name="bootstrapPlus" class="me-3 icon-large"></ng-icon>
+        </button>
+        <button
+          (click)="onRemovePreference(i)"
+          class="btn btn-danger btn-remove-preference"
+          *ngIf="preferences.length > 1">
+          <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

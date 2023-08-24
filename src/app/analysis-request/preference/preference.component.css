@@ -1,0 +1,23 @@
+.preference {
+  margin-left: 25px;
+}
+
+#qualityAttribute {
+  width: 240px;
+}
+
+#weight{
+  width: 90px;
+}
+
+.btn-add-preference {
+  margin-bottom: 5px;
+  width: 50px;
+}
+
+.btn-remove-preference {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  width: 50px;
+}
+
