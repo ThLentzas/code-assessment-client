@@ -2,27 +2,34 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ProjectUrlsComponent } from './analysis-request/project-urls/project-urls.component';
-import { AnalysisRequestComponent } from './analysis-request/analysis-request.component';
+import { ProjectUrlsComponent } from './manage-analysis-request/project-urls/project-urls.component';
 import { FormsModule } from '@angular/forms';
 import { NgIconsModule } from '@ng-icons/core';
 import { bootstrapGithub } from '@ng-icons/bootstrap-icons';
 import { bootstrapTrash } from "@ng-icons/bootstrap-icons";
 import { bootstrapPlus } from "@ng-icons/bootstrap-icons";
-import { ConstraintComponent } from './analysis-request/constraint/constraint.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { PreferenceComponent } from './analysis-request/preference/preference.component';
+import { ManageAnalysisRequestComponent } from './manage-analysis-request/manage-analysis-request.component';
+import { ConstraintsDetailComponent } from './manage-analysis-request/constraints-detail/constraints-detail.component';
+import { PreferencesDetailComponent } from './manage-analysis-request/preferences-detail/preferences-detail.component';
+import { AnalysisComponent } from './analysis/analysis.component';
+import { AnalysisReviewComponent } from './analysis/analysis-review/analysis-review.component';
+import { AnalysisListComponent } from './analysis/analysis-list/analysis-list.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectUrlsComponent,
-    AnalysisRequestComponent,
-    ConstraintComponent,
-    PreferenceComponent
+    ManageAnalysisRequestComponent,
+    ConstraintsDetailComponent,
+    PreferencesDetailComponent,
+    AnalysisComponent,
+    AnalysisReviewComponent,
+    AnalysisListComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,8 @@ import { PreferenceComponent } from './analysis-request/preference/preference.co
     NgIconsModule.withIcons({bootstrapGithub, bootstrapTrash, bootstrapPlus}),
     BrowserAnimationsModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

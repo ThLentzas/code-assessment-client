@@ -2,6 +2,11 @@
   color: #aaa;
 }
 
+.project-url-input {
+  width: 100%;
+  max-width: 300px;
+}
+
 .icon-large {
   font-size: 22px;
   line-height: 0;

@@ -1,44 +1,47 @@
 <div class="container">
-  <div class="row w-50">
+  <div class="row">
     <h4 class="text-center my-2 mb-2  fs-5 fw-light">Constraints</h4>
     <div class="col-md-4">
-      <label class="form-label required">Quality Metric</label>
+      <label class="form-label required" >Quality Metric</label>
     </div>
 
     <div class="col-md-2">
-      <label class="form-label" style="margin-left: 38px;">Operator</label>
+      <label class="form-label operator-text" >Operator</label>
     </div>
 
     <div class="col-md-2 text-center d-flex flex-column align-items-center">
-      <label class="form-label">Threshold</label>
+      <label class="form-label threshold-input">Threshold</label>
     </div>
   </div>
 
   <div *ngFor="let constraint of constraints; let i = index;">
-    <div class="row w-50">
+    <div class="row">
       <div class="col-md-4">
         <select class="form-control" [(ngModel)]="constraint.selectedMetric" id="qualityMetric">
-          <option *ngFor="let qualityMetric of qualityMetrics" [value]="qualityMetric">
-            {{ qualityMetric | titlecase }}
+          <option *ngFor="let qualityMetric of qualityMetrics" [ngValue]="qualityMetric.value">
+            {{ qualityMetric.viewValue | titlecase }}
           </option>
         </select>
       </div>
 
       <div class="col-md-2">
-        <div class="constraint">
+        <div class="operator-input">
           <select class="form-control text-center" [(ngModel)]="constraint.selectedOperator" id="operator">
-            <option *ngFor="let operator of operators" [value]="operator">
-              {{ operator }}
+            <option *ngFor="let operator of operators" [ngValue]="operator.value">
+              {{ operator.value }}
             </option>
+            <span class="caret"></span>
           </select>
         </div>
       </div>
 
       <div class="col-md-2 d-flex flex-column align-items-center">
-        <input type="text" class="form-control text-center" [(ngModel)]="constraint.threshold" id="threshold">
+        <input
+          type="text"
+          class="form-control text-center threshold-input"
+          [(ngModel)]="constraint.threshold">
       </div>
-
-      <div class="col-md-3 d-flex align-items-end">
+      <div class="col-md-4 d-flex align-items-end">
         <button
           (click)="onAddConstraint()"
           class="btn btn-success btn-constraint"

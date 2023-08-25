@@ -1,30 +1,27 @@
 <div class="container">
-  <div class="row w-50">
-    <h4 class="text-center my-2 mb-2  fs-5 fw-light">Preferences</h4>
+  <div class="row">
+    <h4 class="text-center my-2 mb-2 fs-5 fw-light">Preferences</h4>
     <div class="col-md-4">
       <label class="form-label required">Preference</label>
     </div>
 
-    <div class="col-md-2">
-      <label class="form-label " style="margin-left: 65px;">Weight</label>
-
+    <div class="col-md-2 text-center">
+      <label class="form-label text-weight">Weight</label>
     </div>
   </div>
 
   <div *ngFor="let preference of preferences; let i = index;">
-    <div class="row w-50">
-      <div class="col-md-4">
-        <select class="form-control" [(ngModel)]="preference.selectedPreference" id="qualityAttribute">
-          <option *ngFor="let qualityAttribute of qualityAttributes" [value]="qualityAttribute">
-            {{ qualityAttribute | titlecase }}
+    <div class="row">
+      <div class="col-md-5">
+        <select class="form-control" [(ngModel)]="preference.selectedAttribute" id="qualityAttribute">
+          <option *ngFor="let qualityAttribute of qualityAttributes" [ngValue]="qualityAttribute.value">
+            {{ qualityAttribute.viewValue | titlecase }}
           </option>
         </select>
       </div>
 
-      <div class="col-md-3 d-flex flex-column align-items-center">
-        <div class="preference">
-          <input type="text" class="form-control text-center" [(ngModel)]="preference.weight" id="weight">
-        </div>
+      <div class="col-md-1 d-flex flex-column align-items-center">
+        <input type="text" class="form-control text-center" [(ngModel)]="preference.weight" id="weight">
       </div>
 
       <div class="col-md-4 d-flex align-items-end">
@@ -37,11 +34,11 @@
         <button
           (click)="onRemovePreference(i)"
           class="btn btn-danger btn-remove-preference"
-          *ngIf="preferences.length > 1">
+          *ngIf="preferences.length > 1"
+          [ngStyle]="{'margin-left': preferences.length === 5 ? '55px' : '10px'}">
           <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
         </button>
       </div>
     </div>
   </div>
 </div>
-

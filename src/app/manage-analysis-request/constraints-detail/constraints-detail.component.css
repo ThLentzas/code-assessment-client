@@ -1,16 +1,19 @@
-select#operator#qualityMetric option {
-  text-align: center;
-  direction: rtl;
-}
-
 .btn-constraint {
   margin-left: 10px;
   margin-bottom: 5px;
   width: 50px;
 }
 
-.constraint {
-  margin-left: 35px;
+.operator-input {
+  margin-left: 50px;
+}
+
+.operator-text {
+  margin-left: 52px;
+}
+
+.threshold-input {
+  margin-left: 40px;
 }
 
 #qualityMetric {

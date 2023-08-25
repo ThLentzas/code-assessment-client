@@ -7,16 +7,21 @@
 }
 
 #weight{
+  margin-left: 65px;
   width: 90px;
 }
 
+.text-weight {
+  margin-left: 72px;
+}
+
 .btn-add-preference {
+  margin-left: 55px;
   margin-bottom: 5px;
   width: 50px;
 }
 
 .btn-remove-preference {
-  margin-left: 10px;
   margin-bottom: 5px;
   width: 50px;
 }
