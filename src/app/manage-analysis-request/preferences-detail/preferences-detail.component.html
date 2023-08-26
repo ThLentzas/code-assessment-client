@@ -13,7 +13,7 @@
   <div *ngFor="let preference of preferences; let i = index;">
     <div class="row">
       <div class="col-md-5">
-        <select class="form-control" [(ngModel)]="preference.selectedAttribute" id="qualityAttribute">
+        <select class="form-control preference" [(ngModel)]="preference.selectedAttribute" id="qualityAttribute">
           <option *ngFor="let qualityAttribute of qualityAttributes" [ngValue]="qualityAttribute.value">
             {{ qualityAttribute.viewValue | titlecase }}
           </option>
@@ -21,7 +21,7 @@
       </div>
 
       <div class="col-md-1 d-flex flex-column align-items-center">
-        <input type="text" class="form-control text-center" [(ngModel)]="preference.weight" id="weight">
+        <input type="text" class="form-control preference text-center" [(ngModel)]="preference.weight" id="weight">
       </div>
 
       <div class="col-md-4 d-flex align-items-end">

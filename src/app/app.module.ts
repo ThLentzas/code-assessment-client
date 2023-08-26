@@ -8,6 +8,11 @@ import { NgIconsModule } from '@ng-icons/core';
 import { bootstrapGithub } from '@ng-icons/bootstrap-icons';
 import { bootstrapTrash } from "@ng-icons/bootstrap-icons";
 import { bootstrapPlus } from "@ng-icons/bootstrap-icons";
+import { bootstrapColumnsGap } from "@ng-icons/bootstrap-icons";
+import { bootstrapPersonFill } from "@ng-icons/bootstrap-icons";
+import { bootstrapFolder2Open } from "@ng-icons/bootstrap-icons";
+import { bootstrapFileEarmarkText } from "@ng-icons/bootstrap-icons";
+import { bootstrapGear } from "@ng-icons/bootstrap-icons";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,7 +39,15 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     FormsModule,
-    NgIconsModule.withIcons({bootstrapGithub, bootstrapTrash, bootstrapPlus}),
+    NgIconsModule.withIcons({
+      bootstrapGithub,
+      bootstrapTrash,
+      bootstrapPlus,
+      bootstrapColumnsGap,
+      bootstrapPersonFill,
+      bootstrapFolder2Open,
+      bootstrapFileEarmarkText,
+      bootstrapGear }),
     BrowserAnimationsModule,
     MatSelectModule,
     MatFormFieldModule,

@@ -17,7 +17,7 @@
   <div *ngFor="let constraint of constraints; let i = index;">
     <div class="row">
       <div class="col-md-4">
-        <select class="form-control" [(ngModel)]="constraint.selectedMetric" id="qualityMetric">
+        <select class="form-control constraint" [(ngModel)]="constraint.selectedMetric" id="qualityMetric">
           <option *ngFor="let qualityMetric of qualityMetrics" [ngValue]="qualityMetric.value">
             {{ qualityMetric.viewValue | titlecase }}
           </option>
@@ -26,7 +26,7 @@
 
       <div class="col-md-2">
         <div class="operator-input">
-          <select class="form-control text-center" [(ngModel)]="constraint.selectedOperator" id="operator">
+          <select class="form-control text-center constraint" [(ngModel)]="constraint.selectedOperator" id="operator">
             <option *ngFor="let operator of operators" [ngValue]="operator.value">
               {{ operator.value }}
             </option>
@@ -38,7 +38,7 @@
       <div class="col-md-2 d-flex flex-column align-items-center">
         <input
           type="text"
-          class="form-control text-center threshold-input"
+          class="form-control text-center constraint threshold-input "
           [(ngModel)]="constraint.threshold">
       </div>
       <div class="col-md-4 d-flex align-items-end">

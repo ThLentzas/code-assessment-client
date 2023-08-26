@@ -1,15 +1,9 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {AnalysisService} from '../../analysis/analysis.service';
-import {Constraint} from '../../models/constraint';
+import {Constraint} from '../../models/analysis/request/constraint.model';
+import {QualityMetric} from "../../models/analysis/request/quality-metric.model";
+import {QualityMetricOperator} from "../../models/analysis/request/quality-metric-operator.model";
 
-interface QualityMetric {
-  value: string;
-  viewValue: string;
-}
-
-interface QualityMetricOperator {
-  value: string;
-}
 
 @Component({
   selector: 'app-constraints-detail',

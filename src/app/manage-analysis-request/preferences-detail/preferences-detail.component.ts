@@ -1,11 +1,7 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
-import {Preference} from "../../models/preference";
+import {Preference} from "../../models/analysis/request/preference.model";
 import {AnalysisService} from "../../analysis/analysis.service";
-
-interface QualityAttribute {
-  value: string;
-  viewValue: string;
-}
+import {QualityAttribute} from "../../models/analysis/request/quality-attribute.model";
 
 @Component({
   selector: 'app-preferences-detail',
@@ -44,7 +40,6 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
       {value: 'SECURITY_REMEDIATION_EFFORT', viewValue: 'Security Remediation Effort'}
     ];
   }
-
 
   ngDoCheck(): void {
     const validPreferences: Preference[] = this.preferences

@@ -1,4 +1,4 @@
-.preference {
+.attribute {
   margin-left: 25px;
 }
 
@@ -13,6 +13,11 @@
 
 .text-weight {
   margin-left: 72px;
+}
+
+.preference:focus {
+  box-shadow: 0 0 0 0.1rem #198754;
+  border-color: #198754;
 }
 
 .btn-add-preference {

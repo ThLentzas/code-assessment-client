@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-analysis-review',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./analysis-review.component.css']
 })
 export class AnalysisReviewComponent {
-
+  public progress = 87;
 }

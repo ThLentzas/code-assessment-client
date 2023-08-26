@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {AnalysisRequest} from "../models/analysis-request";
+import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
 import {AnalysisService} from "../analysis/analysis.service";
+import {AnalysisResult} from "../models/analysis/response/analysis-result.model";
 
 @Component({
   selector: 'app-manage-analysis-request',
@@ -19,7 +20,5 @@ export class ManageAnalysisRequestComponent {
       constraints: this.analysisService.getConstraints(),
       preferences: this.analysisService.getPreferences()
     };
-
-    this.analysisService.analyze(this.request)
   }
 }

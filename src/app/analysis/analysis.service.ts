@@ -1,8 +1,10 @@
 import {Injectable} from "@angular/core";
-import {Constraint} from "../models/constraint";
-import {Preference} from "../models/preference";
+import {Constraint} from "../models/analysis/request/constraint.model";
+import {Preference} from "../models/analysis/request/preference.model";
 import {HttpClient} from "@angular/common/http";
-import {AnalysisRequest} from "../models/analysis-request";
+import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
+import {AnalysisResult} from "../models/analysis/response/analysis-result.model";
+import {Observable, tap} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class AnalysisService {
@@ -13,8 +15,7 @@ export class AnalysisService {
   constructor(private http: HttpClient) {
   }
 
-
-  analyze(analysisRequest: AnalysisRequest) {
+  analyze(analysisRequest: AnalysisRequest){
     this.http.post('http://localhost:8080/api/v1/analysis', analysisRequest)
       .subscribe({
         next: response => {
@@ -25,6 +26,9 @@ export class AnalysisService {
       });
   };
 
+  fetchAnalysisResult(): Observable<AnalysisResult> {
+    return this.http.get<AnalysisResult>("http://localhost:8080/api/v1/analysis/4");
+  }
 
   getProjectUrls(): string[] {
     return this.projectUrls;
