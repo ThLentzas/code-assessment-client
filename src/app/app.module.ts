@@ -23,6 +23,8 @@ import { AnalysisComponent } from './analysis/analysis.component';
 import { AnalysisReviewComponent } from './analysis/analysis-review/analysis-review.component';
 import { AnalysisListComponent } from './analysis/analysis-list/analysis-list.component';
 import {HttpClientModule} from "@angular/common/http";
+import {AppRoutingModule} from "./app-routing.module";
+import {AnalysisService} from "./analysis/analysis.service";
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import {HttpClientModule} from "@angular/common/http";
       bootstrapFolder2Open,
       bootstrapFileEarmarkText,
       bootstrapGear }),
+    AppRoutingModule,
     BrowserAnimationsModule,
     MatSelectModule,
     MatFormFieldModule,

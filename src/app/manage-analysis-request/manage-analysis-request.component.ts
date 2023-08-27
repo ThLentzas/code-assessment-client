@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
 import {AnalysisService} from "../analysis/analysis.service";
-import {AnalysisResult} from "../models/analysis/response/analysis-result.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-manage-analysis-request',
@@ -11,7 +11,8 @@ import {AnalysisResult} from "../models/analysis/response/analysis-result.model"
 export class ManageAnalysisRequestComponent {
   request: AnalysisRequest;
 
-  constructor(private analysisService: AnalysisService) {
+  constructor(private analysisService: AnalysisService,
+              private router: Router) {
   }
 
   onAnalyze() {
@@ -20,5 +21,13 @@ export class ManageAnalysisRequestComponent {
       constraints: this.analysisService.getConstraints(),
       preferences: this.analysisService.getPreferences()
     };
+
+    this.analysisService.fetchAnalysisResult().subscribe({
+      next: response => {
+        this.analysisService.setAnalysisResponse(response);
+        this.analysisService.analysisResponseUpdated.next(this.analysisService.getAnalysisResponse());
+        this.router.navigate(['/dashboard']);
+      }
+    })
   }
 }

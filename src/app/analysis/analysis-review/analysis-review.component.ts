@@ -6,5 +6,5 @@ import {AfterViewInit, Component, ElementRef, Renderer2} from '@angular/core';
   styleUrls: ['./analysis-review.component.css']
 })
 export class AnalysisReviewComponent {
-  public progress = 87;
+
 }

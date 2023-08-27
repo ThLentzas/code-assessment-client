@@ -3,14 +3,16 @@ import {Constraint} from "../models/analysis/request/constraint.model";
 import {Preference} from "../models/analysis/request/preference.model";
 import {HttpClient} from "@angular/common/http";
 import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
-import {AnalysisResult} from "../models/analysis/response/analysis-result.model";
-import {Observable, tap} from "rxjs";
+import {AnalysisResponse} from "../models/analysis/response/analysis-response.model";
+import {Observable, Subject} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class AnalysisService {
   private projectUrls: string[] = [];
   private constraints: Constraint[] = [];
   private preferences: Preference[] = [];
+  private analysisResponse: AnalysisResponse;
+  analysisResponseUpdated = new Subject<AnalysisResponse>();
 
   constructor(private http: HttpClient) {
   }
@@ -26,8 +28,8 @@ export class AnalysisService {
       });
   };
 
-  fetchAnalysisResult(): Observable<AnalysisResult> {
-    return this.http.get<AnalysisResult>("http://localhost:8080/api/v1/analysis/4");
+  fetchAnalysisResult(): Observable<AnalysisResponse> {
+    return this.http.get<AnalysisResponse>("http://localhost:8080/api/v1/analysis/4");
   }
 
   getProjectUrls(): string[] {
@@ -42,6 +44,10 @@ export class AnalysisService {
     return this.preferences;
   }
 
+  getAnalysisResponse(): AnalysisResponse {
+    return this.analysisResponse;
+  }
+
   setProjectUrls(projectUrls: string[]) {
     this.projectUrls = projectUrls;
   }
@@ -52,5 +58,9 @@ export class AnalysisService {
 
   setPreferences(preferences: Preference[]) {
     this.preferences = preferences;
+  }
+
+  setAnalysisResponse(analysisResponse: AnalysisResponse) {
+    this.analysisResponse = analysisResponse;
   }
 }
