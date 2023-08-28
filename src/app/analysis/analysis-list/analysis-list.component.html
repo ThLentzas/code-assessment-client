@@ -1,6 +1,7 @@
 <div *ngIf="analysisResponse">
   <div class="container">
     <div class="row">
+
       <div class="col-6">
         <h3 class="text-center">Compliant</h3>
         <ul class="list-group">
@@ -19,6 +20,7 @@
           </li>
         </ul>
       </div>
+
       <div class="col-6">
         <h3 class="text-center">Non-Compliant</h3>
         <ul class="list-group">
@@ -28,7 +30,7 @@
                 <ng-icon name="bootstrapGithub" class="me-1 icon-large" style="color: initial;"></ng-icon>
                 GitHub Repository
               </a>
-              <a href="https://report.com/project1" style="text-decoration: none; ">Report</a>
+              <a href="https://report.com/project1" style="text-decoration: none;">Report</a>
               <div class="progress-bar d-flex justify-content-center align-items-center position-relative"
                    [style.--rank]="report.rank + '%'" [style.--color]="'#198754'">
                 <div class="progress-text">{{ report.rank }}%</div>
@@ -38,5 +40,19 @@
         </ul>
       </div>
     </div>
+
+    <div class="row mt-4">
+      <div class="col d-flex justify-content-center">
+        <div class="tooltip-container">
+          <button class="btn btn-success me-2" (click)="onNewAnalysis()">+ New Analysis</button>
+          <div class="tooltip-text">Start a new analysis</div>
+        </div>
+        <div class="tooltip-container">
+          <button class="btn btn-primary" (click)="onUpdateResults()">Update Results</button>
+          <div class="tooltip-text">Update your constraints and preferences</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+

@@ -2,32 +2,36 @@
   margin-left: 25px;
 }
 
-#qualityAttribute {
-  width: 240px;
-}
-
-#weight{
-  margin-left: 65px;
-  width: 90px;
-}
-
-.text-weight {
-  margin-left: 72px;
-}
-
 .preference:focus {
   box-shadow: 0 0 0 0.1rem #198754;
   border-color: #198754;
 }
 
-.btn-add-preference {
-  margin-left: 55px;
+#qualityAttribute {
+  width: 240px;
+}
+
+#weight-text {
+  margin-left: 82px;
+}
+
+#weight-input{
+  margin-left: 95px;
+  width: 68px;
+}
+
+.btn-add {
+  margin-left: 58px;
   margin-bottom: 5px;
   width: 50px;
 }
 
-.btn-remove-preference {
+#btn-remove {
+  margin-left: 10px;
   margin-bottom: 5px;
   width: 50px;
 }
 
+h4 {
+  padding-right: 160px
+}

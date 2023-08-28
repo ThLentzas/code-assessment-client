@@ -15,3 +15,31 @@
   z-index: 1;
   color: black;
 }
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  width: max-content;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 5px;
+  color: #333;
+  transform: translateX(-50%);
+  border: 1px solid #ccc;
+}

@@ -9,24 +9,27 @@ import {Router} from "@angular/router";
   styleUrls: ['./manage-analysis-request.component.css']
 })
 export class ManageAnalysisRequestComponent {
-  request: AnalysisRequest;
+  analysisRequest: AnalysisRequest;
 
   constructor(private analysisService: AnalysisService,
               private router: Router) {
   }
 
   onAnalyze() {
-    this.request = {
+    this.analysisRequest = {
       projectUrls: this.analysisService.getProjectUrls(),
       constraints: this.analysisService.getConstraints(),
       preferences: this.analysisService.getPreferences()
     };
 
-    this.analysisService.fetchAnalysisResult().subscribe({
+    this.analysisService.fetchAnalysisResult(4).subscribe({
       next: response => {
         this.analysisService.setAnalysisResponse(response);
         this.analysisService.analysisResponseUpdated.next(this.analysisService.getAnalysisResponse());
-        this.router.navigate(['/dashboard']);
+        this.router.navigate([
+          '/dashboard',
+          'analysis',
+          this.analysisService.getAnalysisResponse().analysisId]);
       }
     })
   }

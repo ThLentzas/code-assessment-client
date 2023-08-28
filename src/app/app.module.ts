@@ -20,11 +20,12 @@ import { ManageAnalysisRequestComponent } from './manage-analysis-request/manage
 import { ConstraintsDetailComponent } from './manage-analysis-request/constraints-detail/constraints-detail.component';
 import { PreferencesDetailComponent } from './manage-analysis-request/preferences-detail/preferences-detail.component';
 import { AnalysisComponent } from './analysis/analysis.component';
-import { AnalysisReviewComponent } from './analysis/analysis-review/analysis-review.component';
+import { AnalysisReviewComponent } from './analysis/analysis-overeview/analysis-review.component';
 import { AnalysisListComponent } from './analysis/analysis-list/analysis-list.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
-import {AnalysisService} from "./analysis/analysis.service";
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RefreshRequestComponent } from './analysis/refresh-request/refresh-request.component';
 
 
 @NgModule({
@@ -37,10 +38,17 @@ import {AnalysisService} from "./analysis/analysis.service";
     AnalysisComponent,
     AnalysisReviewComponent,
     AnalysisListComponent,
+    NavbarComponent,
+    RefreshRequestComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    HttpClientModule,
     NgIconsModule.withIcons({
       bootstrapGithub,
       bootstrapTrash,
@@ -49,12 +57,7 @@ import {AnalysisService} from "./analysis/analysis.service";
       bootstrapPersonFill,
       bootstrapFolder2Open,
       bootstrapFileEarmarkText,
-      bootstrapGear }),
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    HttpClientModule
+      bootstrapGear })
   ],
   providers: [],
   bootstrap: [AppComponent]

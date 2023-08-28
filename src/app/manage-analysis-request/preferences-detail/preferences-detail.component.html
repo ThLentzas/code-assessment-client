@@ -6,14 +6,14 @@
     </div>
 
     <div class="col-md-2 text-center">
-      <label class="form-label text-weight">Weight</label>
+      <label class="form-label" id="weight-text">Weight</label>
     </div>
   </div>
 
   <div *ngFor="let preference of preferences; let i = index;">
     <div class="row">
       <div class="col-md-5">
-        <select class="form-control preference" [(ngModel)]="preference.selectedAttribute" id="qualityAttribute">
+        <select class="form-control preference"  [(ngModel)]="preference.selectedAttribute" id="qualityAttribute">
           <option *ngFor="let qualityAttribute of qualityAttributes" [ngValue]="qualityAttribute.value">
             {{ qualityAttribute.viewValue | titlecase }}
           </option>
@@ -21,21 +21,28 @@
       </div>
 
       <div class="col-md-1 d-flex flex-column align-items-center">
-        <input type="text" class="form-control preference text-center" [(ngModel)]="preference.weight" id="weight">
+        <input type="text" class="form-control preference text-center" autocomplete="off" [(ngModel)]="preference.weight" id="weight-input">
       </div>
 
       <div class="col-md-4 d-flex align-items-end">
         <button
           (click)="onAddPreference()"
-          class="btn btn-success btn-add-preference"
-          *ngIf="preferences.length < 5">
+          class="btn btn-success btn-add"
+          *ngIf="preferences.length < 5; else maxLength">
           <ng-icon name="bootstrapPlus" class="me-3 icon-large"></ng-icon>
         </button>
+        <ng-template #maxLength>
+          <button
+            (click)="onRemovePreference(i)"
+            class="btn btn-danger btn-add">
+            <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
+          </button>
+        </ng-template>
         <button
           (click)="onRemovePreference(i)"
-          class="btn btn-danger btn-remove-preference"
-          *ngIf="preferences.length > 1"
-          [ngStyle]="{'margin-left': preferences.length === 5 ? '55px' : '10px'}">
+          id="btn-remove"
+          class="btn btn-danger"
+          *ngIf="preferences.length > 1  && preferences.length < 5">
           <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
         </button>
       </div>

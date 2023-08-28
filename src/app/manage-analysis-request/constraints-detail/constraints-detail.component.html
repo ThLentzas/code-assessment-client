@@ -30,7 +30,6 @@
             <option *ngFor="let operator of operators" [ngValue]="operator.value">
               {{ operator.value }}
             </option>
-            <span class="caret"></span>
           </select>
         </div>
       </div>
@@ -44,14 +43,22 @@
       <div class="col-md-4 d-flex align-items-end">
         <button
           (click)="onAddConstraint()"
-          class="btn btn-success btn-constraint"
-          *ngIf="constraints.length < 5">
+          class="btn btn-success btn-add"
+          *ngIf="constraints.length < 5; else maxLength">
           <ng-icon name="bootstrapPlus" class="me-3 icon-large"></ng-icon>
         </button>
+        <ng-template #maxLength>
+          <button
+            (click)="onRemoveConstraint(i)"
+            class="btn btn-danger btn-add">
+            <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
+          </button>
+        </ng-template>
         <button
           (click)="onRemoveConstraint(i)"
-          class="btn btn-danger btn-constraint"
-          *ngIf="constraints.length > 1">
+          class="btn btn-danger"
+          id="btn-remove"
+          *ngIf="constraints.length > 1 && constraints.length < 5">
           <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
         </button>
       </div>

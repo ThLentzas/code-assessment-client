@@ -1,24 +1,13 @@
-.btn-constraint {
-  margin-left: 10px;
-  margin-bottom: 5px;
-  width: 50px;
-}
-
-.constraint:focus {
-  box-shadow: 0 0 0 0.1rem #198754;
-  border-color: #198754;
-}
-
 .operator-input {
-  margin-left: 50px;
+  margin-left: 70px;
 }
 
 .operator-text {
-  margin-left: 52px;
+  margin-left: 70px;
 }
 
 .threshold-input {
-  margin-left: 40px;
+  margin-left: 105px;
 }
 
 #qualityMetric {
@@ -30,6 +19,26 @@
 }
 
 #threshold {
-  width: 90px;
+  width: 68px;
 }
 
+.btn-add {
+  margin-left: 40px;
+  margin-bottom: 5px;
+  width: 50px;
+}
+
+#btn-remove {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  width: 50px;
+}
+
+.constraint:focus {
+  box-shadow: 0 0 0 0.1rem #198754;
+  border-color: #198754;
+}
+
+h4 {
+  padding-right: 120px
+}
