@@ -39,11 +39,15 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
   }
 
   onUpdateResults() {
-    const analysisId = this.route.snapshot.params['analysisId'];
+    const analysisId = this.getAnalysisId();
     this.router.navigate(['analysis', analysisId, 'refresh']);
   }
 
   isFirstDigitZero(num: number) {
     return num.toString()[0] === '0' || num.toString()[0] === '1';
-  };
+  }
+
+  public getAnalysisId(): string {
+    return this.route.snapshot.params['analysisId'];
+  }
 }

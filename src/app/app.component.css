@@ -1,5 +1,8 @@
-.row-80 {
-  width: 100%;
-  margin-left: 250px;
+.navbar-col {
+  padding-left: 0;
+  padding-right: 0;
 }
 
+.content-col {
+  padding-left: 0;
+}

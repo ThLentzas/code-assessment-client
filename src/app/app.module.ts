@@ -26,6 +26,8 @@ import { HttpClientModule } from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RefreshRequestComponent } from './analysis/refresh-request/refresh-request.component';
+import { StickyNoteComponent } from './components/sticky-note/sticky-note.component';
+import {NgOptimizedImage} from "@angular/common";
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { RefreshRequestComponent } from './analysis/refresh-request/refresh-requ
     AnalysisListComponent,
     NavbarComponent,
     RefreshRequestComponent,
+    StickyNoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,9 @@ import { RefreshRequestComponent } from './analysis/refresh-request/refresh-requ
       bootstrapPersonFill,
       bootstrapFolder2Open,
       bootstrapFileEarmarkText,
-      bootstrapGear })
+      bootstrapGear
+    }),
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,67 +1,57 @@
 <div class="container">
   <div class="row">
-    <h4 class="text-center my-2 mb-2  fs-5 fw-light">Constraints</h4>
-    <div class="col-md-4">
-      <label class="form-label required" >Quality Metric</label>
-    </div>
-
-    <div class="col-md-2">
-      <label class="form-label operator-text" >Operator</label>
-    </div>
-
-    <div class="col-md-2 text-center d-flex flex-column align-items-center">
-      <label class="form-label threshold-input">Threshold</label>
+    <div class="col-12 text-center">
+      <h4 class="fs-5 fw-light">Constraints</h4>
     </div>
   </div>
 
-  <div *ngFor="let constraint of constraints; let i = index;">
-    <div class="row">
-      <div class="col-md-4">
-        <select class="form-control constraint" [(ngModel)]="constraint.selectedMetric" id="qualityMetric">
-          <option *ngFor="let qualityMetric of qualityMetrics" [ngValue]="qualityMetric.value">
-            {{ qualityMetric.viewValue | titlecase }}
-          </option>
-        </select>
-      </div>
+  <div class="row text-center">
+    <div class="col-md-6">
+      <label class="form-label">Quality Metric</label>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Operator</label>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Threshold</label>
+    </div>
+  </div>
 
-      <div class="col-md-2">
-        <div class="operator-input">
-          <select class="form-control text-center constraint" [(ngModel)]="constraint.selectedOperator" id="operator">
-            <option *ngFor="let operator of operators" [ngValue]="operator.value">
-              {{ operator.value }}
-            </option>
-          </select>
-        </div>
-      </div>
+  <div *ngFor="let constraint of constraints; let i = index;" class="row align-items-end mb-3">
+    <div class="col-md-6">
+      <select class="form-control constraint" [(ngModel)]="constraint.selectedMetric">
+        <option *ngFor="let qualityMetric of qualityMetrics" [ngValue]="qualityMetric.value">
+          {{ qualityMetric.viewValue | titlecase }}
+        </option>
+      </select>
+    </div>
 
-      <div class="col-md-2 d-flex flex-column align-items-center">
-        <input
-          type="text"
-          class="form-control text-center constraint threshold-input "
-          [(ngModel)]="constraint.threshold">
-      </div>
-      <div class="col-md-4 d-flex align-items-end">
-        <button
-          (click)="onAddConstraint()"
-          class="btn btn-success btn-add"
-          *ngIf="constraints.length < 5; else maxLength">
-          <ng-icon name="bootstrapPlus" class="me-3 icon-large"></ng-icon>
-        </button>
-        <ng-template #maxLength>
-          <button
-            (click)="onRemoveConstraint(i)"
-            class="btn btn-danger btn-add">
-            <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
-          </button>
-        </ng-template>
-        <button
-          (click)="onRemoveConstraint(i)"
-          class="btn btn-danger"
-          id="btn-remove"
-          *ngIf="constraints.length > 1 && constraints.length < 5">
+    <div class="col-md-2 text-center">
+      <select class="form-control text-center constraint" [(ngModel)]="constraint.selectedOperator">
+        <option *ngFor="let operator of operators" [ngValue]="operator.value">
+          {{ operator.value }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-2 text-center">
+      <input type="text" class="form-control text-center constraint" [(ngModel)]="constraint.threshold">
+    </div>
+
+    <div class="col-md-2 d-flex justify-content-start">
+      <button (click)="onAddConstraint()" class="btn btn-success w-75 me-2" *ngIf="constraints.length < 5; else maxLength">
+        <ng-icon name="bootstrapPlus" class="me-3 icon-large"></ng-icon>
+      </button>
+
+      <ng-template #maxLength>
+        <button (click)="onRemoveConstraint(i)" class="btn btn-danger w-75 me-2">
           <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
         </button>
-      </div>
+      </ng-template>
+
+      <button (click)="onRemoveConstraint(i)" class="btn btn-danger w-75" *ngIf="constraints.length > 1 && constraints.length < 5">
+        <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
+      </button>
     </div>
   </div>
 </div>

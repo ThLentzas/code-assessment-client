@@ -7,11 +7,17 @@
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let report of analysisResponse.reports[0]">
             <div class="d-flex justify-content-between align-items-center">
-              <a [href]="report.projectUrl.href" target="_blank"  style="text-decoration: none;">
+              <a [href]="report.projectUrl.href" target="_blank" style="text-decoration: none;">
                 <ng-icon name="bootstrapGithub" class="me-1 icon-large" style="color: initial;"></ng-icon>
                 <span>GitHub Repository</span>
               </a>
-              <a href="https://report.com/project1" style="text-decoration: none;">Report</a>
+              <!-- The activated router is /dashboard/analysis/analysisId. We can extract the analysisId from the
+              current route.-->
+              <a [routerLink]="['/dashboard/analysis', getAnalysisId(), 'reports', report.reportId]"
+                 style="text-decoration: none;">
+                <ng-icon name="bootstrapGithub" class="me-1 icon-large" style="color: initial;"></ng-icon>
+                Report
+              </a>
               <div class="progress-bar d-flex justify-content-center align-items-center position-relative"
                    [style.--rank]="report.rank + '%'" [style.--color]="'#198754'">
                 <div class="progress-text">{{ report.rank }}%</div>

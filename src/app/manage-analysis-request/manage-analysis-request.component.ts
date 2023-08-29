@@ -15,6 +15,8 @@ export class ManageAnalysisRequestComponent {
               private router: Router) {
   }
 
+
+
   onAnalyze() {
     this.analysisRequest = {
       projectUrls: this.analysisService.getProjectUrls(),

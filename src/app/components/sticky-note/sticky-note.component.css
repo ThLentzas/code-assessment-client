@@ -1,0 +1,20 @@
+.sticky-note {
+  width: 200px;
+  background-color: #fffdd0;
+  border: none;
+  border-radius: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.card-height {
+  height: 180px;
+  padding-right: 25px;
+}
+
+.btn-close-position {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+  font-family: inherit;
+}
