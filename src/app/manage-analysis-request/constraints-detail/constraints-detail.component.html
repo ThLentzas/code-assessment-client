@@ -1,12 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 text-center">
-      <h4 class="fs-5 fw-light">Constraints</h4>
+    <div class="col-12 text-start">
+      <h4 class="fs-5 fw-normal">Constraints</h4>
     </div>
   </div>
-
   <div class="row text-center">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <label class="form-label">Quality Metric</label>
     </div>
     <div class="col-md-2">
@@ -15,17 +14,17 @@
     <div class="col-md-2">
       <label class="form-label">Threshold</label>
     </div>
+    <div class="col-md-3">
+    </div>
   </div>
-
-  <div *ngFor="let constraint of constraints; let i = index;" class="row align-items-end mb-3">
-    <div class="col-md-6">
+  <div *ngFor="let constraint of constraints; let i = index;" class="row align-items-end mb-2">
+    <div class="col-md-5">
       <select class="form-control constraint" [(ngModel)]="constraint.selectedMetric">
         <option *ngFor="let qualityMetric of qualityMetrics" [ngValue]="qualityMetric.value">
           {{ qualityMetric.viewValue | titlecase }}
         </option>
       </select>
     </div>
-
     <div class="col-md-2 text-center">
       <select class="form-control text-center constraint" [(ngModel)]="constraint.selectedOperator">
         <option *ngFor="let operator of operators" [ngValue]="operator.value">
@@ -33,25 +32,25 @@
         </option>
       </select>
     </div>
-
     <div class="col-md-2 text-center">
       <input type="text" class="form-control text-center constraint" [(ngModel)]="constraint.threshold">
     </div>
-
-    <div class="col-md-2 d-flex justify-content-start">
-      <button (click)="onAddConstraint()" class="btn btn-success w-75 me-2" *ngIf="constraints.length < 5; else maxLength">
-        <ng-icon name="bootstrapPlus" class="me-3 icon-large"></ng-icon>
-      </button>
-
-      <ng-template #maxLength>
-        <button (click)="onRemoveConstraint(i)" class="btn btn-danger w-75 me-2">
-          <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
+    <div class="col-md-3 d-flex justify-content-start">
+      <div class="d-flex">
+        <button (click)="onAddConstraint()" class="btn btn-success flex-grow-1 me-2"
+                *ngIf="constraints.length < 5; else maxLength">
+          <ng-icon name="bootstrapPlus" class="icon-large"></ng-icon>
         </button>
-      </ng-template>
-
-      <button (click)="onRemoveConstraint(i)" class="btn btn-danger w-75" *ngIf="constraints.length > 1 && constraints.length < 5">
-        <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
-      </button>
+        <ng-template #maxLength>
+          <button (click)="onRemoveConstraint(i)" class="btn btn-danger flex-grow-1 me-2">
+            <ng-icon name="bootstrapTrash" class="icon-large"></ng-icon>
+          </button>
+        </ng-template>
+        <button (click)="onRemoveConstraint(i)" class="btn btn-danger flex-grow-1 me-2"
+                *ngIf="constraints.length > 1 && constraints.length < 5">
+          <ng-icon name="bootstrapTrash" class="icon-large"></ng-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,3 +1,5 @@
+/* Existing CSS */
+
 .progress-bar {
   --rank: 0%;
   --color: #198754;
@@ -43,11 +45,15 @@
   border: 1px solid #ccc;
 }
 
-.repo-link {
-  text-decoration: none;
-  color: initial;
-}
-
 .tooltip-btn {
   position: relative;
+}
+
+.repo-link {
+  color: #7B87D9;
+  text-decoration: none;
+}
+
+.icon {
+  color: initial;
 }

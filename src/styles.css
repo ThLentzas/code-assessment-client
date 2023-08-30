@@ -3,7 +3,6 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #C9D1D9;
 }
 
@@ -25,4 +24,8 @@ body {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
+}
+
+.tree-container {
+  margin-left: 75px;
 }

@@ -15,6 +15,7 @@ const appRoutes: Routes = [{
     path: 'dashboard/analysis/:analysisId/reports/:reportId', component: AnalysisReviewComponent
   }, {
     path: '', redirectTo: '/dashboard/analysis', pathMatch: 'full',
+  //issues?=Bug
   }
 ]
 

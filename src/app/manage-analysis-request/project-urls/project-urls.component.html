@@ -1,34 +1,40 @@
-<div class="row">
-  <h4 class="my-2 mb-2 fs-5 fw-light text-center">Project URLs</h4>
-  <ul class="p-0 m-0">
-    <li class="form-group d-flex align-items-center">
-      <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
-      <input
-        type="url" autocomplete="off"
-        class="form-control my-2 project-url-input"
-        [(ngModel)]="projectUrls[0]"
-        name="url1"
-        placeholder="Enter GitHub repository url">
-    </li>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-start">
+      <h4 class="fs-5 fw-normal">Project URLs</h4>
+    </div>
+  </div>
 
-    <li class="form-group d-flex align-items-center">
-      <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
-      <input
-        type="url"
-        class="form-control my-2 project-url-input"
-        [(ngModel)]="projectUrls[1]"
-        name="url2"
-        placeholder="Enter GitHub repository url">
-    </li>
+  <div class="row">
+    <div class="col-12">
+      <ul class="list-unstyled">
+        <li class="row align-items-center">
+          <div class="col-1">
+            <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
+          </div>
+          <div class="col-10">
+            <input type="url" autocomplete="off" class="form-control my-2 project-url-input" [(ngModel)]="projectUrls[0]" name="url1" placeholder="Enter GitHub repository url">
+          </div>
+        </li>
 
-    <li class="form-group d-flex align-items-center">
-      <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
-      <input
-        type="url"
-        class="form-control my-2 project-url-input"
-        [(ngModel)]="projectUrls[2]"
-        name="url3"
-        placeholder="Enter GitHub repository url">
-    </li>
-  </ul>
+        <li class="row align-items-center">
+          <div class="col-1">
+            <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
+          </div>
+          <div class="col-10">
+            <input type="url" class="form-control my-2 project-url-input" [(ngModel)]="projectUrls[1]" name="url2" placeholder="Enter GitHub repository url">
+          </div>
+        </li>
+
+        <li class="row align-items-center">
+          <div class="col-1">
+            <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
+          </div>
+          <div class="col-10">
+            <input type="url" class="form-control my-2 project-url-input" [(ngModel)]="projectUrls[2]" name="url3" placeholder="Enter GitHub repository url">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,49 +1,49 @@
 <div class="container">
-  <!-- Preferences Header -->
   <div class="row">
-    <div class="col-12 text-center mb-0">
-      <h4 class="fs-5 fw-light mb-0">Preferences</h4>
+    <div class="col-12 text-start">
+      <h4 class="fs-5 fw-normal">Preferences</h4>
     </div>
   </div>
 
-  <!-- Labels Row -->
   <div class="row text-center">
-    <div class="col-md-5">
+    <div class="col-md-6">
       <label class="form-label">Preference</label>
     </div>
-    <div class="col-md-1 text-center">
+    <div class="col-md-2 text-center">
       <label class="form-label">Weight</label>
     </div>
   </div>
 
-  <!-- Input Rows -->
-  <div *ngFor="let preference of preferences; let i = index;" class="row align-items-end mb-3">
-    <div class="col-md-5">
-      <select class="form-control" [(ngModel)]="preference.selectedAttribute">
+  <div *ngFor="let preference of preferences; let i = index;" class="row align-items-end mb-2">
+    <div class="col-md-6">
+      <select class="form-control preference" [(ngModel)]="preference.selectedAttribute">
         <option *ngFor="let qualityAttribute of qualityAttributes" [ngValue]="qualityAttribute.value">
           {{ qualityAttribute.viewValue | titlecase }}
         </option>
       </select>
     </div>
 
-    <div class="col-md-1 d-flex flex-column align-items-center">
-      <input type="text" class="form-control text-center" autocomplete="off" [(ngModel)]="preference.weight">
+    <div class="col-md-2 d-flex flex-column align-items-center">
+      <input type="text" class="form-control text-center preference" autocomplete="off" [(ngModel)]="preference.weight">
     </div>
 
-    <div class="col-md-6 d-flex align-items-end">
-      <button (click)="onAddPreference()" class="btn btn-success w-50 ms-3 mb-1" *ngIf="preferences.length < 5; else maxLength">
-        <ng-icon name="bootstrapPlus" class="me-3 icon-large"></ng-icon>
-      </button>
-
-      <ng-template #maxLength>
-        <button (click)="onRemovePreference(i)" class="btn btn-danger w-50 ms-3 mb-1">
-          <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
+    <div class="col-md-4 d-flex justify-content-start">
+      <!-- Use flexbox to manage button layout -->
+      <div class="d-flex">
+        <button (click)="onAddPreference()" class="btn btn-success flex-grow-1 me-2" *ngIf="preferences.length < 5; else maxLength">
+          <ng-icon name="bootstrapPlus" class="icon-large"></ng-icon>
         </button>
-      </ng-template>
 
-      <button (click)="onRemovePreference(i)" class="btn btn-danger w-50 ms-3 mb-1" *ngIf="preferences.length > 1 && preferences.length < 5">
-        <ng-icon name="bootstrapTrash" class="me-3 icon-large"></ng-icon>
-      </button>
+        <ng-template #maxLength>
+          <button (click)="onRemovePreference(i)" class="btn btn-danger flex-grow-1 me-2">
+            <ng-icon name="bootstrapTrash" class="icon-large"></ng-icon>
+          </button>
+        </ng-template>
+
+        <button (click)="onRemovePreference(i)" class="btn btn-danger flex-grow-1 me-2" *ngIf="preferences.length > 1 && preferences.length < 5">
+          <ng-icon name="bootstrapTrash" class="icon-large"></ng-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>
