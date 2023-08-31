@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AnalysisService} from "../analysis.service";
 import {ActivatedRoute} from "@angular/router";
 import {AnalysisReport} from "../../models/analysis/response/analysis-report.model";
+import {IssueDetails} from "../../models/analysis/response/issues-report.model";
+import {HotspotDetails} from "../../models/analysis/response/hotspots-report.model";
 
 @Component({
   selector: 'app-analysis-review',
@@ -9,20 +11,14 @@ import {AnalysisReport} from "../../models/analysis/response/analysis-report.mod
   styleUrls: ['./analysis-review.component.css']
 })
 export class AnalysisReviewComponent implements OnInit {
+  //We can not iterate through maps with *ngFor. We have to convert them into arrays.
   analysisReport: AnalysisReport;
-  metrics = [
-    { name: 'BUG_SEVERITY', value: 0 },
-    { name: 'COGNITIVE_COMPLEXITY', value: 61.2 },
-    { name: 'COMMENT_RATE', value: 66.6 },
-    { name: 'CYCLOMATIC_COMPLEXITY', value: 77.5 },
-    { name: 'DUPLICATION', value: 100 },
-    { name: 'HOTSPOT_PRIORITY', value: 4.1 },
-    { name: 'METHOD_SIZE', value: 100 },
-    { name: 'RELIABILITY_REMEDIATION_EFFORT', value: 100 },
-    { name: 'SECURITY_REMEDIATION_EFFORT', value: 100 },
-    { name: 'TECHNICAL_DEBT_RATIO', value: 99.1 },
-    { name: 'VULNERABILITY_SEVERITY', value: 100 }
-  ];
+  bugs: IssueDetails[];
+  codeSmells: IssueDetails[];
+  vulnerabilities: IssueDetails[];
+  hotspots: HotspotDetails[];
+  metrics: { key: string, value: number }[] = [];
+  languages: { key: string, value: number }[] = [];
 
   constructor(private analysisService: AnalysisService, private route: ActivatedRoute) {
   }
@@ -37,9 +33,31 @@ export class AnalysisReviewComponent implements OnInit {
       for (const report of reportList) {
         if (report.reportId === reportId) {
           this.analysisReport = report;
-          console.log(report.qualityMetricsReport);
         }
       }
     }
+
+    this.metrics = Object.keys(this.analysisReport.qualityMetricsReport).map(key => {
+      return {
+        key: key.replace(/_/g, ' '),
+        value: parseFloat(this.analysisReport.qualityMetricsReport[key].toFixed(6))
+      };
+    });
+
+    console.log(this.metrics)
+    this.languages = Object.keys(this.analysisReport.languages).map(key => {
+      return {
+        key: key,
+        value: this.analysisReport.languages[key]
+      };
+    });
+
+    this.bugs = this.analysisReport.issuesReport.issues.filter(issue =>
+      issue.type === 'BUG');
+    this.codeSmells = this.analysisReport.issuesReport.issues.filter(issue =>
+      issue.type === 'CODE_SMELL');
+    this.vulnerabilities = this.analysisReport.issuesReport.issues.filter(issue =>
+      issue.type === 'VULNERABILITY');
+    this.hotspots = this.analysisReport.hotspotsReport.hotspots;
   }
 }

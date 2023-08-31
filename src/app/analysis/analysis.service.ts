@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
 import {AnalysisResponse} from "../models/analysis/response/analysis-response.model";
 import {BehaviorSubject, Observable} from "rxjs";
-import {RefreshRequest} from "../models/refresh-request.model";
+import {RefreshRequest} from "../models/analysis/request/refresh-request.model";
 
 @Injectable({providedIn: 'root'})
 export class AnalysisService {

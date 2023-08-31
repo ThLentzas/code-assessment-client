@@ -13,6 +13,10 @@ import { bootstrapPersonFill } from "@ng-icons/bootstrap-icons";
 import { bootstrapFolder2Open } from "@ng-icons/bootstrap-icons";
 import { bootstrapFileEarmarkText } from "@ng-icons/bootstrap-icons";
 import { bootstrapGear } from "@ng-icons/bootstrap-icons";
+import { bootstrapBug } from "@ng-icons/bootstrap-icons";
+import { bootstrapPersonFillGear } from "@ng-icons/bootstrap-icons";
+import { bootstrapShieldFillCheck } from "@ng-icons/bootstrap-icons";
+import { bootstrapShieldFillExclamation } from "@ng-icons/bootstrap-icons";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -60,7 +64,11 @@ import {NgOptimizedImage} from "@angular/common";
       bootstrapPersonFill,
       bootstrapFolder2Open,
       bootstrapFileEarmarkText,
-      bootstrapGear
+      bootstrapGear,
+      bootstrapBug,
+      bootstrapPersonFillGear,
+      bootstrapShieldFillCheck,
+      bootstrapShieldFillExclamation
     }),
     NgOptimizedImage
   ],

@@ -21,36 +21,58 @@
     </div>
   </div>
 </nav>
-
-<div class="container mt-2">
-
-  <div class="row justify-content-center mb-2">
-    <div class="col-lg-6">
-      <h2>Metrics Breakdown</h2>
+<div class="row">
+  <div class="col-5">
+    <div class="container">
+      <h3>Metrics Breakdown</h3>
     </div>
   </div>
-
-  <div class="row justify-content-center">
-    <div class="col-lg-6">
+</div>
+<div class="row">
+  <div class="col-5">
+    <div class="container">
       <div class="card">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item border-0 py-2" *ngFor="let metric of metrics">
+          <li class="list-group-item border-0" *ngFor="let metric of metrics">
             <div class="row align-items-center my-0">
               <div class="col-5 fs-6">
-                <span class="fs-6">{{ metric.name | titlecase }}</span>
+                <span class="fs-6">{{ metric.key | titlecase }}</span>
               </div>
               <div class="col-5 ms-0 fs-6">
                 <div class="progress" style="height: 0.5rem;">
                   <div class="progress-bar" role="progressbar"
-                       [ngStyle]="{ 'width': metric.value + '%', 'background-color': '#7B87D9' }"
+                       [ngStyle]="{ 'width': (metric.value * 100) + '%', 'background-color': '#7B87D9' }"
                        aria-valuenow="metric.value"
+                       aria-valuemin="0"
+                       aria-valuemax="1.0"></div>
+                </div>
+              </div>
+              <div class="col-2 ms-0 fs-6">
+                <small>{{ metric.value }}</small>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <h3 class="mt-4">Languages</h3>
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item border-0" *ngFor="let language of languages">
+            <div class="row align-items-center my-0">
+              <div class="col-5 fs-6">
+                <span class="fs-6">{{ language.key | titlecase }}</span>
+              </div>
+              <div class="col-5 ms-0 fs-6">
+                <div class="progress custom-progress">
+                  <div class="progress-bar custom-progress-bar" role="progressbar"
+                       [ngStyle]="{ 'width': (language.value) + '%', 'background-color': '#7B87D9' }"
+                       aria-valuenow="language.value"
                        aria-valuemin="0"
                        aria-valuemax="100"></div>
                 </div>
               </div>
-
               <div class="col-2 ms-0 fs-6">
-                <small>{{ metric.value }}</small> <!-- Removed % sign here -->
+                <small>{{ language.value }}%</small>
               </div>
             </div>
           </li>
@@ -58,59 +80,57 @@
       </div>
     </div>
   </div>
-</div>
-<!-- Outer Container -->
-<div class="container">
-  <div class="row justify-content-center">
-    <!-- First Row -->
-    <!-- First Inner Container -->
+  <div class="col-7">
     <div class="container">
-      <div class="row justify-content-center">
-        <!-- First Row -->
-        <!-- First Inner Container -->
-        <div class="col-3 bg-white rounded d-flex align-items-center mb-4 mx-2">
-          <div class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
-            <ng-icon name="bootstrapGithub" class="icon icon-large text-white"></ng-icon>
+      <div class="row justify-content-start">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="col-5 bg-white rounded d-flex align-items-center mb-4 mx-2 dashboard-item">
+              <div
+                class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
+                <ng-icon name="bootstrapBug" class="icon icon-large text-white"></ng-icon>
+              </div>
+              <div class="text-start">
+                <h3 class="fw-normal mb-0">Bugs</h3>
+                <h4 class="fw-normal">{{ bugs.length }}</h4>
+              </div>
+            </div>
+            <div class="col-5 bg-white rounded d-flex align-items-center mb-4 mx-2 dashboard-item">
+              <div
+                class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
+                <ng-icon name="bootstrapPersonFillGear" class="icon icon-large text-white"></ng-icon>
+              </div>
+              <div class="text-start">
+                <h3 class="fw-normal mb-0">Code Smell</h3>
+                <h4 class="fw-normal">{{ codeSmells.length }}</h4>
+              </div>
+            </div>
           </div>
-          <div class="text-center">
-            <h3 class="fw-normal">Bugs</h3>
-            <h4 class="fw-normal">150</h4>
-          </div>
-        </div>
-        <!-- Second Inner Container -->
-        <div class="col-3 bg-white rounded d-flex align-items-center mb-4 mx-2">
-          <div class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
-            <ng-icon name="bootstrapGithub" class="icon icon-large text-white"></ng-icon>
-          </div>
-          <div class="text-center">
-            <h3 class="fw-normal">Errors</h3>
-            <h4 class="fw-normal">120</h4>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <!-- Second Row -->
-        <!-- Third Inner Container -->
-        <div class="col-3 bg-white rounded d-flex align-items-center mb-4 mx-2">
-          <div class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
-            <ng-icon name="bootstrapGithub" class="icon icon-large text-white"></ng-icon>
-          </div>
-          <div class="text-center">
-            <h3 class="fw-normal">Warnings</h3>
-            <h4 class="fw-normal">80</h4>
-          </div>
-        </div>
-        <!-- Fourth Inner Container -->
-        <div class="col-3 bg-white rounded d-flex align-items-center mb-4 mx-2">
-          <div class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
-            <ng-icon name="bootstrapGithub" class="icon icon-large text-white"></ng-icon>
-          </div>
-          <div class="text-center">
-            <h3 class="fw-normal">Notices</h3>
-            <h4 class="fw-normal">40</h4>
+          <div class="row justify-content-start">
+            <div class="col-5 bg-white rounded d-flex align-items-center mb-4 mx-2 dashboard-item">
+              <div
+                class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
+                <ng-icon name="bootstrapShieldFillCheck" class="icon icon-large text-white"></ng-icon>
+              </div>
+              <div class="text-start">
+                <h3 class="fw-normal mb-0">Vulnerabilities</h3>
+                <h4 class="fw-normal">{{ vulnerabilities.length }}</h4>
+              </div>
+            </div>
+            <div class="col-5 bg-white rounded d-flex align-items-center mb-4 mx-2 dashboard-item">
+              <div
+                class="icon-container bg-success rounded-circle d-flex align-items-center justify-content-center me-3">
+                <ng-icon name="bootstrapShieldFillExclamation" class="icon icon-large text-white"></ng-icon>
+              </div>
+              <div class="text-start">
+                <h3 class="fw-normal mb-0">Security Hotspots</h3>
+                <h4 class="fw-normal">{{ hotspots.length }}</h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

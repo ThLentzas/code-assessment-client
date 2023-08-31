@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AnalysisService} from "../analysis.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RefreshRequest} from "../../models/refresh-request.model";
+import {RefreshRequest} from "../../models/analysis/request/refresh-request.model";
 
 @Component({
   selector: 'app-refresh-request',
