@@ -4,7 +4,7 @@ enum VulnerabilityProbability {
   HIGH = 'HIGH'
 }
 
-export interface HotspotDetails {
+export interface Hotspot {
   component: string;
   securityCategory: string;
   vulnerabilityProbability: VulnerabilityProbability;
@@ -14,6 +14,6 @@ export interface HotspotDetails {
 }
 
 export interface HotspotsReport {
-  hotspots: HotspotDetails[];
+  hotspots: Hotspot[];
 }
 

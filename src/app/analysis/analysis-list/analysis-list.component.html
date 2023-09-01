@@ -1,8 +1,8 @@
 <div *ngIf="analysisResponse">
   <div class="container">
-    <div class="row">
+    <div class="row " *ngIf="analysisResponse.reports.length !== 1; else singleListTemplate">
       <div class="col-6">
-        <h3 class="text-center">Compliant</h3>
+        <h3 class="fs-5 fw-normal text-center">Compliant Reports</h3>
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let report of analysisResponse.reports[0]">
             <div class="row align-items-center">
@@ -27,11 +27,10 @@
         </ul>
       </div>
 
-      <!-- Assuming Non-Compliant would be similar to Compliant -->
       <div class="col-6">
-        <h3 class="text-center">Non-Compliant</h3>
+        <h3 class="fs-5 fw-normal text-center">Non-Compliant Reports</h3>
         <ul class="list-group">
-          <li class="list-group-item clearfix" *ngFor="let report of analysisResponse.reports[0]">
+          <li class="list-group-item clearfix" *ngFor="let report of analysisResponse.reports[1]">
             <div class="row align-items-center">
               <div class="col-4 d-flex align-items-center">
                 <a [href]="report.projectUrl.href" target="_blank" class="repo-link">
@@ -52,11 +51,37 @@
             </div>
           </li>
         </ul>
-
       </div>
-
     </div>
-
+    <ng-template #singleListTemplate>
+      <div class="row justify-content-center">
+        <div class="col-6 mx-auto">
+          <h3 class="fs-5 fw-normal text-center">Unfiltered Reports</h3>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let report of analysisResponse.reports[0]">
+              <div class="row align-items-center">
+                <div class="col-4 d-flex align-items-center">
+                  <a [href]="report.projectUrl.href" target="_blank" class="repo-link">
+                    <ng-icon name="bootstrapGithub" class="icon icon-large me-2"></ng-icon>
+                    <span>GitHub Repository</span>
+                  </a>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                  <a [routerLink]="['/dashboard/analysis', getAnalysisId(), 'reports', report.reportId]"
+                     class="repo-link">Report</a>
+                </div>
+                <div class="col-4 d-flex justify-content-end">
+                  <div class="progress-bar d-flex justify-content-center align-items-center position-relative"
+                       [style.--rank]="report.rank + '%'" [style.--color]="'#198754'">
+                    <div class="progress-text">{{ report.rank }}%</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
     <div class="row mt-4">
       <div class="col d-flex justify-content-center">
         <div class="tooltip-container">

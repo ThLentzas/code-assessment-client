@@ -32,6 +32,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RefreshRequestComponent } from './analysis/refresh-request/refresh-request.component';
 import { StickyNoteComponent } from './components/sticky-note/sticky-note.component';
 import {NgOptimizedImage} from "@angular/common";
+import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue/report-issue.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {NgOptimizedImage} from "@angular/common";
     NavbarComponent,
     RefreshRequestComponent,
     StickyNoteComponent,
+    ReportIssueComponent,
   ],
   imports: [
     BrowserModule,

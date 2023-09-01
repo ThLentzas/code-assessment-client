@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light transparent-navbar custom-navbar">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Bugs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Code Smells</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Vulnerabilities</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Security Hotspots</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="d-flex justify-content-center">
+  <div class="col-3">
+    <ul class="list-group scrollable-list">
+      <ng-container *ngIf="issueType === 'BUG'">
+        <li class="list-group-item issue-item"
+            *ngFor="let bug of bugs; let i = index;"
+            [ngClass]="{'selected-item': selectedIssue === bug}"
+            (click)="selectIssue(bug)">
+          <p>{{ bug.message }}</p>
+          <small class="text-muted">{{ i + 1 }}/{{ bugs.length }}</small>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="issueType === 'CODE_SMELL'">
+        <li class="list-group-item issue-item"
+            *ngFor="let codeSmell of codeSmells; let i = index;"
+            [ngClass]="{'selected-item': selectedIssue === codeSmell}"
+            (click)="selectIssue(codeSmell)">
+          <p>{{ codeSmell.message }}</p>
+          <small class="text-muted">{{ i + 1 }}/{{ codeSmells.length }}</small>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="issueType === 'VULNERABILITY'">
+        <li class="list-group-item issue-item"
+            *ngFor="let vulnerability of vulnerabilities; let i = index;"
+            [ngClass]="{'selected-item': selectedIssue === vulnerability}"
+            (click)="selectIssue(vulnerability)">
+          <p>{{ vulnerability.message }}</p>
+          <small class="text-muted">{{ i + 1 }}/{{ vulnerabilities.length }}</small>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="col-5">
+    <div *ngIf="selectedIssue" class="card">
+      <div class="card-body">
+        <h3 class="card-title">{{ selectedIssue.message }}</h3>
+        <hr>
+        <p><strong>Rule:</strong> {{ selectedIssue.rule }}</p>
+        <p><strong>Severity:</strong> {{ selectedIssue.severity }}</p>
+        <p><strong>File:</strong> {{ selectedIssue.component }}</p>
+        <p><strong>Line:</strong> {{ selectedIssue.line }}</p>
+        <p><strong>Type:</strong> {{ selectedIssue.type }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+

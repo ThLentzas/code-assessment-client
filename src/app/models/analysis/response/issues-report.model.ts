@@ -6,7 +6,7 @@ enum Severity {
   INFO
 }
 
-export interface IssueDetails {
+export interface Issue {
   rule: string;
   severity: Severity;
   component: string;
@@ -34,5 +34,5 @@ export interface IssueDetails {
 }
 
 export interface IssuesReport {
-  issues: IssueDetails[];
+  issues: Issue[];
 }

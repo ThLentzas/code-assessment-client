@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {AnalysisService} from "../analysis.service";
 import {ActivatedRoute} from "@angular/router";
 import {AnalysisReport} from "../../models/analysis/response/analysis-report.model";
-import {IssueDetails} from "../../models/analysis/response/issues-report.model";
-import {HotspotDetails} from "../../models/analysis/response/hotspots-report.model";
+import {Issue} from "../../models/analysis/response/issues-report.model";
+import {Hotspot} from "../../models/analysis/response/hotspots-report.model";
+import {OverviewService} from "./overview.service";
 
 @Component({
   selector: 'app-analysis-review',
@@ -13,14 +14,16 @@ import {HotspotDetails} from "../../models/analysis/response/hotspots-report.mod
 export class AnalysisReviewComponent implements OnInit {
   //We can not iterate through maps with *ngFor. We have to convert them into arrays.
   analysisReport: AnalysisReport;
-  bugs: IssueDetails[];
-  codeSmells: IssueDetails[];
-  vulnerabilities: IssueDetails[];
-  hotspots: HotspotDetails[];
+  bugs: Issue[];
+  codeSmells: Issue[];
+  vulnerabilities: Issue[];
+  hotspots: Hotspot[];
   metrics: { key: string, value: number }[] = [];
   languages: { key: string, value: number }[] = [];
 
-  constructor(private analysisService: AnalysisService, private route: ActivatedRoute) {
+  constructor(private analysisService: AnalysisService,
+              private overviewService: OverviewService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -44,7 +47,6 @@ export class AnalysisReviewComponent implements OnInit {
       };
     });
 
-    console.log(this.metrics)
     this.languages = Object.keys(this.analysisReport.languages).map(key => {
       return {
         key: key,
@@ -54,10 +56,19 @@ export class AnalysisReviewComponent implements OnInit {
 
     this.bugs = this.analysisReport.issuesReport.issues.filter(issue =>
       issue.type === 'BUG');
+    this.overviewService.setBugs(this.bugs);
+    this.overviewService.bugsUpdated.next(this.overviewService.getBugs());
+
     this.codeSmells = this.analysisReport.issuesReport.issues.filter(issue =>
       issue.type === 'CODE_SMELL');
+    this.overviewService.setCodeSmells(this.codeSmells);
+    this.overviewService.codeSmellsUpdated.next(this.overviewService.getCodeSmells());
+
     this.vulnerabilities = this.analysisReport.issuesReport.issues.filter(issue =>
       issue.type === 'VULNERABILITY');
+    this.overviewService.setVulnerabilities(this.vulnerabilities)
+    this.overviewService.vulnerabilitiesUpdated.next(this.overviewService.getVulnerabilities());
+
     this.hotspots = this.analysisReport.hotspotsReport.hotspots;
   }
 }

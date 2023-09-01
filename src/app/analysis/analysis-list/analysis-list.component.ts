@@ -27,6 +27,7 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
           }
         }
         this.analysisResponse = analysisResponse;
+        console.log(this.analysisResponse.reports.length);
       });
   }
 
@@ -43,11 +44,11 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
     this.router.navigate(['analysis', analysisId, 'refresh']);
   }
 
-  isFirstDigitZero(num: number) {
-    return num.toString()[0] === '0' || num.toString()[0] === '1';
+  getAnalysisId(): string {
+    return this.route.snapshot.params['analysisId'];
   }
 
-  public getAnalysisId(): string {
-    return this.route.snapshot.params['analysisId'];
+  private isFirstDigitZero(num: number) {
+    return num.toString()[0] === '0' || num.toString()[0] === '1';
   }
 }

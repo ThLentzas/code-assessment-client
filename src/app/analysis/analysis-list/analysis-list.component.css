@@ -52,6 +52,11 @@
   text-decoration: none;
 }
 
+.repo-link:hover {
+  text-decoration: underline;
+  text-decoration-color: #7B87D9;
+}
+
 .icon {
   color: initial;
 }

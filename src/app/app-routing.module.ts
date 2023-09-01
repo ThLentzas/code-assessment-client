@@ -4,18 +4,21 @@ import {NgModule} from "@angular/core";
 import {ManageAnalysisRequestComponent} from "./manage-analysis-request/manage-analysis-request.component";
 import {RefreshRequestComponent} from "./analysis/refresh-request/refresh-request.component";
 import {AnalysisReviewComponent} from "./analysis/analysis-overeview/analysis-review.component";
+import {ReportIssueComponent} from "./analysis/analysis-overeview/report-issue/report-issue.component";
 
 const appRoutes: Routes = [{
-    path: 'dashboard/analysis', component: ManageAnalysisRequestComponent
-  }, {
-    path: 'analysis/:analysisId/refresh', component: RefreshRequestComponent
-  }, {
-    path: 'dashboard/analysis/:analysisId', component: AnalysisListComponent
-  }, {
-    path: 'dashboard/analysis/:analysisId/reports/:reportId', component: AnalysisReviewComponent
-  }, {
-    path: '', redirectTo: '/dashboard/analysis', pathMatch: 'full',
-  }
+  path: 'dashboard/analysis', component: ManageAnalysisRequestComponent
+}, {
+  path: 'analysis/:analysisId/refresh', component: RefreshRequestComponent
+}, {
+  path: 'dashboard/analysis/:analysisId', component: AnalysisListComponent
+}, {
+  path: 'dashboard/analysis/:analysisId/reports/:reportId', component: AnalysisReviewComponent
+}, {
+  path: 'dashboard/analysis/:analysisId/reports/:reportId/issues', component: ReportIssueComponent
+}, {
+  path: '', redirectTo: '/dashboard/analysis', pathMatch: 'full',
+}
 ]
 
 @NgModule({
