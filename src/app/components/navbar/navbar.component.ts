@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {AnalysisService} from "../../analysis/analysis.service";
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

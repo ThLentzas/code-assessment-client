@@ -41,13 +41,3 @@
 .list-group-item {
   border-radius: 0;
 }
-
-.no-issues-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  font-size: larger;
-  color: #666;
-}

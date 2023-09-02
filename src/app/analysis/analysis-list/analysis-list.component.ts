@@ -27,7 +27,6 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
           }
         }
         this.analysisResponse = analysisResponse;
-        console.log(this.analysisResponse.reports.length);
       });
   }
 

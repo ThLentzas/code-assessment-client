@@ -38,15 +38,15 @@ export class ReportIssueComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe(params => {
       this.issueType = params['type'];
-    });
 
-    if (this.issueType === 'BUG') {
-      this.selectedIssue = this.bugs[0];
-    } else if (this.issueType === 'CODE_SMELL') {
-      this.selectedIssue = this.codeSmells[0];
-    } else {
-      this.selectedIssue = this.vulnerabilities[0];
-    }
+      if (this.issueType === 'BUG' && this.bugs && this.bugs.length > 0) {
+        this.selectedIssue = this.bugs[0];
+      } else if (this.issueType === 'CODE_SMELL' && this.codeSmells && this.codeSmells.length > 0) {
+        this.selectedIssue = this.codeSmells[0];
+      } else if (this.issueType === 'VULNERABILITY' && this.vulnerabilities && this.vulnerabilities.length > 0) {
+        this.selectedIssue = this.vulnerabilities[0];
+      }
+    });
   }
 
   ngOnDestroy(): void {

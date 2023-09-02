@@ -17,6 +17,8 @@ import { bootstrapBug } from "@ng-icons/bootstrap-icons";
 import { bootstrapPersonFillGear } from "@ng-icons/bootstrap-icons";
 import { bootstrapShieldFillCheck } from "@ng-icons/bootstrap-icons";
 import { bootstrapShieldFillExclamation } from "@ng-icons/bootstrap-icons";
+import { bootstrapArrowCounterclockwise } from "@ng-icons/bootstrap-icons";
+import { bootstrapArrowRepeat } from "@ng-icons/bootstrap-icons";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,6 +35,13 @@ import { RefreshRequestComponent } from './analysis/refresh-request/refresh-requ
 import { StickyNoteComponent } from './components/sticky-note/sticky-note.component';
 import {NgOptimizedImage} from "@angular/common";
 import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue/report-issue.component';
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { UserHistoryComponent } from './user-history/user-history.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+
 
 
 @NgModule({
@@ -49,6 +58,7 @@ import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue
     RefreshRequestComponent,
     StickyNoteComponent,
     ReportIssueComponent,
+    UserHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +68,10 @@ import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue
     MatSelectModule,
     MatFormFieldModule,
     HttpClientModule,
+    MatFormFieldModule, MatDatepickerModule, MatNativeDateModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
     NgIconsModule.withIcons({
       bootstrapGithub,
       bootstrapTrash,
@@ -70,7 +84,9 @@ import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue
       bootstrapBug,
       bootstrapPersonFillGear,
       bootstrapShieldFillCheck,
-      bootstrapShieldFillExclamation
+      bootstrapShieldFillExclamation,
+      bootstrapArrowCounterclockwise,
+      bootstrapArrowRepeat
     }),
     NgOptimizedImage
   ],

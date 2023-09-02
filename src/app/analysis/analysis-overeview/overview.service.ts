@@ -4,9 +4,9 @@ import {Issue} from "../../models/analysis/response/issues-report.model";
 
 @Injectable({providedIn: 'root'})
 export class OverviewService {
-  bugs: Issue[];
-  codeSmells: Issue[];
-  vulnerabilities: Issue[];
+  private bugs: Issue[];
+  private codeSmells: Issue[];
+  private vulnerabilities: Issue[];
   bugsUpdated = new BehaviorSubject<Issue[]>(null);
   codeSmellsUpdated = new BehaviorSubject<Issue[]>(null);
   vulnerabilitiesUpdated = new BehaviorSubject<Issue[]>(null);
@@ -15,20 +15,20 @@ export class OverviewService {
     this.bugs = bugs;
   }
 
-  getBugs(): Issue[] {
-    return this.bugs;
+  setVulnerabilities(vulnerabilities: Issue[]) {
+    this.vulnerabilities = vulnerabilities;
   }
 
   setCodeSmells(codeSmells: Issue[]) {
     this.codeSmells = codeSmells;
   }
 
-  getCodeSmells(): Issue[] {
-    return this.codeSmells;
+  getBugs(): Issue[] {
+    return this.bugs;
   }
 
-  setVulnerabilities(vulnerabilities: Issue[]) {
-    this.vulnerabilities = vulnerabilities;
+  getCodeSmells(): Issue[] {
+    return this.codeSmells;
   }
 
   getVulnerabilities(): Issue[] {
