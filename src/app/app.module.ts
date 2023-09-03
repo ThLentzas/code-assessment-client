@@ -39,8 +39,10 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { UserHistoryComponent } from './user-history/user-history.component';
 import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -58,7 +60,8 @@ import {MatCardModule} from "@angular/material/card";
     RefreshRequestComponent,
     StickyNoteComponent,
     ReportIssueComponent,
-    UserHistoryComponent
+    UserHistoryComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ import {MatCardModule} from "@angular/material/card";
     MatCardModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     NgIconsModule.withIcons({
       bootstrapGithub,
       bootstrapTrash,

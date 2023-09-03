@@ -1,0 +1,121 @@
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="text-center">Register</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Firstname</mat-label>
+                <input
+                  [(ngModel)]="registerRequest.firstname"
+                  name="firstname"
+                  #firstname="ngModel"
+                  matInput placeholder="First Name"
+                  required
+                  pattern="[a-zA-Z]+"
+                  maxlength="30">
+                <mat-error *ngIf="firstname.invalid && firstname.touched">
+                  <div *ngIf="firstname.errors?.['required']">First Name is required.</div>
+                  <div *ngIf="firstname.errors?.['pattern']">Invalid First Name. Must contain only letters.</div>
+                  <div *ngIf="firstname.errors?.['maxLength']">First Name cannot exceed 30 characters.</div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Lastname</mat-label>
+                <input
+                  [(ngModel)]="registerRequest.lastname"
+                  name="lastname"
+                  #lastname="ngModel"
+                  matInput placeholder="Last Name"
+                  required
+                  pattern="[a-zA-Z]+"
+                  maxlength="30">
+                <mat-error *ngIf="lastname.invalid && lastname.touched">
+                  <div *ngIf="lastname.errors?.['required']">Last Name is required.</div>
+                  <div *ngIf="lastname.errors?.['pattern']">Invalid Last Name. Must contain only letters.</div>
+                  <div *ngIf="lastname.errors?.['maxLength']">Last Name cannot exceed 30 characters.</div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Username</mat-label>
+                <input
+                  [(ngModel)]="registerRequest.username"
+                  name="username"
+                  #username="ngModel"
+                  matInput placeholder="First Name"
+                  required
+                  maxlength="30">
+                <mat-error *ngIf="username.invalid && username.touched">
+                  <div *ngIf="username.errors?.['required']">Username is required.</div>
+                  <div *ngIf="username.errors?.['maxLength']">Invalid Username. Cannot exceed 30 characters</div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input
+                  [(ngModel)]="registerRequest.email"
+                  name="email"
+                  #email="ngModel"
+                  matInput placeholder="Email"
+                  required
+                  email
+                  maxlength="50">
+                <mat-error *ngIf="email.invalid && email.touched">
+                  <div *ngIf="email.errors?.['required']">Email is required.</div>
+                  <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+                  <div *ngIf="email.errors?.['maxlength']">Email cannot exceed 50 characters.</div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input
+                  [(ngModel)]="registerRequest.password"
+                  name="password"
+                  #password="ngModel"
+                  matInput placeholder="Password"
+                  [type]="hidePassword ? 'password' : 'text'"
+                  required
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,128}$">
+                <mat-icon matSuffix (click)="hidePassword = !hidePassword;">
+                  {{hidePassword ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+                <mat-error *ngIf="password.invalid && password.touched">
+                  <div *ngIf="password.errors?.['required']">Password is required.</div>
+                  <div *ngIf="password.errors?.['pattern']">
+                    Password must meet the following requirements:
+                    <ul>
+                      <li>At least 12 characters</li>
+                      <li>No more than 128 characters</li>
+                      <li>At least one uppercase letter</li>
+                      <li>At least one lowercase letter</li>
+                      <li>At least one digit</li>
+                      <li>At least one special character (@, $, !, %, *, ?, &)</li>
+                    </ul>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-end align-items-center">
+              <button mat-raised-button color="primary" type="submit">Register</button>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-actions class="d-flex justify-content-center">
+          <p>Already have an account? <a href="#" class="custom-link">Sign In</a></p>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

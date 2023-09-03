@@ -16,6 +16,5 @@ export class UserService {
     const to = toDate.toString();
 
     const params = new HttpParams().set('from', from).set('to', to);
-
   }
 }
