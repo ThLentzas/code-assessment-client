@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AnalysisResponse} from "../../models/analysis/response/analysis-response.model";
-import {AnalysisService} from "../analysis.service";
+import {AnalysisService} from "../../services/analysis.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 

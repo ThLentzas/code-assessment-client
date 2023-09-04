@@ -1,0 +1,40 @@
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="text-center">Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input
+                  [(ngModel)]="loginRequest.email"
+                  name="email"
+                  matInput placeholder="Email">
+              </mat-form-field>
+            </div>
+            <div class="mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input
+                  [(ngModel)]="loginRequest.password"
+                  name="password"
+                  matInput type="password" placeholder="Password">
+              </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="#" class="custom-link">Forgot Password?</a>
+              <button mat-raised-button color="primary">Login</button>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-actions class="d-flex justify-content-center">
+          <p>Don't have an account? <a [routerLink]="['/signup']" class="custom-link">Sign up</a></p>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
-import {Issue} from "../../models/analysis/response/issues-report.model";
+import {Issue} from "../models/analysis/response/issues-report.model";
 
 @Injectable({providedIn: 'root'})
 export class OverviewService {

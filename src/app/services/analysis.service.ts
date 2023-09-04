@@ -30,11 +30,25 @@ export class AnalysisService {
   };
 
   fetchAnalysisResult(analysisId: number): Observable<AnalysisResponse> {
-    return this.http.get<AnalysisResponse>(`http://localhost:8080/api/v1/analysis/${analysisId}`);
+    const user = localStorage.getItem('userData');
+    const authResponse = JSON.parse(user);
+    const headers = { 'Authorization': `Bearer ${authResponse.token}` }
+
+    return this.http.get<AnalysisResponse>(
+      `http://localhost:8080/api/v1/analysis/${analysisId}`,
+      { headers });
   }
 
   updateAnalysisResult(analysisId: number, refreshRequest: RefreshRequest): Observable<AnalysisResponse> {
     return this.http.put<AnalysisResponse>(`http://localhost:8080/api/v1/analysis/${analysisId}`, refreshRequest);
+  }
+
+  deleteAnalysis(analysisId: number): Observable<void> {
+    const user = localStorage.getItem('userData');
+    const authResponse = JSON.parse(user);
+    const headers = { 'Authorization': `Bearer ${authResponse.token}` }
+
+    return this.http.delete<void>(`http://localhost:8080/api/v1/user/history/analysis/${analysisId}`, {headers});
   }
 
   getProjectUrls(): string[] {

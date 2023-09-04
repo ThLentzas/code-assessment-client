@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AnalysisService} from "../analysis.service";
+import {AnalysisService} from "../../services/analysis.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RefreshRequest} from "../../models/analysis/request/refresh-request.model";
 

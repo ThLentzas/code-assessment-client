@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {AnalysisService} from "../../analysis/analysis.service";
+import {AnalysisService} from "../../services/analysis.service";
 
 
 @Component({
@@ -14,7 +14,7 @@ export class NavbarComponent {
   }
 
   onDashboard() {
-    if(this.analysisService.getAnalysisResponse()) {
+    if (this.analysisService.getAnalysisResponse()) {
       this.router.navigate([
         '/dashboard',
         'analysis',

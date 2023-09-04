@@ -1,6 +1,6 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {Preference} from "../../models/analysis/request/preference.model";
-import {AnalysisService} from "../../analysis/analysis.service";
+import {AnalysisService} from "../../services/analysis.service";
 import {QualityAttribute} from "../../models/analysis/request/quality-attribute.model";
 
 @Component({

@@ -1,5 +1,5 @@
 import {Component, DoCheck} from '@angular/core';
-import {AnalysisService} from "../../analysis/analysis.service";
+import {AnalysisService} from "../../services/analysis.service";
 
 @Component({
   selector: 'app-project-urls',

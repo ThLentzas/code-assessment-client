@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Issue} from "../../../models/analysis/response/issues-report.model";
 import {Subscription} from "rxjs";
-import {OverviewService} from "../overview.service";
+import {OverviewService} from "../../../services/overview.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -38,14 +38,7 @@ export class ReportIssueComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe(params => {
       this.issueType = params['type'];
-
-      if (this.issueType === 'BUG' && this.bugs && this.bugs.length > 0) {
-        this.selectedIssue = this.bugs[0];
-      } else if (this.issueType === 'CODE_SMELL' && this.codeSmells && this.codeSmells.length > 0) {
-        this.selectedIssue = this.codeSmells[0];
-      } else if (this.issueType === 'VULNERABILITY' && this.vulnerabilities && this.vulnerabilities.length > 0) {
-        this.selectedIssue = this.vulnerabilities[0];
-      }
+      this.selectedIssue = null;
     });
   }
 

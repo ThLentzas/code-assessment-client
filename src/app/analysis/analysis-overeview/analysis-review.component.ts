@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AnalysisService} from "../analysis.service";
+import {AnalysisService} from "../../services/analysis.service";
 import {ActivatedRoute} from "@angular/router";
 import {AnalysisReport} from "../../models/analysis/response/analysis-report.model";
 import {Issue} from "../../models/analysis/response/issues-report.model";
 import {Hotspot} from "../../models/analysis/response/hotspots-report.model";
-import {OverviewService} from "./overview.service";
+import {OverviewService} from "../../services/overview.service";
 
 @Component({
   selector: 'app-analysis-review',

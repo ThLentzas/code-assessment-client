@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
-import {AnalysisService} from "../analysis/analysis.service";
+import {AnalysisService} from "../services/analysis.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -15,8 +15,6 @@ export class ManageAnalysisRequestComponent {
               private router: Router) {
   }
 
-
-
   onAnalyze() {
     this.analysisRequest = {
       projectUrls: this.analysisService.getProjectUrls(),
@@ -24,7 +22,7 @@ export class ManageAnalysisRequestComponent {
       preferences: this.analysisService.getPreferences()
     };
 
-    this.analysisService.fetchAnalysisResult(4).subscribe({
+    this.analysisService.fetchAnalysisResult(3).subscribe({
       next: response => {
         this.analysisService.setAnalysisResponse(response);
         this.analysisService.analysisResponseUpdated.next(this.analysisService.getAnalysisResponse());

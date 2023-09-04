@@ -19,6 +19,8 @@ import { bootstrapShieldFillCheck } from "@ng-icons/bootstrap-icons";
 import { bootstrapShieldFillExclamation } from "@ng-icons/bootstrap-icons";
 import { bootstrapArrowCounterclockwise } from "@ng-icons/bootstrap-icons";
 import { bootstrapArrowRepeat } from "@ng-icons/bootstrap-icons";
+import { bootstrapBarChartFill } from "@ng-icons/bootstrap-icons";
+import { bootstrapClock } from "@ng-icons/bootstrap-icons";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,12 +39,14 @@ import {NgOptimizedImage} from "@angular/common";
 import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue/report-issue.component';
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import { UserHistoryComponent } from './user-history/user-history.component';
+import { UserHistoryComponent } from './components/user-history/user-history.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -61,7 +65,9 @@ import { RegisterComponent } from './register/register.component';
     StickyNoteComponent,
     ReportIssueComponent,
     UserHistoryComponent,
-    RegisterComponent
+    RegisterComponent,
+    LayoutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +96,9 @@ import { RegisterComponent } from './register/register.component';
       bootstrapShieldFillCheck,
       bootstrapShieldFillExclamation,
       bootstrapArrowCounterclockwise,
-      bootstrapArrowRepeat
+      bootstrapArrowRepeat,
+      bootstrapBarChartFill,
+      bootstrapClock
     }),
     NgOptimizedImage
   ],

@@ -1,4 +1,3 @@
-<!--use routerLink---->
 <div class="container-fluid">
   <div class="row flex-nowrap">
     <div class="nav-bg col-auto min-vh-100">
@@ -10,13 +9,18 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link text-white" [routerLink]="['/analysis']">
+              <ng-icon name="bootstrapBarChartFill" class="me-3 icon-large"></ng-icon><span>Analysis</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="" class="nav-link text-white">
               <ng-icon name="bootstrapPersonFill" class="me-3 icon-large"></ng-icon><span>Profile</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link text-white">
-              <ng-icon name="bootstrapFolder2Open" class="me-3 icon-large"></ng-icon><span>History</span>
+            <a [routerLink]="['/history']" class="nav-link text-white">
+              <ng-icon name="bootstrapClock" class="me-3 icon-large"></ng-icon><span>History</span>
             </a>
           </li>
           <li class="nav-item">
