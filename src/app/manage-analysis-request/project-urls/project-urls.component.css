@@ -1,8 +1,0 @@
-.project-url-input::placeholder {
-  color: #aaa;
-}
-
-.project-url-input:focus {
-  box-shadow: 0 0 0 0.1rem #198754;
-  border-color: #198754;
-}

@@ -24,7 +24,7 @@ export class LoginComponent {
     this.authService.loginUser(this.loginRequest).subscribe({
         next: authResponse => {
           localStorage.setItem('userData', JSON.stringify(authResponse));
-          this.router.navigate((['dashboard/analysis']));
+          this.router.navigate((['analysis']));
           console.log(this.loginRequest);
           form.reset();
         }

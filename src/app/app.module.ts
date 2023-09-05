@@ -47,7 +47,7 @@ import {MatCardModule} from "@angular/material/card";
 import { RegisterComponent } from './components/register/register.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -67,7 +67,8 @@ import { LoginComponent } from './components/login/login.component';
     UserHistoryComponent,
     RegisterComponent,
     LayoutComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@ export class ManageAnalysisRequestComponent {
       preferences: this.analysisService.getPreferences()
     };
 
-    this.analysisService.fetchAnalysisResult(3).subscribe({
+    this.analysisService.fetchAnalysisResult(1).subscribe({
       next: response => {
         this.analysisService.setAnalysisResponse(response);
         this.analysisService.analysisResponseUpdated.next(this.analysisService.getAnalysisResponse());

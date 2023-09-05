@@ -9,16 +9,15 @@ import {RegisterComponent} from "./components/register/register.component";
 import {LayoutComponent} from "./components/layout/layout.component";
 import {LoginComponent} from "./components/login/login.component";
 import {UserHistoryComponent} from "./components/user-history/user-history.component";
+import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 
-const appRoutes: Routes = [
-  {
+const appRoutes: Routes = [{
     path: 'signup',
     component: RegisterComponent
   }, {
     path: 'login',
     component: LoginComponent
-  },
-  {
+  }, {
     path: '',
     component: LayoutComponent,
     children: [{
@@ -39,15 +38,16 @@ const appRoutes: Routes = [
     }, {
       path: 'history',
       component: UserHistoryComponent
+    },{
+      path: 'profile',
+      component: UserProfileComponent
     }, {
       path: '',
       redirectTo: '/analysis',
       pathMatch: 'full'
-    }
-    ]
+    }]
   }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],

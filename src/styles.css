@@ -29,3 +29,12 @@ body {
 .tree-container {
   margin-left: 75px;
 }
+
+.custom-placeholder::placeholder {
+  color: #aaa;
+}
+
+.custom-focus:focus {
+  box-shadow: 0 0 0 0.1rem #198754;
+  border-color: #198754;
+}

@@ -35,7 +35,7 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
   }
 
   onNewAnalysis() {
-    this.router.navigate(['dashboard/analysis']);
+    this.router.navigate(['analysis']);
   }
 
   onUpdateResults() {

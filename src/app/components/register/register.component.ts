@@ -27,7 +27,7 @@ export class RegisterComponent {
     this.authService.registerUser(this.registerRequest).subscribe({
         next: authResponse => {
           localStorage.setItem('userData', JSON.stringify(authResponse));
-          this.router.navigate((['dashboard/analysis']));
+          this.router.navigate((['analysis']));
           form.reset();
         }
       }
