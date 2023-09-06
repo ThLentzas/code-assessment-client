@@ -1,0 +1,139 @@
+<div class="container">
+  <form #updatePasswordForm="ngForm" (ngSubmit)="onUpdatePassword(updatePasswordForm)">
+    <div class="row">
+      <div class="col-12 text-start">
+        <h4 class="fs-5 fw-normal mt-4">Update Password</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <div class="col-md-5 text-start mb-0">
+              <label>Old Password</label>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-4">
+                <input #oldPasswordRef="ngModel" type="password" required class="form-control my-2 custom-focus"
+                       [(ngModel)]="oldPassword" name="currentPassword">
+              </div>
+              <div class="col-md-7">
+                <div *ngIf="oldPasswordRef.errors?.['required'] && (oldPasswordRef.dirty || oldPasswordRef.touched)"
+                     class="text-danger">
+                  Old password is required.
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="mb-2">
+            <div class="col-md-5 text-start mb-0">
+              <label>New Password</label>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-4">
+                <input #newPasswordRef="ngModel" type="password" required minlength="12"
+                       class="form-control my-2 custom-focus" [(ngModel)]="newPassword" name="newPassword">
+              </div>
+              <div class="col-md-7">
+                <div *ngIf="newPasswordRef.errors?.['required'] && (newPasswordRef.dirty || newPasswordRef.touched)" class="text-danger">
+                  New password is required.
+                </div>
+                <div *ngIf="newPasswordRef.errors?.['minlength'] && (newPasswordRef.dirty || newPasswordRef.touched)" class="text-danger">
+                  New password must be at least 12 characters long.
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="mb-2">
+            <div class="col-md-5 text-start mb-0">
+              <label>Confirm New Password</label>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-4">
+                <input #confirmPasswordRef="ngModel" type="password" required class="form-control my-2 custom-focus"
+                       [(ngModel)]="confirmPassword" name="confirmPassword">
+              </div>
+                <div class="col-md-7">
+                <div *ngIf="confirmPasswordRef.invalid && (confirmPasswordRef.dirty || confirmPasswordRef.touched)"
+                     class="text-danger">
+                  <div *ngIf="confirmPasswordRef.errors?.['required']">
+                    Confirm password is required.
+                  </div>
+                </div>
+                </div>
+            </div>
+          </li>
+          <div class="row">
+            <div class="col-md-4">
+              <small class="text-muted mt-0 d-block">Make sure it's at least 12 characters and includes at least a
+                capital letter, a lowercase letter, a number, and a symbol (@, $, !, %, *, ?, &).</small>
+              <div class="text-center mt-2">
+                <button [disabled]="updatePasswordForm.invalid" class="btn btn-primary">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </form>
+
+  <form #updateEmailForm="ngForm" (ngSubmit)="onUpdateEmail(updateEmailForm)">
+    <div class="row">
+      <div class="col-12 text-start">
+        <h4 class="fs-5 fw-normal mt-4">Update Email</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <div class="col-md-5 text-start mb-0">
+              <label>Email</label>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-4">
+                <input #emailRef="ngModel" type="email" required email class="form-control my-2 custom-focus"
+                       [(ngModel)]="email" name="email" autocomplete="off">
+              </div>
+              <div class="col-md-7">
+                <div *ngIf="emailRef.errors?.['required'] && (emailRef.dirty || emailRef.touched)"
+                     class="text-danger">
+                  Email is required.
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="mb-2">
+            <div class="col-md-5 text-start mb-0">
+              <label>Password</label>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-md-4">
+                <input #emailPasswordRef="ngModel" type="password" required class="form-control my-2 custom-focus"
+                       [(ngModel)]="emailPassword" name="emailPassword">
+              </div>
+              <div class="col-md-7">
+                <div *ngIf="emailPasswordRef.errors?.['required'] && (emailPasswordRef.dirty || emailPasswordRef.touched)"
+                     class="text-danger">
+                  Password is required.
+                </div>
+              </div>
+            </div>
+          </li>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="text-center mt-2">
+                <button [disabled]="updateEmailForm.invalid" class="btn btn-primary">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>

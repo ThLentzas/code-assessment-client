@@ -15,20 +15,23 @@ export class UserHistoryComponent implements OnInit {
   startDate: Date;
   endDate: Date;
 
-  constructor(private userService: UserService, private analysisService: AnalysisService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.userService.fetchUserHistory(this.startDate, this.endDate)
-      .subscribe(response => {
-        this.history = response;
-      });
+  constructor(private userService: UserService, private analysisService: AnalysisService, private router: Router) {
   }
 
-  onViewHistory():  void {
-    this.userService.fetchUserHistory(this.startDate, this.endDate)
-      .subscribe(response => {
-        this.history = response;
-      });
+  ngOnInit(): void {
+    this.userService.fetchUserHistory(this.startDate, this.endDate).subscribe({
+      next: history => {
+        this.history = history;
+      }
+    });
+  }
+
+  onViewHistory(): void {
+    this.userService.fetchUserHistory(this.startDate, this.endDate).subscribe({
+      next: history => {
+        this.history = history;
+      }
+    });
   }
 
   onAnalysis(analysisResponse: AnalysisResponse) {
@@ -42,11 +45,11 @@ export class UserHistoryComponent implements OnInit {
   }
 
   onDelete(analysisResponse: AnalysisResponse) {
-      this.analysisService.deleteAnalysis(analysisResponse.analysisId).subscribe(
-        () => {
-          const index = this.history.analyses.findIndex(toBeDeleted =>
-            toBeDeleted.analysisId === analysisResponse.analysisId);
-            this.history.analyses.splice(index, 1);
-        });
+    this.analysisService.deleteAnalysis(analysisResponse.analysisId).subscribe(
+      () => {
+        const index = this.history.analyses.findIndex(toBeDeleted =>
+          toBeDeleted.analysisId === analysisResponse.analysisId);
+        this.history.analyses.splice(index, 1);
+      });
   }
 }

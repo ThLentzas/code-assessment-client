@@ -10,6 +10,7 @@ import {LayoutComponent} from "./components/layout/layout.component";
 import {LoginComponent} from "./components/login/login.component";
 import {UserHistoryComponent} from "./components/user-history/user-history.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
+import {SettingsComponent} from "./components/settings/settings.component";
 
 const appRoutes: Routes = [{
     path: 'signup',
@@ -38,7 +39,10 @@ const appRoutes: Routes = [{
     }, {
       path: 'history',
       component: UserHistoryComponent
-    },{
+    }, {
+      path: 'settings',
+      component: SettingsComponent
+    }, {
       path: 'profile',
       component: UserProfileComponent
     }, {

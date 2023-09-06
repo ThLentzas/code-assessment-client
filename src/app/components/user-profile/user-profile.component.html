@@ -6,53 +6,63 @@
           <div class="col-md-12 py-4 left-panel-bg">
             <div class="text-center left-panel-bg fixed-height p-4">
               <div class="mb-4">
-                <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded" alt="User-Profile-Image">
+                <ng-icon name="bootstrapPersonCircle" class="me-2 icon-large user-icon" ></ng-icon>
               </div>
-              <div class="d-flex flex-column justify-content-center align-items-center">
-                <h3 class="fw-bold m-0 p-0">{{username}}</h3>
-                <p class="m-0 p-0" *ngIf="bio">{{bio}}</p>
-                <p class="m-0 p-0" *ngIf="location">{{location}}</p>
-                <p class="m-0 p-0" *ngIf="company">{{company}}</p>
+              <div class="d-flex flex-column justify-content-center align-items-start">
+                <h3 class="fw-bold m-0 p-0">{{profile.username}}</h3>
+                <p class="m-0 p-0 mb-2" *ngIf="profile.bio">{{profile.bio}}</p>
+                <div class="d-flex align-items-center mb-2" *ngIf="profile.location">
+                  <ng-icon name="bootstrapGeoAltFill" class="me-2 icon-large"></ng-icon>
+                  <p class="m-0 p-0">{{profile.location}}</p>
+                </div>
+                <div class="d-flex align-items-center mb-2" *ngIf="profile.company">
+                  <ng-icon name="bootstrapBuilding" class="me-2 icon-large"></ng-icon>
+                  <p class="m-0 p-0">{{profile.company}}</p>
+                </div>
               </div>
             </div>
-            <button class="btn btn-primary mx-auto d-block" (click)="toggleEditMode()">Edit</button>
+            <button [class.invisible]="isEditMode" class="btn btn-primary mx-auto d-block" (click)="toggleEditMode()">Edit</button>
           </div>
         </div>
       </div>
-      <div *ngIf="isEditMode; else noEdit" class="col-md-7 p-0 m-0 fixed-height">
-        <div class="card shadow-sm border-0 p-4 rounded-0">
+      <div *ngIf="isEditMode; else noEdit" class="col-md-7 p-0 m-0">
+        <div class="card shadow-sm border-0 p-4 rounded-0" style="min-height: 486px">
           <div class="row">
             <div class="col-sm-12">
               <div class="row">
                 <div class="col-sm-6">
                   <h3>First Name</h3>
-                  <input [(ngModel)]="tempFirstname" class="form-control mb-2 custom-placeholder custom-focus" placeholder="First Name">
+                  <input [(ngModel)]="tempUserProfile.firstname" class="form-control mb-2 custom-placeholder custom-focus" placeholder="First Name">
                 </div>
                 <div class="col-sm-6">
                   <h3>Last Name</h3>
-                  <input [(ngModel)]="tempLastname" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Last Name">
+                  <input [(ngModel)]="tempUserProfile.lastname" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Last Name">
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <h3>Location</h3>
-                  <input [(ngModel)]="tempLocation" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Location">
+                  <input [(ngModel)]="tempUserProfile.location" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Location">
                 </div>
                 <div class="col-sm-6">
                   <h3>Company</h3>
-                  <input [(ngModel)]="tempCompany" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Company">
+                  <input [(ngModel)]="tempUserProfile.company" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Company">
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <h3>Bio</h3>
-                  <textarea [(ngModel)]="tempBio" class="form-control mb-2 custom-placeholder custom-focus" rows="3" placeholder="Bio"></textarea>
+                  <textarea [(ngModel)]="tempUserProfile.bio" class="form-control mb-2 custom-placeholder custom-focus" rows="3" placeholder="Bio"></textarea>
+                </div>
+                <div class="col-sm-6">
+                  <h3>Username</h3>
+                  <input [(ngModel)]="tempUserProfile.username" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Username">
                 </div>
               </div>
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-success mt-4" (click)="saveChanges()">Save</button>
+            <button class="btn btn-success custom-mt" (click)="saveChanges()">Save</button>
           </div>
         </div>
       </div>

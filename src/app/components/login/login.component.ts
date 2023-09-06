@@ -10,10 +10,7 @@ import {LoginRequest} from "../../models/auth/login-request.model";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginRequest: LoginRequest = {
-    email: '',
-    password: ''
-  };
+  loginRequest: LoginRequest = {};
 
   constructor(private authService: AuthService, private router: Router) {
   }

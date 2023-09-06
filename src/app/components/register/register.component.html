@@ -13,6 +13,7 @@
                 <input
                   [(ngModel)]="registerRequest.firstname"
                   name="firstname"
+                  autocomplete="off"
                   #firstname="ngModel"
                   matInput placeholder="First Name"
                   required
@@ -31,6 +32,7 @@
                 <input
                   [(ngModel)]="registerRequest.lastname"
                   name="lastname"
+                  autocomplete="off"
                   #lastname="ngModel"
                   matInput placeholder="Last Name"
                   required
@@ -49,6 +51,7 @@
                 <input
                   [(ngModel)]="registerRequest.username"
                   name="username"
+
                   #username="ngModel"
                   matInput placeholder="First Name"
                   required
@@ -65,6 +68,7 @@
                 <input
                   [(ngModel)]="registerRequest.email"
                   name="email"
+                  autocomplete="off"
                   #email="ngModel"
                   matInput placeholder="Email"
                   required
@@ -108,7 +112,7 @@
               </mat-form-field>
             </div>
             <div class="d-flex justify-content-end align-items-center">
-              <button mat-raised-button color="primary" type="submit">Register</button>
+              <button [disabled]="registerForm.invalid" mat-raised-button color="primary" type="submit">Register</button>
             </div>
           </form>
         </mat-card-content>

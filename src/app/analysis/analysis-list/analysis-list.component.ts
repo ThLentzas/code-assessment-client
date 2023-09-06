@@ -17,17 +17,18 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscription = this.analysisService.analysisResponseUpdated.subscribe(
-      analysisResponse => {
+    this.subscription = this.analysisService.analysisResponseUpdated.subscribe({
+      next: analysisResponse => {
         for (const reportList of analysisResponse.reports) {
           for (const report of reportList) {
-            if(this.isFirstDigitZero(report.rank)) {
+            if (this.isFirstDigitZero(report.rank)) {
               report.rank = Math.floor(report.rank * 100);
             }
           }
         }
         this.analysisResponse = analysisResponse;
-      });
+      }
+    });
   }
 
   ngOnDestroy(): void {

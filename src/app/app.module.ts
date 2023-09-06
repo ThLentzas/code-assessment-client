@@ -21,6 +21,11 @@ import { bootstrapArrowCounterclockwise } from "@ng-icons/bootstrap-icons";
 import { bootstrapArrowRepeat } from "@ng-icons/bootstrap-icons";
 import { bootstrapBarChartFill } from "@ng-icons/bootstrap-icons";
 import { bootstrapClock } from "@ng-icons/bootstrap-icons";
+import { bootstrapGeoAltFill } from "@ng-icons/bootstrap-icons";
+import { bootstrapBuilding } from "@ng-icons/bootstrap-icons";
+import { bootstrapPersonCircle } from "@ng-icons/bootstrap-icons";
+import { bootstrapEnvelope } from "@ng-icons/bootstrap-icons";
+import { bootstrapLock } from "@ng-icons/bootstrap-icons";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -48,6 +53,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 @NgModule({
@@ -68,7 +74,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     RegisterComponent,
     LayoutComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +106,10 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
       bootstrapArrowCounterclockwise,
       bootstrapArrowRepeat,
       bootstrapBarChartFill,
-      bootstrapClock
+      bootstrapClock,
+      bootstrapGeoAltFill,
+      bootstrapBuilding,
+      bootstrapPersonCircle
     }),
     NgOptimizedImage
   ],

@@ -21,6 +21,11 @@ export class ReportIssueComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.issueType = params['type'];
+      this.selectedIssue = null;
+    });
+
     this.subscriptions.push(this.overviewService.bugsUpdated.subscribe(
       bugs => {
         this.bugs = bugs;
@@ -35,11 +40,6 @@ export class ReportIssueComponent implements OnInit, OnDestroy {
       vulnerabilities => {
         this.vulnerabilities = vulnerabilities;
       }));
-
-    this.route.queryParams.subscribe(params => {
-      this.issueType = params['type'];
-      this.selectedIssue = null;
-    });
   }
 
   ngOnDestroy(): void {

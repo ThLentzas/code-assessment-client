@@ -9,14 +9,12 @@ import {Router} from "@angular/router";
   styleUrls: ['./manage-analysis-request.component.css']
 })
 export class ManageAnalysisRequestComponent {
-  analysisRequest: AnalysisRequest;
-
   constructor(private analysisService: AnalysisService,
               private router: Router) {
   }
 
   onAnalyze() {
-    this.analysisRequest = {
+    const analysisRequest: AnalysisRequest = {
       projectUrls: this.analysisService.getProjectUrls(),
       constraints: this.analysisService.getConstraints(),
       preferences: this.analysisService.getPreferences()

@@ -1,45 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../services/user.service";
+import {UserProfileUpdateRequest} from "../../models/user/user-profile-update-request.model";
+import {UserProfile} from "../../models/user/user-profile.model";
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent {
-  firstname = 'asdf';
-  lastname = 'asdf';
-  username = 'username';
-  bio = '';
-  location = 'asdf';
-  company = 'asdf';
-
-  tempFirstname = '';
-  tempLastname = '';
-  tempBio = '';
-  tempLocation = '';
-  tempCompany = '';
-
+export class UserProfileComponent implements OnInit {
+  profile: UserProfile = {};
+  tempUserProfile: UserProfile = {};
   isEditMode = false;
+
+  constructor(private userService: UserService) {
+  }
+
+  ngOnInit(): void {
+    this.userService.fetchUserProfile().subscribe({
+      next: profile => {
+        this.profile = profile;
+      }
+    });
+  }
 
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
 
     if (this.isEditMode) {
-      this.tempFirstname = this.firstname;
-      this.tempLastname = this.lastname;
-      this.tempBio = this.bio;
-      this.tempLocation = this.location;
-      this.tempCompany = this.company;
+      this.tempUserProfile = {...this.profile};
     }
   }
 
   saveChanges() {
-    this.firstname = this.tempFirstname;
-    this.lastname = this.tempLastname;
-    this.bio = this.tempBio;
-    this.location = this.tempLocation;
-    this.company = this.tempCompany;
+    const profileUpdateRequest: UserProfileUpdateRequest = {};
+    /*
+      We create a request with only the updated fields the user provided.
+     */
+    for (const key in this.tempUserProfile) {
+      if (this.tempUserProfile[key] !== this.profile[key]) {
+        profileUpdateRequest[key] = this.tempUserProfile[key];
+      }
+    }
+    this.profile = {...this.tempUserProfile};
 
-    this.toggleEditMode();
+    /*
+      If the user provided an empty username as an updated value we decline the request. Username is mandatory and
+      unique.
+     */
+    if(profileUpdateRequest.username?.length === 0) {
+      console.log('error dog');
+    }
+
+    this.userService.updateUserProfile(profileUpdateRequest).subscribe({
+        next: () => {
+          this.toggleEditMode();
+        }
+      });
   }
 }

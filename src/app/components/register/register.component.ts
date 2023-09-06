@@ -3,7 +3,6 @@ import {RegisterRequest} from "../../models/auth/register-request.model";
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -12,13 +11,7 @@ import {UserService} from "../../services/user.service";
 })
 export class RegisterComponent {
   hidePassword = true;
-  registerRequest: RegisterRequest = {
-    firstname: '',
-    lastname: '',
-    username: '',
-    email: '',
-    password: ''
-  };
+  registerRequest: RegisterRequest = {};
 
   constructor(private authService: AuthService, private router: Router) {
   }

@@ -2,12 +2,42 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {UserHistory} from "../models/user/user-history.model";
+import {UserProfile} from "../models/user/user-profile.model";
+import {UserProfileUpdateRequest} from "../models/user/user-profile-update-request.model";
+import {UserPasswordUpdateRequest} from "../models/user/user-password-update-request.model";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
   history: UserHistory
 
   constructor(private http: HttpClient) {
+  }
+
+  fetchUserProfile(): Observable<UserProfile> {
+    const user = localStorage.getItem('userData');
+    const authResponse = JSON.parse(user);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authResponse.token}`);
+
+    return this.http.get<UserProfile>('http://localhost:8080/api/v1/user/profile', { headers });
+  }
+
+  updateUserProfile(profileUpdateRequest: UserProfileUpdateRequest): Observable<void> {
+    const user = localStorage.getItem('userData');
+    const authResponse = JSON.parse(user);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authResponse.token}`);
+
+    return this.http.put<void>('http://localhost:8080/api/v1/user/profile', profileUpdateRequest, { headers });
+  }
+
+  updateUserPassword(passwordUpdateRequest: UserPasswordUpdateRequest) {
+    const user = localStorage.getItem('userData');
+    const authResponse = JSON.parse(user);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authResponse.token}`);
+
+    return this.http.put<void>(
+      'http://localhost:8080/api/v1/user/settings/password',
+      passwordUpdateRequest,
+      { headers });
   }
 
   fetchUserHistory(fromDate: Date, toDate: Date): Observable<UserHistory> {

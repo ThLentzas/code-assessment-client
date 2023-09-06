@@ -35,6 +35,6 @@ body {
 }
 
 .custom-focus:focus {
-  box-shadow: 0 0 0 0.1rem #198754;
-  border-color: #198754;
+  box-shadow: 0 0 0 0.1rem #337ab8;
+  border-color: #337ab8;
 }

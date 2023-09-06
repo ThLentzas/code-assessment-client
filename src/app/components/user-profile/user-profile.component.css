@@ -5,3 +5,16 @@
 .left-panel-bg {
   background-color: #e9ecef !important;
 }
+
+.invisible {
+  visibility: hidden;
+}
+
+.custom-mt {
+  margin-top: 80px;
+}
+
+.user-icon {
+  font-size: 130px;
+  line-height: 0;
+}
