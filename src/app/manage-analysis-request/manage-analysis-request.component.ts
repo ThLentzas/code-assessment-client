@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
 import {AnalysisService} from "../services/analysis.service";
 import {Router} from "@angular/router";
+import {NotificationService} from "../services/notification.service";
 
 @Component({
   selector: 'app-manage-analysis-request',
@@ -10,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class ManageAnalysisRequestComponent {
   constructor(private analysisService: AnalysisService,
+              private notificationService: NotificationService,
               private router: Router) {
   }
 
@@ -28,7 +30,9 @@ export class ManageAnalysisRequestComponent {
           '/dashboard',
           'analysis',
           this.analysisService.getAnalysisResponse().analysisId]);
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
       }
-    })
+    });
   }
 }

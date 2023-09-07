@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AnalysisService} from "../../services/analysis.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RefreshRequest} from "../../models/analysis/request/refresh-request.model";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-refresh-request',
@@ -12,7 +13,9 @@ export class RefreshRequestComponent implements OnInit {
   analysisId: number;
   refreshRequest: RefreshRequest;
 
-  constructor(private analysisService: AnalysisService, private router: Router, private route: ActivatedRoute) {
+  constructor(private analysisService: AnalysisService,
+              private notificationService: NotificationService,
+              private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -33,7 +36,9 @@ export class RefreshRequestComponent implements OnInit {
           '/dashboard',
           'analysis',
           this.analysisService.getAnalysisResponse().analysisId]);
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
       }
-    })
+    });
   }
 }

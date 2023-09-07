@@ -4,6 +4,7 @@ import {UserHistory} from "../../models/user/user-history.model";
 import {AnalysisResponse} from "../../models/analysis/response/analysis-response.model";
 import {AnalysisService} from "../../services/analysis.service";
 import {Router} from "@angular/router";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-user-history',
@@ -15,7 +16,10 @@ export class UserHistoryComponent implements OnInit {
   startDate: Date;
   endDate: Date;
 
-  constructor(private userService: UserService, private analysisService: AnalysisService, private router: Router) {
+  constructor(private userService: UserService,
+              private notificationService: NotificationService,
+              private analysisService: AnalysisService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -45,11 +49,14 @@ export class UserHistoryComponent implements OnInit {
   }
 
   onDelete(analysisResponse: AnalysisResponse) {
-    this.analysisService.deleteAnalysis(analysisResponse.analysisId).subscribe(
-      () => {
+    this.analysisService.deleteAnalysis(analysisResponse.analysisId).subscribe({
+      next: () => {
         const index = this.history.analyses.findIndex(toBeDeleted =>
           toBeDeleted.analysisId === analysisResponse.analysisId);
         this.history.analyses.splice(index, 1);
-      });
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
+      }
+    });
   }
 }

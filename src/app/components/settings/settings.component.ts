@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {UserPasswordUpdateRequest} from "../../models/user/user-password-update-request.model";
+import {NotificationService} from "../../services/notification.service";
+import {UserEmailUpdateRequest} from "../../models/user/user-email-update-request.model";
 
 @Component({
   selector: 'app-settings',
@@ -15,31 +17,47 @@ export class SettingsComponent {
   email: string;
   emailPassword: string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private notificationService: NotificationService) {
   }
 
   onUpdatePassword(form: NgForm) {
     if(this.newPassword !== this.confirmPassword) {
-      console.log('not the same');
+      this.notificationService.onError("Passwords do not match");
     }
 
     if(this.newPassword === this.oldPassword) {
-      console.log('same as old password');
+      this.notificationService.onError("New password can't be the same as old password");
     }
 
     const passwordUpdateRequest: UserPasswordUpdateRequest = {
       oldPassword: this.oldPassword,
       newPassword: this.newPassword
-    }
+    };
 
     this.userService.updateUserPassword(passwordUpdateRequest).subscribe({
       next: () => {
+        this.notificationService.onSuccess("Passwords was updated successfully");
         form.reset();
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
       }
-    })
+    });
   }
 
   onUpdateEmail(form: NgForm) {
+    const emailUpdateRequest: UserEmailUpdateRequest = {
+      email: this.email,
+      password: this.emailPassword
+    };
+
+    this.userService.updateUserEmail(emailUpdateRequest).subscribe({
+      next: () => {
+        this.notificationService.onInfo("A verification link has been sent to your email.")
+        form.reset();
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
+      }
+    });
   }
 }
-

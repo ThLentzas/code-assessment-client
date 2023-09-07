@@ -102,9 +102,9 @@
         </ng-container>
 
         <ng-container *ngIf="issueType === 'SECURITY_HOTSPOTS'">
+          <p><strong>Rule:</strong> {{ getSelectedAsHotspot().ruleKey }}</p>
+          <p><strong>Review Priority:</strong> {{ getSelectedAsHotspot().vulnerabilityProbability }}</p>
           <p><strong>Security Category:</strong> {{ getSelectedAsHotspot().securityCategory }}</p>
-          <p><strong>Vulnerability Probability:</strong> {{ getSelectedAsHotspot().vulnerabilityProbability }}</p>
-          <p><strong>Rule Key:</strong> {{ getSelectedAsHotspot().ruleKey }}</p>
         </ng-container>
       </div>
     </div>

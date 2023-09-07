@@ -44,3 +44,11 @@ body {
 .notifier__notification--success {
   background-color: #198754 !important;
 }
+
+.notifier__notification--error {
+  background-color: #dc3545 !important;
+}
+
+.notifier__notification--info {
+  background-color: #337ab8 !important;
+}

@@ -12,6 +12,7 @@ import {UserHistoryComponent} from "./components/user-history/user-history.compo
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {isAuthenticated} from "./services/access-guard.service";
+import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 
 const appRoutes: Routes = [{
     path: 'signup',
@@ -51,6 +52,9 @@ const appRoutes: Routes = [{
       path: '',
       redirectTo: '/analysis',
       pathMatch: 'full'
+    }, {
+      path: '**',
+      component: PageNotFoundComponent
     }]
   }
 ];

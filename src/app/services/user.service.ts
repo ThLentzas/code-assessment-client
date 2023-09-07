@@ -5,7 +5,7 @@ import {UserHistory} from "../models/user/user-history.model";
 import {UserProfile} from "../models/user/user-profile.model";
 import {UserProfileUpdateRequest} from "../models/user/user-profile-update-request.model";
 import {UserPasswordUpdateRequest} from "../models/user/user-password-update-request.model";
-
+import {UserEmailUpdateRequest} from "../models/user/user-email-update-request.model";
 
 
 @Injectable({providedIn: 'root'})
@@ -24,9 +24,11 @@ export class UserService {
   }
 
   updateUserPassword(passwordUpdateRequest: UserPasswordUpdateRequest) {
-    return this.http.put<void>(
-      'http://localhost:8080/api/v1/user/settings/password',
-      passwordUpdateRequest);
+    return this.http.put<void>('http://localhost:8080/api/v1/user/settings/password', passwordUpdateRequest);
+  }
+
+  updateUserEmail(emailUpdateRequest: UserEmailUpdateRequest) {
+    return this.http.post<void>('http://localhost:8080/api/v1/user/settings/email', emailUpdateRequest);
   }
 
   fetchUserHistory(fromDate: Date, toDate: Date): Observable<UserHistory> {
@@ -47,8 +49,9 @@ export class UserService {
 
   private formatDate(date: Date): string {
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');  // Months are 0-based, add 1 and pad with zeros
-    const day = date.getDate().toString().padStart(2, '0');  // Pad with zeros
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
     return `${year}-${month}-${day}`;
   }
 

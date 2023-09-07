@@ -27,6 +27,7 @@ import {AppNotificationModule} from "./app-notification.module";
 import {AppMaterialsModule} from "./app-materials.module";
 import {AppIconsModule} from "./app-icons.module";
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {AuthInterceptorService} from "./services/auth-interceptor.service";
     LayoutComponent,
     LoginComponent,
     UserProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
