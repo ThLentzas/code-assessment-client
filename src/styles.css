@@ -1,4 +1,6 @@
 @import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "node_modules/angular-notifier/styles.css";
+
 
 html, body { height: 100%; }
 body {
@@ -37,4 +39,8 @@ body {
 .custom-focus:focus {
   box-shadow: 0 0 0 0.1rem #337ab8;
   border-color: #337ab8;
+}
+
+.notifier__notification--success {
+  background-color: #198754 !important;
 }

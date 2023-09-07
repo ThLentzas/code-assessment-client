@@ -11,6 +11,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {UserHistoryComponent} from "./components/user-history/user-history.component";
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 import {SettingsComponent} from "./components/settings/settings.component";
+import {isAuthenticated} from "./services/access-guard.service";
 
 const appRoutes: Routes = [{
     path: 'signup',
@@ -21,6 +22,7 @@ const appRoutes: Routes = [{
   }, {
     path: '',
     component: LayoutComponent,
+    canActivate: [isAuthenticated],
     children: [{
       path: 'analysis',
       component: ManageAnalysisRequestComponent

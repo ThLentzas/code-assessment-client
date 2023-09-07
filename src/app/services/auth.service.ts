@@ -18,4 +18,14 @@ export class AuthService {
   loginUser(loginRequest: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>("http://localhost:8080/api/v1/auth/login", loginRequest);
   }
+
+  getAuthToken() {
+    const user = localStorage.getItem('userData');
+
+    if (user !== null) {
+      const authResponse: AuthResponse = JSON.parse(user);
+      return authResponse.token;
+    }
+    return null;
+  }
 }

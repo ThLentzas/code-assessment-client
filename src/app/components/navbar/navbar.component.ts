@@ -21,4 +21,9 @@ export class NavbarComponent {
         this.analysisService.getAnalysisResponse().analysisId]);
     }
   }
+
+  onLogout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

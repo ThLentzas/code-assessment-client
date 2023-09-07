@@ -70,5 +70,7 @@ export class AnalysisReviewComponent implements OnInit {
     this.overviewService.vulnerabilitiesUpdated.next(this.overviewService.getVulnerabilities());
 
     this.hotspots = this.analysisReport.hotspotsReport.hotspots;
+    this.overviewService.setHotspots(this.hotspots);
+    this.overviewService.hotspotsUpdated.next(this.overviewService.getHotspots());
   }
 }

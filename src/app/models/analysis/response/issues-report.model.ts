@@ -1,14 +1,6 @@
-enum Severity {
-  BLOCKER,
-  CRITICAL,
-  MAJOR,
-  MINOR,
-  INFO
-}
-
 export interface Issue {
   rule: string;
-  severity: Severity;
+  severity: string;
   component: string;
   project: string;
   line: number;

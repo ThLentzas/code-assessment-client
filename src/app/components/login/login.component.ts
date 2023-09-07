@@ -3,6 +3,7 @@ import {AuthService} from "../../services/auth.service";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LoginRequest} from "../../models/auth/login-request.model";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-login',
@@ -12,17 +13,17 @@ import {LoginRequest} from "../../models/auth/login-request.model";
 export class LoginComponent {
   loginRequest: LoginRequest = {};
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   onSubmit(form: NgForm) {
-    this.loginRequest = form.value;
-    console.log(this.loginRequest);
     this.authService.loginUser(this.loginRequest).subscribe({
         next: authResponse => {
           localStorage.setItem('userData', JSON.stringify(authResponse));
           this.router.navigate((['analysis']));
-          console.log(this.loginRequest);
+          this.notificationService.onSuccess("Welcome dog");
           form.reset();
         }
       }

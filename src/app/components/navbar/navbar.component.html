@@ -29,8 +29,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link text-white" [routerLink]="['/settings']">
+            <a class="nav-link text-white" [routerLink]="['/settings']">
               <ng-icon name="bootstrapGear" class="me-3 icon-large"></ng-icon><span>Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" style="cursor: pointer" (click)="onLogout()">
+              <ng-icon name="bootstrapBoxArrowLeft" class="me-3 icon-large"></ng-icon><span>Logout</span>
             </a>
           </li>
         </ul>

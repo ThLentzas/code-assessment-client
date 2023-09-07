@@ -10,6 +10,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link"
+             routerLinkActive="active-link"
              [routerLink]="['./']"
              [queryParams]="{type: 'BUG'}">
             Bugs
@@ -17,6 +18,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link"
+             routerLinkActive="active-link"
              [routerLink]="['./']"
              [queryParams]="{type: 'CODE_SMELL'}">
             Code Smells
@@ -24,13 +26,19 @@
         </li>
         <li class="nav-item">
           <a class="nav-link"
+             routerLinkActive="active-link"
              [routerLink]="['./']"
              [queryParams]="{type: 'VULNERABILITY'}">
             Vulnerabilities
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Security Hotspots</a>
+          <a class="nav-link"
+             routerLinkActive="active-link"
+             [routerLink]="['./']"
+             [queryParams]="{type: 'SECURITY_HOTSPOTS'}">
+            Security Hotspots
+          </a>
         </li>
       </ul>
     </div>
@@ -41,44 +49,63 @@
   <div class="col-3">
     <ul class="list-group scrollable-list">
       <ng-container *ngIf="issueType === 'BUG'">
-        <li class="list-group-item issue-item"
+        <li class="list-group-item issue-item rounded-0"
             *ngFor="let bug of bugs; let i = index;"
-            [ngClass]="{'selected-item': selectedIssue === bug}"
-            (click)="selectIssue(bug)">
+            [ngClass]="{'selected-item': selected === bug}"
+            (click)="setSelected(bug)">
           <p>{{ bug.message }}</p>
           <small class="text-muted">{{ i + 1 }}/{{ bugs.length }}</small>
         </li>
       </ng-container>
       <ng-container *ngIf="issueType === 'CODE_SMELL'">
-        <li class="list-group-item issue-item"
+        <li class="list-group-item issue-item rounded-0"
             *ngFor="let codeSmell of codeSmells; let i = index;"
-            [ngClass]="{'selected-item': selectedIssue === codeSmell}"
-            (click)="selectIssue(codeSmell)">
+            [ngClass]="{'selected-item': selected === codeSmell}"
+            (click)="setSelected(codeSmell)">
           <p>{{ codeSmell.message }}</p>
           <small class="text-muted">{{ i + 1 }}/{{ codeSmells.length }}</small>
         </li>
       </ng-container>
       <ng-container *ngIf="issueType === 'VULNERABILITY'">
-        <li class="list-group-item issue-item"
+        <li class="list-group-item issue-item rounded-0"
             *ngFor="let vulnerability of vulnerabilities; let i = index;"
-            [ngClass]="{'selected-item': selectedIssue === vulnerability}"
-            (click)="selectIssue(vulnerability)">
+            [ngClass]="{'selected-item': selected === vulnerability}"
+            (click)="setSelected(vulnerability)">
           <p>{{ vulnerability.message }}</p>
           <small class="text-muted">{{ i + 1 }}/{{ vulnerabilities.length }}</small>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="issueType === 'SECURITY_HOTSPOTS'">
+        <li class="list-group-item issue-item rounded-0"
+            *ngFor="let hotspot of hotspots; let i = index;"
+            [ngClass]="{'selected-item': selected === hotspot}"
+            (click)="setSelected(hotspot)">
+          <p>{{ hotspot.message }}</p>
+          <small class="text-muted">{{ i + 1 }}/{{ hotspots.length }}</small>
         </li>
       </ng-container>
     </ul>
   </div>
   <div class="col-5">
-    <div *ngIf="selectedIssue" class="card">
+    <div *ngIf="selected" class="card rounded-0">
       <div class="card-body">
-        <h3 class="card-title">{{ selectedIssue.message }}</h3>
+        <h3 class="card-title">{{ selected.message }}</h3>
         <hr>
-        <p><strong>Rule:</strong> {{ selectedIssue.rule }}</p>
-        <p><strong>Severity:</strong> {{ selectedIssue.severity }}</p>
-        <p><strong>File:</strong> {{ selectedIssue.component }}</p>
-        <p><strong>Line:</strong> {{ selectedIssue.line }}</p>
-        <p><strong>Type:</strong> {{ selectedIssue.type }}</p>
+        <p><strong>File:</strong> {{ selected.component }}</p>
+        <p><strong>Line:</strong> {{ selected.line }}</p>
+        <p><strong>Message:</strong> {{ selected.message }}</p>
+
+        <ng-container *ngIf="issueType !== 'SECURITY_HOTSPOTS'">
+          <p><strong>Rule:</strong> {{ getSelectedAsIssue().rule }}</p>
+          <p><strong>Severity:</strong> {{ getSelectedAsIssue().severity }}</p>
+          <p><strong>Type:</strong> {{ getSelectedAsIssue().type }}</p>
+        </ng-container>
+
+        <ng-container *ngIf="issueType === 'SECURITY_HOTSPOTS'">
+          <p><strong>Security Category:</strong> {{ getSelectedAsHotspot().securityCategory }}</p>
+          <p><strong>Vulnerability Probability:</strong> {{ getSelectedAsHotspot().vulnerabilityProbability }}</p>
+          <p><strong>Rule Key:</strong> {{ getSelectedAsHotspot().ruleKey }}</p>
+        </ng-container>
       </div>
     </div>
   </div>
