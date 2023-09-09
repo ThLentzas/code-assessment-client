@@ -14,8 +14,7 @@ export class SettingsComponent {
   oldPassword: string;
   newPassword: string;
   confirmPassword: string;
-  email: string;
-  emailPassword: string;
+  emailUpdateRequest: UserEmailUpdateRequest = {};
 
   constructor(private userService: UserService,
               private notificationService: NotificationService) {
@@ -23,11 +22,11 @@ export class SettingsComponent {
 
   onUpdatePassword(form: NgForm) {
     if(this.newPassword !== this.confirmPassword) {
-      this.notificationService.onError("Passwords do not match");
+      return this.notificationService.onError("Passwords do not match");
     }
 
     if(this.newPassword === this.oldPassword) {
-      this.notificationService.onError("New password can't be the same as old password");
+      return this.notificationService.onError("New password can't be the same as old password");
     }
 
     const passwordUpdateRequest: UserPasswordUpdateRequest = {
@@ -46,14 +45,9 @@ export class SettingsComponent {
   }
 
   onUpdateEmail(form: NgForm) {
-    const emailUpdateRequest: UserEmailUpdateRequest = {
-      email: this.email,
-      password: this.emailPassword
-    };
-
-    this.userService.updateUserEmail(emailUpdateRequest).subscribe({
+    this.userService.updateUserEmail(this.emailUpdateRequest).subscribe({
       next: () => {
-        this.notificationService.onInfo("A verification link has been sent to your email.")
+        this.notificationService.onInfo("A verification link has been sent to your email")
         form.reset();
       }, error: error => {
         this.notificationService.onError(error.error.message);

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {UserProfileUpdateRequest} from "../../models/user/user-profile-update-request.model";
 import {UserProfile} from "../../models/user/user-profile.model";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -13,7 +14,7 @@ export class UserProfileComponent implements OnInit {
   tempUserProfile: UserProfile = {};
   isEditMode = false;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -49,7 +50,7 @@ export class UserProfileComponent implements OnInit {
       unique.
      */
     if(profileUpdateRequest.username?.length === 0) {
-      console.log('error dog');
+      return this.notificationService.onError("Username must have a value")
     }
 
     this.userService.updateUserProfile(profileUpdateRequest).subscribe({

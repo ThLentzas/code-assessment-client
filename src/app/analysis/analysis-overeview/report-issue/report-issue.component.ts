@@ -64,4 +64,45 @@ export class ReportIssueComponent implements OnInit, OnDestroy {
   getSelectedAsHotspot(): Hotspot {
     return this.selected as Hotspot;
   }
+
+  getReadableIssueType(issueType: string): string {
+    const issueTypeMapping: { [key: string]: string } = {
+      "CODE_SMELL": "Code Smell",
+      "BUG": "Bug",
+      "VULNERABILITY": "Vulnerability",
+    };
+
+    return issueTypeMapping[issueType];
+  }
+
+  getReadableSecurityCategory(securityCategory: string): string {
+    const mapping: { [key: string]: string } = {
+      "buffer-overflow": "Buffer Overflow",
+      "sql-injection": "SQL Injection",
+      "rce": "Remote Code Execution",
+      "object-injection": "Object Injection",
+      "command-injection": "Command Injection",
+      "path-traversal-injection": "Path Traversal Injection",
+      "ldap-injection": "LDAP Injection",
+      "xpath-injection": "XPath Injection",
+      "log-injection": "Log Injection",
+      "xxe": "XML External Entity",
+      "xss": "Cross-Site Scripting (XSS)",
+      "dos": "Denial of Service",
+      "ssrf": "Server-Side Request Forgery",
+      "csrf": "Cross-Site Request Forgery",
+      "http-response-splitting": "HTTP Response Splitting",
+      "open-redirect": "Open Redirect",
+      "weak-cryptography": "Weak Cryptography",
+      "auth": "Authentication",
+      "insecure-conf": "Insecure Configuration",
+      "file-manipulation": "File Manipulation",
+      "encrypt-data": "Encryption of Sensitive Data",
+      "traceability": "Traceability",
+      "permission": "Permission",
+      "others": "Others"
+    };
+
+    return mapping[securityCategory];
+  }
 }

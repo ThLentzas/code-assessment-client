@@ -28,6 +28,8 @@ import {AppMaterialsModule} from "./app-materials.module";
 import {AppIconsModule} from "./app-icons.module";
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { PasswordResetConfirmComponent } from './components/password-reset-confirm/password-reset-confirm.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     LoginComponent,
     UserProfileComponent,
     SettingsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PasswordResetComponent,
+    PasswordResetConfirmComponent
   ],
   imports: [
     BrowserModule,

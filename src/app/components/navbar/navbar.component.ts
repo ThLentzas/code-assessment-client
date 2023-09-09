@@ -23,7 +23,7 @@ export class NavbarComponent {
   }
 
   onLogout() {
-    localStorage.clear();
+    localStorage.removeItem('userData');
     this.router.navigate(['/login']);
   }
 }

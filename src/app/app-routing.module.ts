@@ -13,6 +13,8 @@ import {UserProfileComponent} from "./components/user-profile/user-profile.compo
 import {SettingsComponent} from "./components/settings/settings.component";
 import {isAuthenticated} from "./services/access-guard.service";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
+import {PasswordResetComponent} from "./components/password-reset/password-reset.component";
+import {PasswordResetConfirmComponent} from "./components/password-reset-confirm/password-reset-confirm.component";
 
 const appRoutes: Routes = [{
     path: 'signup',
@@ -20,6 +22,12 @@ const appRoutes: Routes = [{
   }, {
     path: 'login',
     component: LoginComponent
+  }, {
+    path: 'password_reset',
+    component: PasswordResetComponent
+  }, {
+    path: 'password_reset/confirm',
+    component: PasswordResetConfirmComponent
   }, {
     path: '',
     component: LayoutComponent,

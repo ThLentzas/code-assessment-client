@@ -97,7 +97,7 @@
             <div class="row align-items-center">
               <div class="col-md-4">
                 <input #emailRef="ngModel" type="email" required email class="form-control my-2 custom-focus"
-                       [(ngModel)]="email" name="email" autocomplete="off">
+                       [(ngModel)]="emailUpdateRequest.email" name="email" autocomplete="off">
               </div>
               <div class="col-md-7">
                 <div *ngIf="emailRef.errors?.['required'] && (emailRef.dirty || emailRef.touched)"
@@ -115,7 +115,7 @@
             <div class="row align-items-center">
               <div class="col-md-4">
                 <input #emailPasswordRef="ngModel" type="password" required class="form-control my-2 custom-focus"
-                       [(ngModel)]="emailPassword" name="emailPassword">
+                       [(ngModel)]="emailUpdateRequest.password" name="emailPassword">
               </div>
               <div class="col-md-7">
                 <div *ngIf="emailPasswordRef.errors?.['required'] && (emailPasswordRef.dirty || emailPasswordRef.touched)"
