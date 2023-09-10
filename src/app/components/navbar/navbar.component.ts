@@ -14,13 +14,22 @@ export class NavbarComponent {
   }
 
   onDashboard() {
-    if (this.analysisService.getAnalysisResponse()) {
-      this.router.navigate([
-        '/dashboard',
-        'analysis',
-        this.analysisService.getAnalysisResponse().analysisId]);
+    let analysisResponse = this.analysisService.getAnalysisResponse();
+
+    if (!analysisResponse) {
+      const storedResponse = localStorage.getItem('analysisResponse');
+      if (storedResponse) {
+        analysisResponse = JSON.parse(storedResponse);
+      }
     }
+
+    this.router.navigate([
+      '/dashboard',
+      'analysis',
+      analysisResponse.analysisId
+    ]);
   }
+
 
   onLogout() {
     localStorage.removeItem('userData');

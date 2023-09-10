@@ -3,7 +3,9 @@ import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from
 import {AuthResponse} from "../models/auth/auth-response.model";
 
 
-@Injectable({providedIn: "root"})
+@Injectable({
+  providedIn: "root"
+})
 class AccessGuardService {
   constructor(private router: Router) {
   }

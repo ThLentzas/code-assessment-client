@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AnalysisReport} from "../../models/analysis/response/analysis-report.model";
 import {Issue} from "../../models/analysis/response/issues-report.model";
 import {Hotspot} from "../../models/analysis/response/hotspots-report.model";
+import {StorageService} from "../../services/storage.service";
 import {OverviewService} from "../../services/overview.service";
 
 @Component({
@@ -13,16 +14,17 @@ import {OverviewService} from "../../services/overview.service";
 })
 export class AnalysisReviewComponent implements OnInit {
   //We can not iterate through maps with *ngFor. We have to convert them into arrays.
-  analysisReport: AnalysisReport;
   bugs: Issue[];
   codeSmells: Issue[];
   vulnerabilities: Issue[];
   hotspots: Hotspot[];
   metrics: { key: string, value: number }[] = [];
   languages: { key: string, value: number }[] = [];
+  analysisReport: AnalysisReport;
 
   constructor(private analysisService: AnalysisService,
               private overviewService: OverviewService,
+              private storageService: StorageService,
               private route: ActivatedRoute) {
   }
 
@@ -31,11 +33,13 @@ export class AnalysisReviewComponent implements OnInit {
       Returns the id as String, so we have to convert it to number.
      */
     const reportId = +this.route.snapshot.params['reportId'];
+    const analysisResponse = JSON.parse(localStorage.getItem('analysisResponse'));
 
-    for (const reportList of this.analysisService.getAnalysisResponse().reports) {
-      for (const report of reportList) {
+    for (const reports of analysisResponse.reports) {
+      for (const report of reports) {
         if (report.reportId === reportId) {
           this.analysisReport = report;
+          break;
         }
       }
     }
@@ -53,24 +57,15 @@ export class AnalysisReviewComponent implements OnInit {
         value: this.analysisReport.languages[key]
       };
     });
+    
+    const { bugs, codeSmells, vulnerabilities, hotspots } =
+      this.overviewService.filterIssues(this.analysisReport);
 
-    this.bugs = this.analysisReport.issuesReport.issues.filter(issue =>
-      issue.type === 'BUG');
-    this.overviewService.setBugs(this.bugs);
-    this.overviewService.bugsUpdated.next(this.overviewService.getBugs());
+    this.bugs = bugs;
+    this.codeSmells = codeSmells;
+    this.vulnerabilities = vulnerabilities;
+    this.hotspots = hotspots;
 
-    this.codeSmells = this.analysisReport.issuesReport.issues.filter(issue =>
-      issue.type === 'CODE_SMELL');
-    this.overviewService.setCodeSmells(this.codeSmells);
-    this.overviewService.codeSmellsUpdated.next(this.overviewService.getCodeSmells());
-
-    this.vulnerabilities = this.analysisReport.issuesReport.issues.filter(issue =>
-      issue.type === 'VULNERABILITY');
-    this.overviewService.setVulnerabilities(this.vulnerabilities)
-    this.overviewService.vulnerabilitiesUpdated.next(this.overviewService.getVulnerabilities());
-
-    this.hotspots = this.analysisReport.hotspotsReport.hotspots;
-    this.overviewService.setHotspots(this.hotspots);
-    this.overviewService.hotspotsUpdated.next(this.overviewService.getHotspots());
+    this.storageService.saveItem('analysisReport', JSON.stringify(this.analysisReport));
   }
 }

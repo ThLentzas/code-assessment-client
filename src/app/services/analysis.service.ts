@@ -7,7 +7,9 @@ import {AnalysisResponse} from "../models/analysis/response/analysis-response.mo
 import {BehaviorSubject, Observable} from "rxjs";
 import {RefreshRequest} from "../models/analysis/request/refresh-request.model";
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class AnalysisService {
   private projectUrls: string[] = [];
   private constraints: Constraint[] = [];

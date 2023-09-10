@@ -8,7 +8,9 @@ import {UserPasswordUpdateRequest} from "../models/user/user-password-update-req
 import {UserEmailUpdateRequest} from "../models/user/user-email-update-request.model";
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
   history: UserHistory
 
@@ -37,11 +39,8 @@ export class UserService {
       const to = this.formatDate(toDate);
       const params = new HttpParams().set('from', from).set('to', to);
 
-      const options = {
-        params
-      };
 
-      return this.http.get<UserHistory>('http://localhost:8080/api/v1/user/history', options);
+      return this.http.get<UserHistory>('http://localhost:8080/api/v1/user/history', { params });
     }
 
     return this.http.get<UserHistory>('http://localhost:8080/api/v1/user/history');

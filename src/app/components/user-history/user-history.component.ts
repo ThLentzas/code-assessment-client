@@ -23,19 +23,11 @@ export class UserHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.fetchUserHistory(this.startDate, this.endDate).subscribe({
-      next: history => {
-        this.history = history;
-      }
-    });
+    this.fetchHistory();
   }
 
   onViewHistory(): void {
-    this.userService.fetchUserHistory(this.startDate, this.endDate).subscribe({
-      next: history => {
-        this.history = history;
-      }
-    });
+   this.fetchHistory();
   }
 
   onAnalysis(analysisResponse: AnalysisResponse) {
@@ -51,9 +43,17 @@ export class UserHistoryComponent implements OnInit {
   onDelete(analysisResponse: AnalysisResponse) {
     this.analysisService.deleteAnalysis(analysisResponse.analysisId).subscribe({
       next: () => {
-        const index = this.history.analyses.findIndex(toBeDeleted =>
-          toBeDeleted.analysisId === analysisResponse.analysisId);
-        this.history.analyses.splice(index, 1);
+        this.fetchHistory();
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
+      }
+    });
+  }
+
+  fetchHistory() {
+    this.userService.fetchUserHistory(this.startDate, this.endDate).subscribe({
+      next: history => {
+        this.history = history;
       }, error: error => {
         this.notificationService.onError(error.error.message);
       }

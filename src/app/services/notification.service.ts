@@ -9,7 +9,9 @@ enum Type {
   ERROR = 'error'
 }
 
-@Injectable({providedIn: "root"})
+@Injectable({
+  providedIn: "root"
+})
 export class NotificationService {
   private readonly notifier: NotifierService;
 

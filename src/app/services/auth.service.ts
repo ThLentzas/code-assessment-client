@@ -6,11 +6,15 @@ import {LoginRequest} from "../models/auth/login-request.model";
 import {AuthResponse} from "../models/auth/auth-response.model";
 import {PasswordResetRequest} from "../models/auth/password-reset-request.model";
 import {PasswordResetConfirmationRequest} from "../models/auth/password-reset-confirmation-request.model";
+import {StorageService} from "./storage.service";
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private storageService: StorageService,
+              private http: HttpClient) {
   }
 
   registerUser(registerRequest: RegisterRequest): Observable<AuthResponse> {
@@ -30,7 +34,7 @@ export class AuthService {
   }
 
   getAuthToken() {
-    const user = localStorage.getItem('userData');
+    const user = this.storageService.getItem('userData');
 
     if (user !== null) {
       const authResponse: AuthResponse = JSON.parse(user);

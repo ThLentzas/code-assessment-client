@@ -3,6 +3,7 @@ import {AnalysisResponse} from "../../models/analysis/response/analysis-response
 import {AnalysisService} from "../../services/analysis.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-analysis-list',
@@ -13,26 +14,34 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
   analysisResponse: AnalysisResponse;
   subscription: Subscription;
 
-  constructor(private analysisService: AnalysisService, private route: ActivatedRoute, private router: Router) {
+  constructor(private analysisService: AnalysisService,
+              private storageService: StorageService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    const analysisResponse = localStorage.getItem('analysisResponse');
+
+    if (analysisResponse) {
+      this.analysisResponse = JSON.parse(analysisResponse);
+    }
+
     this.subscription = this.analysisService.analysisResponseUpdated.subscribe({
       next: analysisResponse => {
-        for (const reportList of analysisResponse.reports) {
-          for (const report of reportList) {
-            if (this.isFirstDigitZero(report.rank)) {
-              report.rank = Math.floor(report.rank * 100);
-            }
-          }
+        if(analysisResponse) {
+          this.formatRank(analysisResponse);
+          this.analysisResponse = analysisResponse;
+          this.storageService.saveItem('analysisResponse', JSON.stringify(this.analysisResponse));
         }
-        this.analysisResponse = analysisResponse;
       }
     });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   onNewAnalysis() {
@@ -50,5 +59,15 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
 
   private isFirstDigitZero(num: number) {
     return num.toString()[0] === '0' || num.toString()[0] === '1';
+  }
+
+  private formatRank(analysisResponse: AnalysisResponse) {
+    for (const reportList of analysisResponse.reports) {
+      for (const report of reportList) {
+        if (this.isFirstDigitZero(report.rank)) {
+          report.rank = Math.floor(report.rank * 100);
+        }
+      }
+    }
   }
 }

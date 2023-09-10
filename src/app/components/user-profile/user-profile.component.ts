@@ -21,6 +21,8 @@ export class UserProfileComponent implements OnInit {
     this.userService.fetchUserProfile().subscribe({
       next: profile => {
         this.profile = profile;
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
       }
     });
   }
@@ -54,9 +56,11 @@ export class UserProfileComponent implements OnInit {
     }
 
     this.userService.updateUserProfile(profileUpdateRequest).subscribe({
-        next: () => {
-          this.toggleEditMode();
-        }
-      });
+      next: () => {
+        this.toggleEditMode();
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
+      }
+    });
   }
 }

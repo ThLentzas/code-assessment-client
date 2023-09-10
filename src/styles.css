@@ -6,6 +6,7 @@ html, body { height: 100%; }
 body {
   margin: 0;
   background-color: #C9D1D9;
+  overflow: hidden;
 }
 
 .icon-large {

@@ -90,24 +90,12 @@
                   #password="ngModel"
                   matInput placeholder="Password"
                   [type]="hidePassword ? 'password' : 'text'"
-                  required
-                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,128}$">
+                  required>
                 <mat-icon matSuffix (click)="hidePassword = !hidePassword;">
                   {{hidePassword ? 'visibility_off' : 'visibility'}}
                 </mat-icon>
                 <mat-error *ngIf="password.invalid && password.touched">
                   <div *ngIf="password.errors?.['required']">Password is required.</div>
-                  <div *ngIf="password.errors?.['pattern']">
-                    Password must meet the following requirements:
-                    <ul>
-                      <li>At least 12 characters</li>
-                      <li>No more than 128 characters</li>
-                      <li>At least one uppercase letter</li>
-                      <li>At least one lowercase letter</li>
-                      <li>At least one digit</li>
-                      <li>At least one special character (@, $, !, %, *, ?, &)</li>
-                    </ul>
-                  </div>
                 </mat-error>
               </mat-form-field>
             </div>

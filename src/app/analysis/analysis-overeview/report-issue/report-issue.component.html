@@ -97,7 +97,7 @@
 
         <ng-container *ngIf="issueType !== 'SECURITY_HOTSPOTS'">
           <p><strong>Rule:</strong> {{ getSelectedAsIssue().rule }}</p>
-          <p><strong>Severity:</strong> {{ getSelectedAsIssue().severity }}</p>
+          <p><strong>Severity:</strong> {{ getSelectedAsIssue().severity | titlecase}}</p>
           <p><strong>Type:</strong> {{ getReadableIssueType(getSelectedAsIssue().type) }}</p>
         </ng-container>
 
