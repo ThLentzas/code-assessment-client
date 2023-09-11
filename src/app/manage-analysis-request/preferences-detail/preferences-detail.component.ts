@@ -9,10 +9,7 @@ import {QualityAttribute} from "../../models/analysis/request/quality-attribute.
   styleUrls: ['./preferences-detail.component.css']
 })
 export class PreferencesDetailComponent implements OnInit, DoCheck {
-  preferences = [{
-    selectedAttribute: '',
-    weight: null
-  }];
+  preferences: Preference[] = [];
   qualityAttributes: QualityAttribute[];
 
   constructor(private analysisService: AnalysisService) {
@@ -39,28 +36,32 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
       {value: 'HOTSPOT_PRIORITY', viewValue: 'Hotspot Priority'},
       {value: 'SECURITY_REMEDIATION_EFFORT', viewValue: 'Security Remediation Effort'}
     ];
+
+    this.onAddPreference();
   }
 
   ngDoCheck(): void {
-    const validPreferences: Preference[] = this.preferences
+    const preferences: Preference[] = this.preferences
       .filter(preference =>
-        preference.selectedAttribute !== ''
-        && preference.weight !== null)
-      .map(preference => {
-        return {
-          qualityAttribute: preference.selectedAttribute,
+        preference.qualityAttribute !== null
+      && preference.weight !== null
+      )
+      .map(preference => ({
+          qualityAttribute: preference.qualityAttribute,
           weight: Number(preference.weight)
-        };
-      });
 
-    this.analysisService.setPreferences(validPreferences);
+      }));
+
+     this.analysisService.setPreferences(preferences);
   }
 
   onAddPreference() {
-    this.preferences.push({
-      selectedAttribute: '',
+    const preference: Preference = {
+      qualityAttribute: null,
       weight: null
-    });
+    }
+
+    this.preferences.push(preference);
   }
 
   onRemovePreference(index: number) {

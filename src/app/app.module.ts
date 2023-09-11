@@ -67,7 +67,9 @@ import { PasswordResetConfirmComponent } from './components/password-reset-confi
     AppIconsModule
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
   }],
   bootstrap: [
     AppComponent

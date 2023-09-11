@@ -11,11 +11,7 @@ import {QualityMetricOperator} from "../../models/analysis/request/quality-metri
   styleUrls: ['./constraints-detail.component.css']
 })
 export class ConstraintsDetailComponent implements OnInit, DoCheck {
-  constraints = [{
-    selectedMetric: '',
-    selectedOperator: '',
-    threshold: null
-  }];
+  constraints: Constraint[] = [];
   qualityMetrics: QualityMetric[];
   operators: QualityMetricOperator[];
 
@@ -45,31 +41,34 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck {
       {value: '=='},
       {value: '<>'},
     ]
+
+    this.onAddConstraint();
   }
 
   ngDoCheck(): void {
-    const validConstraints: Constraint[] = this.constraints
+    const constraints: Constraint[] = this.constraints
       .filter(constraint =>
-        constraint.selectedMetric !== ''
-        && constraint.selectedOperator !== ''
-        && constraint.threshold !== null)
-      .map(constraint => {
-        return {
-          qualityMetric: constraint.selectedMetric,
-          qualityMetricOperator: constraint.selectedOperator,
-          threshold: Number(constraint.threshold)
-        };
-      });
+        constraint.qualityMetric !== null
+        && constraint.qualityMetricOperator !== null
+        && constraint.threshold !== null
+      )
+      .map(constraint => ({
+        qualityMetric: constraint.qualityMetric,
+        qualityMetricOperator: constraint.qualityMetricOperator,
+        threshold: Number(constraint.threshold)
+      }));
 
-    this.analysisService.setConstraints(validConstraints);
+    this.analysisService.setConstraints(constraints);
   }
 
   onAddConstraint(){
-    this.constraints.push({
-      selectedMetric: '',
-      selectedOperator: '',
+    const constraint: Constraint = {
+      qualityMetric: null,
+      qualityMetricOperator: null,
       threshold: null
-    });
+    };
+
+    this.constraints.push(constraint);
   }
 
   onRemoveConstraint(index:number){

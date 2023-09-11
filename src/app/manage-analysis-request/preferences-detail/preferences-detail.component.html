@@ -16,7 +16,7 @@
 
   <div *ngFor="let preference of preferences; let i = index;" class="row align-items-end mb-2">
     <div class="col-md-6">
-      <select class="form-control custom-focus" [(ngModel)]="preference.selectedAttribute">
+      <select class="form-control custom-focus" [(ngModel)]="preference.qualityAttribute">
         <option *ngFor="let qualityAttribute of qualityAttributes" [ngValue]="qualityAttribute.value">
           {{ qualityAttribute.viewValue | titlecase }}
         </option>

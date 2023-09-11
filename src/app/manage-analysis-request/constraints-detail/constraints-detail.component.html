@@ -19,7 +19,7 @@
   </div>
   <div *ngFor="let constraint of constraints; let i = index;" class="row align-items-end mb-2">
     <div class="col-md-5">
-      <select class="form-control custom-focus" [(ngModel)]="constraint.selectedMetric">
+      <select class="form-control custom-focus" [(ngModel)]="constraint.qualityMetric">
         <option *ngFor="let qualityMetric of qualityMetrics" [ngValue]="qualityMetric.value">
           {{ qualityMetric.viewValue | titlecase }}
         </option>
@@ -28,7 +28,7 @@
     <div class="col-md-2 text-center">
       <select
         class="form-control text-center custom-focus"
-        [(ngModel)]="constraint.selectedOperator">
+        [(ngModel)]="constraint.qualityMetricOperator">
         <option *ngFor="let operator of operators"
                 [ngValue]="operator.value">{{ operator.value }}</option>
       </select>

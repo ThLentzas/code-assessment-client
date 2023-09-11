@@ -20,16 +20,10 @@ export class AnalysisService {
   constructor(private http: HttpClient) {
   }
 
-  analyze(analysisRequest: AnalysisRequest){
-    this.http.post('http://localhost:8080/api/v1/analysis', analysisRequest)
-      .subscribe({
-        next: response => {
-          console.log(response)
-        },
-        error: error => {
-        }
-      });
-  };
+  analyze(analysisRequest: AnalysisRequest) {
+    return this.http.post('http://localhost:8080/api/v1/analysis', analysisRequest, { observe: 'response' });
+  }
+
 
   fetchAnalysisResult(analysisId: number): Observable<AnalysisResponse> {
     return this.http.get<AnalysisResponse>(
