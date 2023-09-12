@@ -20,8 +20,7 @@
               </div>
               <div class="col-md-7">
                 <div *ngIf="oldPasswordRef.errors?.['required'] && (oldPasswordRef.dirty || oldPasswordRef.touched)"
-                     class="text-danger">
-                  Old password is required.
+                     class="text-danger">Old password is required.
                 </div>
               </div>
             </div>
@@ -37,11 +36,11 @@
                        class="form-control my-2 custom-focus" [(ngModel)]="newPassword" name="newPassword">
               </div>
               <div class="col-md-7">
-                <div *ngIf="newPasswordRef.errors?.['required'] && (newPasswordRef.dirty || newPasswordRef.touched)" class="text-danger">
-                  New password is required.
+                <div *ngIf="newPasswordRef.errors?.['required'] && (newPasswordRef.dirty || newPasswordRef.touched)"
+                     class="text-danger">New password is required.
                 </div>
-                <div *ngIf="newPasswordRef.errors?.['minlength'] && (newPasswordRef.dirty || newPasswordRef.touched)" class="text-danger">
-                  New password must be at least 12 characters long.
+                <div *ngIf="newPasswordRef.errors?.['minlength'] && (newPasswordRef.dirty || newPasswordRef.touched)"
+                     class="text-danger">New password must be at least 12 characters long.
                 </div>
               </div>
             </div>
@@ -53,8 +52,12 @@
             </div>
             <div class="row align-items-center">
               <div class="col-md-4">
-                <input #confirmPasswordRef="ngModel" type="password" required class="form-control my-2 custom-focus"
-                       [(ngModel)]="confirmPassword" name="confirmPassword">
+                <input
+                  #confirmPasswordRef="ngModel"
+                  type="password"
+                  required
+                  class="form-control my-2 custom-focus"
+                  [(ngModel)]="confirmPassword" name="confirmPassword">
               </div>
                 <div class="col-md-7">
                 <div *ngIf="confirmPasswordRef.invalid && (confirmPasswordRef.dirty || confirmPasswordRef.touched)"

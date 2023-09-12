@@ -47,7 +47,7 @@ export class SettingsComponent {
   onUpdateEmail(form: NgForm) {
     this.userService.updateUserEmail(this.emailUpdateRequest).subscribe({
       next: () => {
-        this.notificationService.onInfo("A verification link has been sent to your email")
+        this.notificationService.onInfo("A verification link will be sent shortly to your email")
         form.reset();
       }, error: error => {
         this.notificationService.onError(error.error.message);

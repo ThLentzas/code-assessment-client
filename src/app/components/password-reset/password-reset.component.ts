@@ -18,7 +18,7 @@ export class PasswordResetComponent {
   onSearch(form: NgForm) {
     this.authService.resetPassword(this.passwordResetRequest).subscribe({
       next: () => {
-        this.notificationService.onInfo("A password reset link has been sent to your email");
+        this.notificationService.onInfo("If your email is registered, you will receive a password reset link.");
         form.resetForm();
       }
     });

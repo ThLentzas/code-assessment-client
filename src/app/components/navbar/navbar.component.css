@@ -5,3 +5,7 @@
 .nav-bg {
   background-color: #171B21;
 }
+
+.custom-nav-link {
+  cursor: pointer;
+}

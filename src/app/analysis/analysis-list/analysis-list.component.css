@@ -48,13 +48,13 @@
 }
 
 .repo-link {
-  color: #3f51b5;;
+  color: #3f51b5;
   text-decoration: none;
 }
 
 .repo-link:hover {
   text-decoration: underline;
-  text-decoration-color: #3f51b5;;
+  text-decoration-color: #3f51b5;
 }
 
 .icon {

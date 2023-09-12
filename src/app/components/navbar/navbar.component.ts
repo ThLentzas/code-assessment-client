@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {AnalysisService} from "../../services/analysis.service";
+import {StorageService} from "../../services/storage.service";
 
 
 @Component({
@@ -10,7 +11,9 @@ import {AnalysisService} from "../../services/analysis.service";
 })
 export class NavbarComponent {
 
-  constructor(private analysisService: AnalysisService, private router: Router) {
+  constructor(private storageService: StorageService,
+              private analysisService: AnalysisService,
+              private router: Router) {
   }
 
   onDashboard() {
@@ -30,9 +33,8 @@ export class NavbarComponent {
     ]);
   }
 
-
   onLogout() {
-    localStorage.removeItem('userData');
+    this.storageService.clearAll();
     this.router.navigate(['/login']);
   }
 }

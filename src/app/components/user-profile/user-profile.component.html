@@ -26,27 +26,39 @@
         </div>
       </div>
       <div *ngIf="isEditMode; else noEdit" class="col-md-7 p-0 m-0">
-        <div class="card shadow-sm border-0 p-4 rounded-0" style="min-height: 486px">
+        <div class="card custom-card shadow-sm border-0 p-4 rounded-0" >
           <div class="row">
             <div class="col-sm-12">
               <div class="row">
                 <div class="col-sm-6">
                   <h3>First Name</h3>
-                  <input [(ngModel)]="tempUserProfile.firstname" class="form-control mb-2 custom-placeholder custom-focus" placeholder="First Name">
+                  <input
+                    class="form-control mb-2 custom-placeholder custom-focus"
+                    placeholder="First Name"
+                    [(ngModel)]="tempUserProfile.firstname">
                 </div>
                 <div class="col-sm-6">
                   <h3>Last Name</h3>
-                  <input [(ngModel)]="tempUserProfile.lastname" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Last Name">
+                  <input
+                    class="form-control mb-2 custom-placeholder custom-focus"
+                    placeholder="Last Name"
+                    [(ngModel)]="tempUserProfile.lastname">
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <h3>Location</h3>
-                  <input [(ngModel)]="tempUserProfile.location" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Location">
+                  <input
+                    class="form-control mb-2 custom-placeholder custom-focus"
+                    placeholder="Location"
+                    [(ngModel)]="tempUserProfile.location">
                 </div>
                 <div class="col-sm-6">
                   <h3>Company</h3>
-                  <input [(ngModel)]="tempUserProfile.company" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Company">
+                  <input
+                    class="form-control mb-2 custom-placeholder custom-focus"
+                    placeholder="Company"
+                    [(ngModel)]="tempUserProfile.company">
                 </div>
               </div>
               <div class="row">
@@ -56,7 +68,10 @@
                 </div>
                 <div class="col-sm-6">
                   <h3>Username</h3>
-                  <input [(ngModel)]="tempUserProfile.username" class="form-control mb-2 custom-placeholder custom-focus" placeholder="Username">
+                  <input
+                    class="form-control mb-2 custom-placeholder custom-focus"
+                    placeholder="Username"
+                    [(ngModel)]="tempUserProfile.username">
                 </div>
               </div>
             </div>
