@@ -26,9 +26,15 @@ export class AnalysisService {
   }
 
   analyze(analysisRequest: AnalysisRequest) {
-    this.validateAnalysisRequest(analysisRequest);
+    try {
+      this.validateAnalysisRequest(analysisRequest);
+      console.log(analysisRequest);
 
-    return this.http.post('http://localhost:8080/api/v1/analysis', analysisRequest, { observe: 'response' });
+      return this.http.post('http://localhost:8080/api/v1/analysis', analysisRequest, {observe: 'response'});
+    } catch (error) {
+      this.notificationService.onError(error.message);
+      return EMPTY;
+    }
   }
 
 
@@ -41,12 +47,12 @@ export class AnalysisService {
     try {
       this.validateConstraints(refreshRequest.constraints);
       this.validatePreferences(refreshRequest.preferences);
+
+      return this.http.put<AnalysisResponse>(`http://localhost:8080/api/v1/analysis/${analysisId}`, refreshRequest);
     } catch (error) {
       this.notificationService.onError(error.message);
       return EMPTY;
     }
-
-    return this.http.put<AnalysisResponse>(`http://localhost:8080/api/v1/analysis/${analysisId}`, refreshRequest);
   }
 
   deleteAnalysis(analysisId: number): Observable<void> {
@@ -54,48 +60,56 @@ export class AnalysisService {
   }
 
   private validateAnalysisRequest(analysisRequest: AnalysisRequest) {
-    try {
       this.validateProjectUrls(analysisRequest.projectUrls);
       this.validateConstraints(analysisRequest.constraints);
       this.validatePreferences(analysisRequest.preferences);
-    } catch (error) {
-      this.notificationService.onError(error.message);
-
-      return;
-    }
   }
 
   private validateProjectUrls(projectUrls: string[]) {
-    if (projectUrls.length === 0) {
+    if (projectUrls.length === 1 && projectUrls[0] === '') {
       throw new Error('You must provide at least 1 Github Repository');
     }
   }
 
   private validateConstraints(constraints: Constraint[]) {
     for (const constraint of constraints) {
-      if ((constraint.qualityMetric === null && constraint.qualityMetricOperator !== null) ||
-        (constraint.qualityMetric !== null && constraint.qualityMetricOperator === null)) {
-        throw new Error('Invalid constraint requirements');
+      if (constraint.qualityMetric === null &&
+        (constraint.qualityMetricOperator !== null || constraint.threshold !== null)) {
+        throw new Error('Quality metric field is required');
       }
 
-      if (constraint.threshold !== null && (typeof constraint.threshold !== 'number' || isNaN(constraint.threshold))) {
+      if (constraint.qualityMetricOperator === null &&
+        (constraint.qualityMetric !== null || constraint.threshold !== null)) {
+        throw new Error('Quality metric operator field is required');
+      }
+
+      if (constraint.threshold === null &&
+        (constraint.qualityMetric !== null || constraint.qualityMetricOperator !== null)) {
+        throw new Error('Threshold field is required');
+      }
+
+      if (constraint.threshold !== null && isNaN(constraint.threshold)) {
         throw new Error('Threshold must be a valid number');
       }
 
-      if (constraint.threshold !== null && (constraint.threshold > 1.0 || constraint.threshold < 0.0)) {
+      if (constraint.threshold !== null && (constraint.threshold > 1 || constraint.threshold < 0)) {
         throw new Error('Threshold value must be between 0 - 1');
       }
     }
   }
 
   private validatePreferences(preferences: Preference[]) {
+    console.log(preferences);
     for (const preference of preferences) {
-      if ((preference.qualityAttribute === null && preference.weight !== null) ||
-        (preference.qualityAttribute !== null && preference.weight === null)) {
-        throw new Error('Invalid preference requirements');
+      if (preference.qualityAttribute === null && preference.weight !== null) {
+        throw new Error('Quality parameter field is required');
       }
 
-      if (preference.weight !== null && (typeof preference.weight !== 'number' || isNaN(preference.weight))) {
+      if (preference.qualityAttribute !== null && preference.weight === null) {
+        throw new Error('Weight field is required');
+      }
+
+      if (preference.weight !== null && isNaN(preference.weight)) {
         throw new Error('Weight must be a valid number');
       }
 
@@ -114,15 +128,27 @@ export class AnalysisService {
     }
 
     let sum = 0;
+    let childNodesWithWeight = 0;
 
     for(const child  of node.children) {
       for (const preference of preferences) {
         if (child.name === preference.qualityAttribute) {
+          childNodesWithWeight++;
           sum += preference.weight;
           if(sum > 1) {
-            throw new Error('The sum of the weights for the child nodes of  can\'t be greater than 1');
+            throw new Error('The sum of the weights for the child nodes of ' +
+              this.readableQualityParameter(node.name) + ' can\'t be greater than 1');
           }
         }
+      }
+
+      /*
+        If the child nodes of a parent node have all defined weight, meaning the user provided weight for all the
+        child nodes of a parent node, and it's less than 1 then we notify the user
+       */
+      if(childNodesWithWeight === node.children.length && sum < 1) {
+        throw new Error('The sum of the weights for the child nodes of ' +
+          this.readableQualityParameter(node.name) + ' can\'t be less than 1');
       }
     }
 
@@ -133,6 +159,14 @@ export class AnalysisService {
 
   private isLeafNode(node: TreeNode): boolean {
     return node.children.length === 0;
+  }
+
+  private readableQualityParameter(value) {
+    return value
+      .split('_')
+      .map(word => word.toLowerCase())
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
   getProjectUrls(): string[] {

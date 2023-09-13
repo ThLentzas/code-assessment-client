@@ -1,31 +1,45 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {UserPasswordUpdateRequest} from "../../models/user/user-password-update-request.model";
 import {NotificationService} from "../../services/notification.service";
 import {UserEmailUpdateRequest} from "../../models/user/user-email-update-request.model";
+import {UserDTO} from "../../models/user/userDto-model";
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   oldPassword: string;
   newPassword: string;
   confirmPassword: string;
   emailUpdateRequest: UserEmailUpdateRequest = {};
+  userDTO: UserDTO;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService) {
   }
 
+  ngOnInit(): void {
+    this.userService.fetchUser().subscribe({
+      next: userDTO => {
+        console.log(userDTO);
+        this.userDTO = userDTO;
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
+      }
+    });
+  }
+
+
   onUpdatePassword(form: NgForm) {
-    if(this.newPassword !== this.confirmPassword) {
+    if (this.newPassword !== this.confirmPassword) {
       return this.notificationService.onError("Passwords do not match");
     }
 
-    if(this.newPassword === this.oldPassword) {
+    if (this.newPassword === this.oldPassword) {
       return this.notificationService.onError("New password can't be the same as old password");
     }
 

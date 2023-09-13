@@ -17,24 +17,24 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.qualityAttributes = [
-      {value: 'QUALITY', viewValue: 'Quality'},
-      {value: 'COMPREHENSION', viewValue: 'Comprehension'},
-      {value: 'SIMPLICITY', viewValue: 'Simplicity'},
-      {value: 'MAINTAINABILITY', viewValue: 'Maintainability'},
-      {value: 'RELIABILITY', viewValue: 'Reliability'},
-      {value: 'COMPLEXITY', viewValue: 'Complexity'},
-      {value: 'SECURITY', viewValue: 'Security'},
-      {value: 'COMMENT_RATE', viewValue: 'Comment Rate'},
-      {value: 'METHOD_SIZE', viewValue: 'Method Size'},
-      {value: 'DUPLICATION', viewValue: 'Duplication'},
       {value: 'BUG_SEVERITY', viewValue: 'Bug Severity'},
-      {value: 'TECHNICAL_DEBT_RATIO', viewValue: 'Technical Debt Ratio'},
-      {value: 'RELIABILITY_REMEDIATION_EFFORT', viewValue: 'Reliability Remediation Effort'},
-      {value: 'CYCLOMATIC_COMPLEXITY', viewValue: 'Cyclomatic Complexity'},
       {value: 'COGNITIVE_COMPLEXITY', viewValue: 'Cognitive Complexity'},
-      {value: 'VULNERABILITY_SEVERITY', viewValue: 'Vulnerability Severity'},
+      {value: 'COMMENT_RATE', viewValue: 'Comment Rate'},
+      {value: 'COMPLEXITY', viewValue: 'Complexity'},
+      {value: 'COMPREHENSION', viewValue: 'Comprehension'},
+      {value: 'CYCLOMATIC_COMPLEXITY', viewValue: 'Cyclomatic Complexity'},
+      {value: 'DUPLICATION', viewValue: 'Duplication'},
       {value: 'HOTSPOT_PRIORITY', viewValue: 'Hotspot Priority'},
-      {value: 'SECURITY_REMEDIATION_EFFORT', viewValue: 'Security Remediation Effort'}
+      {value: 'MAINTAINABILITY', viewValue: 'Maintainability'},
+      {value: 'METHOD_SIZE', viewValue: 'Method Size'},
+      {value: 'QUALITY', viewValue: 'Quality'},
+      {value: 'RELIABILITY', viewValue: 'Reliability'},
+      {value: 'RELIABILITY_REMEDIATION_EFFORT', viewValue: 'Reliability Remediation Effort'},
+      {value: 'SECURITY', viewValue: 'Security'},
+      {value: 'SECURITY_REMEDIATION_EFFORT', viewValue: 'Security Remediation Effort'},
+      {value: 'SIMPLICITY', viewValue: 'Simplicity'},
+      {value: 'TECHNICAL_DEBT_RATIO', viewValue: 'Technical Debt Ratio'},
+      {value: 'VULNERABILITY_SEVERITY', viewValue: 'Vulnerability Severity'}
     ];
 
     this.onAddPreference();
@@ -42,14 +42,9 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     const preferences: Preference[] = this.preferences
-      .filter(preference =>
-        preference.qualityAttribute !== null
-      && preference.weight !== null
-      )
       .map(preference => ({
           qualityAttribute: preference.qualityAttribute,
-          weight: Number(preference.weight)
-
+          weight: preference.weight !== null ? Number(preference.weight) : null
       }));
 
      this.analysisService.setPreferences(preferences);

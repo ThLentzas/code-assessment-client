@@ -10,9 +10,20 @@ export class ProjectUrlsComponent implements DoCheck {
   projectUrls: string[] = [];
 
   constructor(private analysisService: AnalysisService) {
+    this.onAddUrl();
   }
 
   ngDoCheck(): void {
     this.analysisService.setProjectUrls(this.projectUrls);
+  }
+
+  onAddUrl(): void {
+    this.projectUrls.push('');
+  }
+
+  onRemoveUrl(index: number): void {
+    if (this.projectUrls.length > 1) {
+      this.projectUrls.splice(index, 1);
+    }
   }
 }

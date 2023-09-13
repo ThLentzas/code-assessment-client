@@ -1,53 +1,45 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-start">
-      <h4 class="fs-5 fw-normal">Project URLs</h4>
+      <h4 class="fs-5 fw-normal" style="margin-bottom: 40px">Project URLs</h4>
     </div>
   </div>
-
   <div class="row">
     <div class="col-12">
       <ul class="list-unstyled">
-        <li class="row align-items-center">
+        <li *ngFor="let url of projectUrls; let i = index" class="row align-items-center mb-2">
           <div class="col-1">
             <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
           </div>
-          <div class="col-10">
+          <div class="col-8">
             <input
               type="url"
               autocomplete="off"
-              class="form-control my-2 custom-focus custom-placeholder"
-              name="url1"
+              class="form-control custom-focus custom-placeholder"
+              [name]="'url' + i"
               placeholder="Enter GitHub repository url"
-              [(ngModel)]="projectUrls[0]" >
+              [(ngModel)]="projectUrls[i]" >
           </div>
-        </li>
-
-        <li class="row align-items-center">
-          <div class="col-1">
-            <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
-          </div>
-          <div class="col-10">
-            <input
-              type="url"
-              class="form-control my-2 custom-focus custom-placeholder"
-              name="url2"
-              placeholder="Enter GitHub repository url"
-              [(ngModel)]="projectUrls[1]" >
-          </div>
-        </li>
-
-        <li class="row align-items-center">
-          <div class="col-1">
-            <ng-icon name="bootstrapGithub" class="me-3 icon-large"></ng-icon>
-          </div>
-          <div class="col-10">
-            <input
-              type="url"
-              class="form-control my-2 custom-focus custom-placeholder"
-              name="url3"
-              placeholder="Enter GitHub repository url"
-              [(ngModel)]="projectUrls[2]" >
+          <div class="col-3 d-flex justify-content-start">
+            <div class="d-flex">
+              <button class="btn btn-success flex-grow-1 me-2"
+                      (click)="onAddUrl()"
+                      *ngIf="projectUrls.length < 5; else maxLength">
+                <ng-icon
+                  name="bootstrapPlus"
+                  class="icon-large">
+                </ng-icon>
+              </button>
+              <ng-template #maxLength>
+                <button (click)="onRemoveUrl(i)" class="btn btn-danger flex-grow-1 me-2">
+                  <ng-icon name="bootstrapTrash" class="icon-large"></ng-icon>
+                </button>
+              </ng-template>
+              <button (click)="onRemoveUrl(i)" class="btn btn-danger flex-grow-1 me-2"
+                      *ngIf="projectUrls.length > 1 && projectUrls.length < 5">
+                <ng-icon name="bootstrapTrash" class="icon-large"></ng-icon>
+              </button>
+            </div>
           </div>
         </li>
       </ul>

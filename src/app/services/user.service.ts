@@ -6,6 +6,7 @@ import {UserProfile} from "../models/user/user-profile.model";
 import {UserProfileUpdateRequest} from "../models/user/user-profile-update-request.model";
 import {UserPasswordUpdateRequest} from "../models/user/user-password-update-request.model";
 import {UserEmailUpdateRequest} from "../models/user/user-email-update-request.model";
+import {UserDTO} from "../models/user/userDto-model";
 
 
 @Injectable({
@@ -15,6 +16,10 @@ export class UserService {
   history: UserHistory
 
   constructor(private http: HttpClient) {
+  }
+
+  fetchUser(): Observable<UserDTO> {
+    return this.http.get<UserDTO>('http://localhost:8080/api/v1/user');
   }
 
   fetchUserProfile(): Observable<UserProfile> {

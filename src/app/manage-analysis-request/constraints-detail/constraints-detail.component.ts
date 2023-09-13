@@ -20,18 +20,19 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck {
 
   ngOnInit():void {
     this.qualityMetrics = [
-      {value: 'COMMENT_RATE', viewValue: 'Comment Rate'},
-      {value: 'METHOD_SIZE', viewValue: 'Method Size'},
-      {value: 'DUPLICATION', viewValue: 'Duplication'},
       {value: 'BUG_SEVERITY', viewValue: 'Bug Severity'},
-      {value: 'TECHNICAL_DEBT_RATIO', viewValue: 'Technical Debt Ratio'},
-      {value: 'RELIABILITY_REMEDIATION_EFFORT', viewValue: 'Reliability Remediation Effort'},
-      {value: 'CYCLOMATIC_COMPLEXITY', viewValue: 'Cyclomatic Complexity'},
       {value: 'COGNITIVE_COMPLEXITY', viewValue: 'Cognitive Complexity'},
-      {value: 'VULNERABILITY_SEVERITY', viewValue: 'Vulnerability Severity'},
+      {value: 'COMMENT_RATE', viewValue: 'Comment Rate'},
+      {value: 'CYCLOMATIC_COMPLEXITY', viewValue: 'Cyclomatic Complexity'},
+      {value: 'DUPLICATION', viewValue: 'Duplication'},
       {value: 'HOTSPOT_PRIORITY', viewValue: 'Hotspot Priority'},
-      {value: 'SECURITY_REMEDIATION_EFFORT', viewValue: 'Security Remediation Effort'}
+      {value: 'METHOD_SIZE', viewValue: 'Method Size'},
+      {value: 'RELIABILITY_REMEDIATION_EFFORT', viewValue: 'Reliability Remediation Effort'},
+      {value: 'SECURITY_REMEDIATION_EFFORT', viewValue: 'Security Remediation Effort'},
+      {value: 'TECHNICAL_DEBT_RATIO', viewValue: 'Technical Debt Ratio'},
+      {value: 'VULNERABILITY_SEVERITY', viewValue: 'Vulnerability Severity'}
     ];
+
 
     this.operators = [
       {value: '>'},
@@ -47,15 +48,10 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     const constraints: Constraint[] = this.constraints
-      .filter(constraint =>
-        constraint.qualityMetric !== null
-        && constraint.qualityMetricOperator !== null
-        && constraint.threshold !== null
-      )
       .map(constraint => ({
         qualityMetric: constraint.qualityMetric,
         qualityMetricOperator: constraint.qualityMetricOperator,
-        threshold: Number(constraint.threshold)
+        threshold: constraint.threshold !== null ? Number(constraint.threshold) : null
       }));
 
     this.analysisService.setConstraints(constraints);

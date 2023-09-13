@@ -1,30 +1,28 @@
 <div class="container custom-container align-items-center">
-  <div class="mb-4 text-left w-100">
+  <div class="mb-4 text-center w-100">
     <h2>User History</h2>
   </div>
-
-  <div class="d-flex mb-4 text-left w-100">
-    <div class="flex-grow-1">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate [(ngModel)]="startDate" placeholder="Start date">
-          <input matEndDate [(ngModel)]="endDate" placeholder="End date">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
-    </div>
-    <div class="ms-4">
-      <button (click)="onViewHistory()" class="btn btn-success">
-        <ng-icon name="bootstrapArrowCounterclockwise" class="icon-large"></ng-icon>
-        View History
-      </button>
-    </div>
-  </div>
-
-  <div class="row justify-content-center" *ngIf="history">
+  <div class="row justify-content-center">
     <div class="col-md-10">
+      <div class="d-flex mb-4 text-left w-100">
+        <div class="flex-grow-1">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate [(ngModel)]="startDate" placeholder="Start date">
+              <input matEndDate [(ngModel)]="endDate" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+        <div class="ms-4">
+          <button (click)="onViewHistory()" class="btn btn-success">
+            <ng-icon name="bootstrapArrowCounterclockwise" class="icon-large"></ng-icon>
+            View History
+          </button>
+        </div>
+      </div>
       <ul class="list-group mb-3">
         <li class="list-group-item d-flex bg-light justify-content-between align-items-center">
           <span class="fs-6 text-center" style="flex: 1;">Date Created</span>
@@ -33,7 +31,7 @@
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let analysis of history.analyses">
           <span class="fs-6 text-center" style="flex: 1;">{{ analysis.createdDate }}</span>
-          <span class="fs-6 text-center repo-link" (click)= "onAnalysis(analysis)" style="flex: 1;">Analysis</span>
+          <span class="fs-6 text-center repo-link" (click)="onAnalysis(analysis)" style="flex: 1;">Analysis</span>
           <div class="d-flex justify-content-center align-items-center"  style="flex: 1;">
             <button class="btn btn-danger btn-sm me-1" (click)="onDelete(analysis)">Delete</button>
             <button class="btn btn-primary btn-sm ms-1">Copy</button>
