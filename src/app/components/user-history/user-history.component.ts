@@ -15,6 +15,9 @@ export class UserHistoryComponent implements OnInit {
   history: UserHistory
   startDate: Date;
   endDate: Date;
+  currentPage: number = 1;
+  itemsPerPage: number = 14;
+  currentDisplayed: number = 0;
 
   constructor(private userService: UserService,
               private notificationService: NotificationService,
@@ -50,13 +53,55 @@ export class UserHistoryComponent implements OnInit {
     });
   }
 
-  fetchHistory() {
-    this.userService.fetchUserHistory(this.startDate, this.endDate).subscribe({
-      next: history => {
-        this.history = history;
+  onCopy(analysisResponse: AnalysisResponse) {
+    this.analysisService.fetchAnalysisRequest(analysisResponse.analysisId).subscribe({
+      next: request => {
+        this.analysisService.setProjectUrls(request.projectUrls);
+        this.analysisService.setConstraints(request.constraints);
+        this.analysisService.setPreferences(request.preferences);
+        this.analysisService.projectUrlsUpdated.next(this.analysisService.getProjectUrls());
+        this.analysisService.projectUrlsUpdated.next(this.analysisService.getProjectUrls());
+        this.analysisService.projectUrlsUpdated.next(this.analysisService.getProjectUrls());
+
+        this.router.navigate(['/analysis']);
       }, error: error => {
         this.notificationService.onError(error.error.message);
       }
     });
+  }
+
+  fetchHistory() {
+    this.userService.fetchUserHistory(this.startDate, this.endDate).subscribe({
+      next: history => {
+        this.history = history;
+        this.currentDisplayed = Math.min(this.endItem, this.history?.analyses.length || 0);
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
+      }
+    });
+  }
+
+  get startItem(): number {
+    return (this.currentPage - 1) * this.itemsPerPage;
+  }
+
+  get endItem(): number {
+    return this.startItem + this.itemsPerPage;
+  }
+
+  get currentPageItems(): any[] {
+    return this.history?.analyses.slice(this.startItem, this.endItem);
+  }
+
+  nextPage(): void {
+    this.currentPage++;
+    this.currentDisplayed = Math.min(this.endItem, this.history?.analyses.length || 0);
+    this.fetchHistory();
+  }
+
+  prevPage(): void {
+    this.currentPage--;
+    this.currentDisplayed = this.startItem;
+    this.fetchHistory();
   }
 }

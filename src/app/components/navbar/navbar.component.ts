@@ -34,7 +34,6 @@ export class NavbarComponent {
   }
 
   onLogout() {
-    this.storageService.clearAll();
     this.router.navigate(['/login']);
   }
 }

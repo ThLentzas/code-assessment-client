@@ -11,8 +11,10 @@ import {QualityAttribute} from "../../models/analysis/request/quality-attribute.
 export class PreferencesDetailComponent implements OnInit, DoCheck {
   preferences: Preference[] = [];
   qualityAttributes: QualityAttribute[];
+  dataLoaded = false;
 
   constructor(private analysisService: AnalysisService) {
+    this.onAddPreference();
   }
 
   ngOnInit(): void {
@@ -37,17 +39,24 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
       {value: 'VULNERABILITY_SEVERITY', viewValue: 'Vulnerability Severity'}
     ];
 
-    this.onAddPreference();
+    this.analysisService.preferencesUpdated.subscribe({
+      next: preferences => {
+        if (this.dataLoaded === false && preferences.length > 0) {
+          this.preferences = preferences;
+          this.dataLoaded = true;
+        }
+      }
+    });
   }
 
   ngDoCheck(): void {
     const preferences: Preference[] = this.preferences
       .map(preference => ({
-          qualityAttribute: preference.qualityAttribute,
-          weight: preference.weight !== null ? Number(preference.weight) : null
+        qualityAttribute: preference.qualityAttribute,
+        weight: preference.weight !== null ? Number(preference.weight) : null
       }));
 
-     this.analysisService.setPreferences(preferences);
+    this.analysisService.setPreferences(preferences);
   }
 
   onAddPreference() {

@@ -13,6 +13,7 @@ import {StorageService} from "../../services/storage.service";
 export class AnalysisListComponent implements OnInit, OnDestroy {
   analysisResponse: AnalysisResponse;
   subscription: Subscription;
+  rank: number;
 
   constructor(private analysisService: AnalysisService,
               private storageService: StorageService,
@@ -25,6 +26,7 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
 
     if (analysisResponse) {
       this.analysisResponse = JSON.parse(analysisResponse);
+      this.formatRank(this.analysisResponse);
     }
 
     this.subscription = this.analysisService.analysisResponseUpdated.subscribe({
@@ -66,7 +68,7 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
     for (const reportList of analysisResponse.reports) {
       for (const report of reportList) {
         if (this.isFirstDigitZeroOrOne(report.rank)) {
-          report.rank = Math.floor(report.rank * 100);
+          this.rank = Math.floor(report.rank * 100);
         }
       }
     }

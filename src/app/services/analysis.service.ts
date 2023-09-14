@@ -19,6 +19,9 @@ export class AnalysisService {
   private preferences: Preference[] = [];
   private analysisResponse: AnalysisResponse;
   analysisResponseUpdated = new BehaviorSubject<AnalysisResponse>(null);
+  projectUrlsUpdated = new BehaviorSubject<string[]>([]);
+  constraintsUpdated = new BehaviorSubject<Constraint[]>([]);
+  preferencesUpdated = new BehaviorSubject<Preference[]>([]);
 
   constructor(private treeService: TreeService,
               private notificationService: NotificationService,
@@ -28,7 +31,6 @@ export class AnalysisService {
   analyze(analysisRequest: AnalysisRequest) {
     try {
       this.validateAnalysisRequest(analysisRequest);
-      console.log(analysisRequest);
 
       return this.http.post('http://localhost:8080/api/v1/analysis', analysisRequest, {observe: 'response'});
     } catch (error) {
@@ -37,10 +39,8 @@ export class AnalysisService {
     }
   }
 
-
   fetchAnalysisResult(analysisId: number): Observable<AnalysisResponse> {
-    return this.http.get<AnalysisResponse>(
-      `http://localhost:8080/api/v1/analysis/${analysisId}`);
+    return this.http.get<AnalysisResponse>(`http://localhost:8080/api/v1/analysis/${analysisId}`);
   }
 
   updateAnalysisResult(analysisId: number, refreshRequest: RefreshRequest): Observable<AnalysisResponse> {
@@ -56,7 +56,11 @@ export class AnalysisService {
   }
 
   deleteAnalysis(analysisId: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8080/api/v1/user/history/analysis/${analysisId}`);
+    return this.http.delete<void>(`http://localhost:8080/api/v1/analysis/${analysisId}`);
+  }
+
+  fetchAnalysisRequest(analysisId: number): Observable<AnalysisRequest> {
+    return this.http.get<AnalysisRequest>(`http://localhost:8080/api/v1/analysis/${analysisId}/request`);
   }
 
   private validateAnalysisRequest(analysisRequest: AnalysisRequest) {
@@ -72,6 +76,14 @@ export class AnalysisService {
   }
 
   private validateConstraints(constraints: Constraint[]) {
+    if (constraints[0].qualityMetric === null
+      && constraints[0].qualityMetricOperator === null
+      && constraints[0].threshold === null) {
+     constraints.length = 0;
+
+     return;
+    }
+
     for (const constraint of constraints) {
       if (constraint.qualityMetric === null &&
         (constraint.qualityMetricOperator !== null || constraint.threshold !== null)) {
@@ -99,7 +111,13 @@ export class AnalysisService {
   }
 
   private validatePreferences(preferences: Preference[]) {
-    console.log(preferences);
+    if (preferences[0].qualityAttribute === null
+      && preferences[0].weight === null) {
+      preferences.length = 0;
+
+      return;
+    }
+
     for (const preference of preferences) {
       if (preference.qualityAttribute === null && preference.weight !== null) {
         throw new Error('Quality parameter field is required');

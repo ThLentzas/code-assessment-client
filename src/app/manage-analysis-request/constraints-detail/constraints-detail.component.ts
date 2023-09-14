@@ -1,8 +1,9 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
 import {AnalysisService} from '../../services/analysis.service';
 import {Constraint} from '../../models/analysis/request/constraint.model';
 import {QualityMetric} from "../../models/analysis/request/quality-metric.model";
 import {QualityMetricOperator} from "../../models/analysis/request/quality-metric-operator.model";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -10,15 +11,18 @@ import {QualityMetricOperator} from "../../models/analysis/request/quality-metri
   templateUrl: './constraints-detail.component.html',
   styleUrls: ['./constraints-detail.component.css']
 })
-export class ConstraintsDetailComponent implements OnInit, DoCheck {
+export class ConstraintsDetailComponent implements OnInit, DoCheck, OnDestroy {
   constraints: Constraint[] = [];
   qualityMetrics: QualityMetric[];
   operators: QualityMetricOperator[];
+  dataLoaded = false;
+  constraintsSubscription: Subscription;
 
   constructor(private analysisService: AnalysisService) {
+    this.onAddConstraint();
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.qualityMetrics = [
       {value: 'BUG_SEVERITY', viewValue: 'Bug Severity'},
       {value: 'COGNITIVE_COMPLEXITY', viewValue: 'Cognitive Complexity'},
@@ -33,7 +37,6 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck {
       {value: 'VULNERABILITY_SEVERITY', viewValue: 'Vulnerability Severity'}
     ];
 
-
     this.operators = [
       {value: '>'},
       {value: '>='},
@@ -41,9 +44,16 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck {
       {value: '<='},
       {value: '=='},
       {value: '<>'},
-    ]
+    ];
 
-    this.onAddConstraint();
+    this.constraintsSubscription = this.analysisService.constraintsUpdated.subscribe({
+      next: constraints => {
+        if (this.dataLoaded === false && constraints.length > 0) {
+          this.constraints = constraints;
+          this.dataLoaded = true;
+        }
+      }
+    });
   }
 
   ngDoCheck(): void {
@@ -57,7 +67,14 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck {
     this.analysisService.setConstraints(constraints);
   }
 
-  onAddConstraint(){
+  ngOnDestroy(): void {
+    this.resetConstraints();
+    if (this.constraintsSubscription) {
+      this.constraintsSubscription.unsubscribe();
+    }
+  }
+
+  onAddConstraint() {
     const constraint: Constraint = {
       qualityMetric: null,
       qualityMetricOperator: null,
@@ -67,7 +84,13 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck {
     this.constraints.push(constraint);
   }
 
-  onRemoveConstraint(index:number){
+  onRemoveConstraint(index: number) {
     this.constraints.splice(index, 1);
+  }
+
+  resetConstraints() {
+    this.constraints = [];
+    this.onAddConstraint();
+    this.analysisService.setConstraints(this.constraints);
   }
 }

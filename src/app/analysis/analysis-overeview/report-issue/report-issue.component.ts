@@ -54,16 +54,6 @@ export class ReportIssueComponent implements OnInit {
     return this.selected as Hotspot;
   }
 
-  getReadableIssueType(issueType: string): string {
-    const issueTypeMapping: { [key: string]: string } = {
-      "CODE_SMELL": "Code Smell",
-      "BUG": "Bug",
-      "VULNERABILITY": "Vulnerability",
-    };
-
-    return issueTypeMapping[issueType];
-  }
-
   getReadableSecurityCategory(securityCategory: string): string {
     const mapping: { [key: string]: string } = {
       "buffer-overflow": "Buffer Overflow",

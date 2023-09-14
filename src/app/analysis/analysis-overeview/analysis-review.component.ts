@@ -57,7 +57,7 @@ export class AnalysisReviewComponent implements OnInit {
         value: this.analysisReport.languages[key]
       };
     });
-    
+
     const { bugs, codeSmells, vulnerabilities, hotspots } =
       this.overviewService.filterIssues(this.analysisReport);
 
@@ -66,6 +66,7 @@ export class AnalysisReviewComponent implements OnInit {
     this.vulnerabilities = vulnerabilities;
     this.hotspots = hotspots;
 
+    this.analysisReport.rank = parseFloat(this.analysisReport.rank.toFixed(6));
     this.storageService.saveItem('analysisReport', JSON.stringify(this.analysisReport));
   }
 }

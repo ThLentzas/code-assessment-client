@@ -44,7 +44,6 @@ export class UserService {
       const to = this.formatDate(toDate);
       const params = new HttpParams().set('from', from).set('to', to);
 
-
       return this.http.get<UserHistory>('http://localhost:8080/api/v1/user/history', { params });
     }
 

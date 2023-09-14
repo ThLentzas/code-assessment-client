@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
     We have to clean the token from the local storage in case a user manually navigates to /signup.
    */
   ngOnInit(): void {
-    this.storageService.removeItem('userData');
+    this.storageService.clearAll();
   }
 
   onSubmit(form: NgForm) {

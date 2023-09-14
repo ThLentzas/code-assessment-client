@@ -29,15 +29,20 @@
           <span class="fs-6 text-center" style="flex: 1;">Analyses</span>
           <span class="fs-6 text-center" style="flex: 1;">Actions</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let analysis of history.analyses">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let analysis of currentPageItems">
           <span class="fs-6 text-center" style="flex: 1;">{{ analysis.createdDate }}</span>
           <span class="fs-6 text-center repo-link" (click)="onAnalysis(analysis)" style="flex: 1;">Analysis</span>
-          <div class="d-flex justify-content-center align-items-center"  style="flex: 1;">
+          <div class="d-flex justify-content-center align-items-center" style="flex: 1;">
             <button class="btn btn-danger btn-sm me-1" (click)="onDelete(analysis)">Delete</button>
-            <button class="btn btn-primary btn-sm ms-1">Copy</button>
+            <button class="btn btn-primary btn-sm ms-1" (click)="onCopy(analysis)">Copy</button>
           </div>
         </li>
       </ul>
+      <div class="d-flex justify-content-center my-4">
+        <button class="btn btn-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span class="text-muted">{{ currentDisplayed }} of {{ history?.analyses.length || 0 }}</span>
+        <button class="btn btn-secondary ms-2" (click)="nextPage()" [disabled]="endItem >= history?.analyses.length">Next</button>
+      </div>
     </div>
   </div>
 </div>

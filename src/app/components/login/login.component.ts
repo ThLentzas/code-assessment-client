@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     We have to clean the token from the local storage in case a user manually navigates to /login.
    */
   ngOnInit(): void {
-    this.storageService.removeItem('userData');
+    this.storageService.clearAll();
   }
 
   onLogin(form: NgForm) {
