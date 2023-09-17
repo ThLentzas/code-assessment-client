@@ -1,12 +1,13 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {RegisterRequest} from "../models/auth/register-request.model";
-import {LoginRequest} from "../models/auth/login-request.model";
-import {AuthResponse} from "../models/auth/auth-response.model";
-import {PasswordResetRequest} from "../models/auth/password-reset-request.model";
-import {PasswordResetConfirmationRequest} from "../models/auth/password-reset-confirmation-request.model";
-import {StorageService} from "./storage.service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { RegisterRequest } from '../models/auth/register-request.model';
+import { LoginRequest } from '../models/auth/login-request.model';
+import { AuthResponse } from '../models/auth/auth-response.model';
+import { PasswordResetRequest } from '../models/auth/password-reset-request.model';
+import { PasswordResetConfirmationRequest } from '../models/auth/password-reset-confirmation-request.model';
+import { StorageService } from './storage.service';
+
 
 @Injectable({
   providedIn: 'root'

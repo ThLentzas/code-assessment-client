@@ -4,6 +4,7 @@ import {UserProfileUpdateRequest} from "../../models/user/user-profile-update-re
 import {UserProfile} from "../../models/user/user-profile.model";
 import {NotificationService} from "../../services/notification.service";
 
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

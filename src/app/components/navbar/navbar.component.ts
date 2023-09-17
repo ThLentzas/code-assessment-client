@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {Router} from "@angular/router";
-import {AnalysisService} from "../../services/analysis.service";
-import {StorageService} from "../../services/storage.service";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AnalysisService } from '../../services/analysis.service';
+import { StorageService } from '../../services/storage.service';
 
 
 @Component({

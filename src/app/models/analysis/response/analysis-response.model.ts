@@ -1,4 +1,4 @@
-import {AnalysisReport} from "./analysis-report.model";
+import { AnalysisReport } from './analysis-report.model';
 
 export interface AnalysisResponse {
   analysisId: number;

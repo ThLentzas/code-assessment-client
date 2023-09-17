@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {UserService} from "../../services/user.service";
-import {UserPasswordUpdateRequest} from "../../models/user/user-password-update-request.model";
-import {NotificationService} from "../../services/notification.service";
-import {UserEmailUpdateRequest} from "../../models/user/user-email-update-request.model";
-import {UserDTO} from "../../models/user/userDto-model";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { NotificationService } from '../../services/notification.service';
+import { UserPasswordUpdateRequest } from '../../models/user/user-password-update-request.model';
+import { UserEmailUpdateRequest } from '../../models/user/user-email-update-request.model';
+import { UserDTO } from '../../models/user/userDto-model';
+
 
 @Component({
   selector: 'app-settings',
@@ -25,7 +26,6 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.userService.fetchUser().subscribe({
       next: userDTO => {
-        console.log(userDTO);
         this.userDTO = userDTO;
       }, error: error => {
         this.notificationService.onError(error.error.message);

@@ -22,7 +22,7 @@ import {
   bootstrapBuilding,
   bootstrapPersonCircle,
   bootstrapBoxArrowLeft
-} from "@ng-icons/bootstrap-icons";
+} from '@ng-icons/bootstrap-icons';
 
 
 const icons = {

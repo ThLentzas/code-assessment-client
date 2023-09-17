@@ -1,14 +1,15 @@
-import {Injectable} from "@angular/core";
-import {Constraint} from "../models/analysis/request/constraint.model";
-import {Preference} from "../models/analysis/request/preference.model";
-import {HttpClient} from "@angular/common/http";
-import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
-import {AnalysisResponse} from "../models/analysis/response/analysis-response.model";
-import {BehaviorSubject, EMPTY, Observable} from "rxjs";
-import {RefreshRequest} from "../models/analysis/request/refresh-request.model";
-import {TreeNode} from "../models/analysis/request/tree-node.model";
-import {NotificationService} from "./notification.service";
-import {TreeService} from "./tree.service";
+import { Injectable } from '@angular/core';
+import { Constraint } from '../models/analysis/request/constraint.model';
+import { Preference } from '../models/analysis/request/preference.model';
+import { HttpClient } from '@angular/common/http';
+import { AnalysisRequest } from '../models/analysis/request/analysis-request.model';
+import { AnalysisResponse } from '../models/analysis/response/analysis-response.model';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { RefreshRequest } from '../models/analysis/request/refresh-request.model';
+import { TreeNode } from '../models/analysis/request/tree-node.model';
+import { NotificationService } from './notification.service';
+import { TreeService } from './tree.service';
+
 
 @Injectable({
   providedIn: 'root'

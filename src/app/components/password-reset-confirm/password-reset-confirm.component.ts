@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {NotificationService} from "../../services/notification.service";
-import {PasswordResetConfirmationRequest} from "../../models/auth/password-reset-confirmation-request.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PasswordResetConfirmationRequest } from '../../models/auth/password-reset-confirmation-request.model';
+import { AuthService } from '../../services/auth.service';
+import { NotificationService } from '../../services/notification.service';
+
 
 @Component({
   selector: 'app-password-reset-confirm',

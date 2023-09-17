@@ -1,7 +1,8 @@
-import {HotspotsReport} from "./hotspots-report.model";
-import {IssuesReport} from "./issues-report.model";
-import {RuleDetails} from "./rule-details.model";
-import {QualityMetricsReport} from "./quality-metric-report.model";
+import { HotspotsReport } from './hotspots-report.model';
+import { IssuesReport } from './issues-report.model';
+import { RuleDetails } from './rule-details.model';
+import { QualityMetricsReport } from './quality-metric-report.model';
+
 
 export interface AnalysisReport {
   reportId: number;

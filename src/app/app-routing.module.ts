@@ -1,20 +1,21 @@
-import {RouterModule, Routes} from "@angular/router";
-import {AnalysisListComponent} from "./analysis/analysis-list/analysis-list.component";
-import {NgModule} from "@angular/core";
-import {ManageAnalysisRequestComponent} from "./manage-analysis-request/manage-analysis-request.component";
-import {RefreshRequestComponent} from "./analysis/refresh-request/refresh-request.component";
-import {AnalysisReviewComponent} from "./analysis/analysis-overeview/analysis-review.component";
-import {ReportIssueComponent} from "./analysis/analysis-overeview/report-issue/report-issue.component";
-import {RegisterComponent} from "./components/register/register.component";
-import {LayoutComponent} from "./components/layout/layout.component";
-import {LoginComponent} from "./components/login/login.component";
-import {UserHistoryComponent} from "./components/user-history/user-history.component";
-import {UserProfileComponent} from "./components/user-profile/user-profile.component";
-import {SettingsComponent} from "./components/settings/settings.component";
-import {isAuthenticated} from "./services/access-guard.service";
-import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
-import {PasswordResetComponent} from "./components/password-reset/password-reset.component";
-import {PasswordResetConfirmComponent} from "./components/password-reset-confirm/password-reset-confirm.component";
+import { RouterModule, Routes } from '@angular/router';
+import { AnalysisListComponent } from './analysis/analysis-list/analysis-list.component';
+import { NgModule } from '@angular/core';
+import { ManageAnalysisRequestComponent } from './manage-analysis-request/manage-analysis-request.component';
+import { RefreshRequestComponent } from './analysis/refresh-request/refresh-request.component';
+import { AnalysisReviewComponent } from './analysis/analysis-overeview/analysis-review.component';
+import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue/report-issue.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { LoginComponent } from './components/login/login.component';
+import { UserHistoryComponent } from './components/user-history/user-history.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { isAuthenticated } from './services/access-guard.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { PasswordResetConfirmComponent } from './components/password-reset-confirm/password-reset-confirm.component';
+
 
 const appRoutes: Routes = [{
     path: 'signup',

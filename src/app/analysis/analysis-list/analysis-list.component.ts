@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AnalysisResponse} from "../../models/analysis/response/analysis-response.model";
-import {AnalysisService} from "../../services/analysis.service";
-import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {StorageService} from "../../services/storage.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AnalysisService } from '../../services/analysis.service';
+import { StorageService } from '../../services/storage.service';
+import { AnalysisResponse } from '../../models/analysis/response/analysis-response.model';
+
 
 @Component({
   selector: 'app-analysis-list',

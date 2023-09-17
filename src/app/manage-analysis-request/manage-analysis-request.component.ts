@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {AnalysisRequest} from "../models/analysis/request/analysis-request.model";
-import {AnalysisService} from "../services/analysis.service";
-import {Router} from "@angular/router";
-import {NotificationService} from "../services/notification.service";
-import {TreeService} from "../services/tree.service";
-import {tap} from "rxjs";
-import {HttpResponse} from "@angular/common/http";
+import { Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
+import { AnalysisRequest } from '../models/analysis/request/analysis-request.model';
+import { AnalysisService } from '../services/analysis.service';
+import { NotificationService } from '../services/notification.service';
+import { TreeService } from '../services/tree.service';
+import { tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-manage-analysis-request',

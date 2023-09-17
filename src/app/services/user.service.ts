@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {UserHistory} from "../models/user/user-history.model";
-import {UserProfile} from "../models/user/user-profile.model";
-import {UserProfileUpdateRequest} from "../models/user/user-profile-update-request.model";
-import {UserPasswordUpdateRequest} from "../models/user/user-password-update-request.model";
-import {UserEmailUpdateRequest} from "../models/user/user-email-update-request.model";
-import {UserDTO} from "../models/user/userDto-model";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { UserHistory } from '../models/user/user-history.model';
+import { UserProfile } from '../models/user/user-profile.model';
+import { UserProfileUpdateRequest } from '../models/user/user-profile-update-request.model';
+import { UserPasswordUpdateRequest } from '../models/user/user-password-update-request.model';
+import { UserEmailUpdateRequest } from '../models/user/user-email-update-request.model';
+import { UserDTO } from '../models/user/userDto-model';
 
 
 @Injectable({

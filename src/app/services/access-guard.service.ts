@@ -1,7 +1,8 @@
-import {inject, Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from "@angular/router";
-import {AuthService} from "./auth.service";
-import {AuthResponse} from "../models/auth/auth-response.model";
+import { inject, Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { AuthResponse } from '../models/auth/auth-response.model';
+import { AuthService } from './auth.service';
+
 
 @Injectable({
   providedIn: "root"

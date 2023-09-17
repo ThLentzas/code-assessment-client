@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {RegisterRequest} from "../../models/auth/register-request.model";
-import {NgForm} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
-import {StorageService} from "../../services/storage.service";
-import {NotificationService} from "../../services/notification.service";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RegisterRequest } from '../../models/auth/register-request.model';
+import { AuthService } from '../../services/auth.service';
+import { StorageService } from '../../services/storage.service';
+import { NotificationService } from '../../services/notification.service';
+
 
 @Component({
   selector: 'app-register',

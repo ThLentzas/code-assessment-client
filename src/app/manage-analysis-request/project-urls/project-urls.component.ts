@@ -1,6 +1,6 @@
-import {Component, DoCheck, OnInit, OnDestroy} from '@angular/core';
-import {AnalysisService} from '../../services/analysis.service';
-import {Subscription} from 'rxjs';
+import { Component, DoCheck, OnInit, OnDestroy } from '@angular/core';
+import { AnalysisService } from '../../services/analysis.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-urls',

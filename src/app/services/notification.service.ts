@@ -1,5 +1,6 @@
-import {Injectable} from "@angular/core";
-import {NotifierService} from "angular-notifier";
+import { Injectable } from '@angular/core';
+import { NotifierService } from 'angular-notifier';
+
 
 enum Type {
   DEFAULT = 'default',

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {PasswordResetRequest} from "../../models/auth/password-reset-request.model";
-import {NgForm} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {NotificationService} from "../../services/notification.service";
+import { NgForm } from '@angular/forms';
+import { PasswordResetRequest } from '../../models/auth/password-reset-request.model';
+import { AuthService } from '../../services/auth.service';
+import { NotificationService } from '../../services/notification.service';
+
 
 @Component({
   selector: 'app-password-reset',
