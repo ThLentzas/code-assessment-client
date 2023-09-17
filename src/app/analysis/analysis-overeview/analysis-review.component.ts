@@ -34,7 +34,7 @@ export class AnalysisReviewComponent implements OnInit {
       Returns the id as String, so we have to convert it to number.
      */
     const reportId = +this.route.snapshot.params['reportId'];
-    const analysisResponse = JSON.parse(localStorage.getItem('analysisResponse'));
+    const analysisResponse = JSON.parse(localStorage.getItem('analysisResult'));
 
     for (const reports of analysisResponse.reports) {
       for (const report of reports) {

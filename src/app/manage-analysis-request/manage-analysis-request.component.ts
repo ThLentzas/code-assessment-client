@@ -52,12 +52,12 @@ export class ManageAnalysisRequestComponent {
   fetchAnalysis(id: number) {
     this.analysisService.fetchAnalysisResult(id).subscribe({
       next: response => {
-        this.analysisService.setAnalysisResponse(response);
-        this.analysisService.analysisResponseUpdated.next(this.analysisService.getAnalysisResponse());
+        this.analysisService.setAnalysisResult(response);
+        this.analysisService.analysisResultUpdated.next(this.analysisService.getAnalysisResult());
         this.router.navigate([
           '/dashboard',
           'analysis',
-          this.analysisService.getAnalysisResponse().analysisId]);
+          this.analysisService.getAnalysisResult().analysisId]);
       }, error: error => {
         this.notificationService.onError(error.error.message);
       }

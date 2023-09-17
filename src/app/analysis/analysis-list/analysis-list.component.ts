@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AnalysisService } from '../../services/analysis.service';
 import { StorageService } from '../../services/storage.service';
-import { AnalysisResponse } from '../../models/analysis/response/analysis-response.model';
+import { AnalysisResult } from '../../models/analysis/response/analysis-result.model';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { AnalysisResponse } from '../../models/analysis/response/analysis-respon
   styleUrls: ['./analysis-list.component.css']
 })
 export class AnalysisListComponent implements OnInit, OnDestroy {
-  analysisResponse: AnalysisResponse;
+  analysisResult: AnalysisResult;
   subscription: Subscription;
   rank: number;
 
@@ -23,19 +23,19 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const analysisResponse = localStorage.getItem('analysisResponse');
+    const analysisResult = localStorage.getItem('analysisResult');
 
-    if (analysisResponse) {
-      this.analysisResponse = JSON.parse(analysisResponse);
-      this.formatRank(this.analysisResponse);
+    if (analysisResult) {
+      this.analysisResult = JSON.parse(analysisResult);
+      this.formatRank(this.analysisResult);
     }
 
-    this.subscription = this.analysisService.analysisResponseUpdated.subscribe({
-      next: analysisResponse => {
-        if(analysisResponse) {
-          this.formatRank(analysisResponse);
-          this.analysisResponse = analysisResponse;
-          this.storageService.saveItem('analysisResponse', JSON.stringify(this.analysisResponse));
+    this.subscription = this.analysisService.analysisResultUpdated.subscribe({
+      next: analysisResult => {
+        if(analysisResult) {
+          this.formatRank(analysisResult);
+          this.analysisResult = analysisResult;
+          this.storageService.saveItem('analysisResult', JSON.stringify(this.analysisResult));
         }
       }
     });
@@ -65,7 +65,7 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
   }
 
 
-  private formatRank(analysisResponse: AnalysisResponse) {
+  private formatRank(analysisResponse: AnalysisResult) {
     for (const reportList of analysisResponse.reports) {
       for (const report of reportList) {
         if (this.isFirstDigitZeroOrOne(report.rank)) {

@@ -1,6 +1,6 @@
-import { AnalysisResponse } from '../analysis/response/analysis-response.model';
+import { AnalysisResult } from '../analysis/response/analysis-result.model';
 
 
 export interface UserHistory {
-  analyses: AnalysisResponse[];
+  analyses: AnalysisResult[];
 }

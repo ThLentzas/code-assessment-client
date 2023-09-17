@@ -17,7 +17,7 @@ export class NavbarComponent {
   }
 
   onDashboard() {
-    let analysisResponse = this.analysisService.getAnalysisResponse();
+    let analysisResponse = this.analysisService.getAnalysisResult();
 
     if (!analysisResponse) {
       const storedResponse = localStorage.getItem('analysisResponse');

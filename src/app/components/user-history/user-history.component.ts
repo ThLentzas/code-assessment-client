@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }  from '@angular/router';
 import { UserHistory } from '../../models/user/user-history.model';
-import { AnalysisResponse } from '../../models/analysis/response/analysis-response.model';
+import { AnalysisResult } from '../../models/analysis/response/analysis-result.model';
 import { UserService } from '../../services/user.service';
 import { AnalysisService } from '../../services/analysis.service';
 import { NotificationService } from '../../services/notification.service';
@@ -34,18 +34,18 @@ export class UserHistoryComponent implements OnInit {
    this.fetchHistory();
   }
 
-  onAnalysis(analysisResponse: AnalysisResponse) {
-    this.analysisService.setAnalysisResponse(analysisResponse);
-    this.analysisService.analysisResponseUpdated.next(this.analysisService.getAnalysisResponse());
+  onAnalysis(analysisResult: AnalysisResult) {
+    this.analysisService.setAnalysisResult(analysisResult);
+    this.analysisService.analysisResultUpdated.next(this.analysisService.getAnalysisResult());
 
     this.router.navigate([
       '/dashboard',
       'analysis',
-      this.analysisService.getAnalysisResponse().analysisId]);
+      this.analysisService.getAnalysisResult().analysisId]);
   }
 
-  onDelete(analysisResponse: AnalysisResponse) {
-    this.analysisService.deleteAnalysis(analysisResponse.analysisId).subscribe({
+  onDelete(analysisResult: AnalysisResult) {
+    this.analysisService.deleteAnalysis(analysisResult.analysisId).subscribe({
       next: () => {
         this.fetchHistory();
       }, error: error => {
@@ -54,8 +54,8 @@ export class UserHistoryComponent implements OnInit {
     });
   }
 
-  onCopy(analysisResponse: AnalysisResponse) {
-    this.analysisService.fetchAnalysisRequest(analysisResponse.analysisId).subscribe({
+  onCopy(analysisResult: AnalysisResult) {
+    this.analysisService.fetchAnalysisRequest(analysisResult.analysisId).subscribe({
       next: request => {
         this.analysisService.setProjectUrls(request.projectUrls);
         this.analysisService.setConstraints(request.constraints);

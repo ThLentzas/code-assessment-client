@@ -3,7 +3,7 @@ import { Constraint } from '../models/analysis/request/constraint.model';
 import { Preference } from '../models/analysis/request/preference.model';
 import { HttpClient } from '@angular/common/http';
 import { AnalysisRequest } from '../models/analysis/request/analysis-request.model';
-import { AnalysisResponse } from '../models/analysis/response/analysis-response.model';
+import { AnalysisResult } from '../models/analysis/response/analysis-result.model';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { RefreshRequest } from '../models/analysis/request/refresh-request.model';
 import { TreeNode } from '../models/analysis/request/tree-node.model';
@@ -18,8 +18,8 @@ export class AnalysisService {
   private projectUrls: string[] = [];
   private constraints: Constraint[] = [];
   private preferences: Preference[] = [];
-  private analysisResponse: AnalysisResponse;
-  analysisResponseUpdated = new BehaviorSubject<AnalysisResponse>(null);
+  private analysisResult: AnalysisResult;
+  analysisResultUpdated = new BehaviorSubject<AnalysisResult>(null);
   projectUrlsUpdated = new BehaviorSubject<string[]>([]);
   constraintsUpdated = new BehaviorSubject<Constraint[]>([]);
   preferencesUpdated = new BehaviorSubject<Preference[]>([]);
@@ -40,16 +40,16 @@ export class AnalysisService {
     }
   }
 
-  fetchAnalysisResult(analysisId: number): Observable<AnalysisResponse> {
-    return this.http.get<AnalysisResponse>(`http://localhost:8080/api/v1/analysis/${analysisId}`);
+  fetchAnalysisResult(analysisId: number): Observable<AnalysisResult> {
+    return this.http.get<AnalysisResult>(`http://localhost:8080/api/v1/analysis/${analysisId}`);
   }
 
-  updateAnalysisResult(analysisId: number, refreshRequest: RefreshRequest): Observable<AnalysisResponse> {
+  updateAnalysisResult(analysisId: number, refreshRequest: RefreshRequest): Observable<AnalysisResult> {
     try {
       this.validateConstraints(refreshRequest.constraints);
       this.validatePreferences(refreshRequest.preferences);
 
-      return this.http.put<AnalysisResponse>(`http://localhost:8080/api/v1/analysis/${analysisId}`, refreshRequest);
+      return this.http.put<AnalysisResult>(`http://localhost:8080/api/v1/analysis/${analysisId}`, refreshRequest);
     } catch (error) {
       this.notificationService.onError(error.message);
       return EMPTY;
@@ -200,8 +200,8 @@ export class AnalysisService {
     return this.preferences;
   }
 
-  getAnalysisResponse(): AnalysisResponse {
-    return this.analysisResponse;
+  getAnalysisResult(): AnalysisResult {
+    return this.analysisResult;
   }
 
   setProjectUrls(projectUrls: string[]) {
@@ -216,7 +216,7 @@ export class AnalysisService {
     this.preferences = preferences;
   }
 
-  setAnalysisResponse(analysisResponse: AnalysisResponse) {
-    this.analysisResponse = analysisResponse;
+  setAnalysisResult(analysisResult: AnalysisResult) {
+    this.analysisResult = analysisResult;
   }
 }
