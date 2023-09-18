@@ -1,7 +1,8 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
 import { Preference } from '../../models/analysis/request/preference.model';
 import { QualityAttribute } from '../../models/analysis/request/quality-attribute.model';
 import { AnalysisService } from '../../services/analysis.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,9 +10,10 @@ import { AnalysisService } from '../../services/analysis.service';
   templateUrl: './preferences-detail.component.html',
   styleUrls: ['./preferences-detail.component.css']
 })
-export class PreferencesDetailComponent implements OnInit, DoCheck {
+export class PreferencesDetailComponent implements OnInit, DoCheck, OnDestroy {
   preferences: Preference[] = [];
   qualityAttributes: QualityAttribute[];
+  preferenceSubscription: Subscription;
   dataLoaded = false;
 
   constructor(private analysisService: AnalysisService) {
@@ -40,7 +42,7 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
       {value: 'VULNERABILITY_SEVERITY', viewValue: 'Vulnerability Severity'}
     ];
 
-    this.analysisService.preferencesUpdated.subscribe({
+    this.preferenceSubscription = this.analysisService.preferencesUpdated.subscribe({
       next: preferences => {
         if (this.dataLoaded === false && preferences.length > 0) {
           this.preferences = preferences;
@@ -60,6 +62,12 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
     this.analysisService.setPreferences(preferences);
   }
 
+  ngOnDestroy(): void {
+    if(this.preferenceSubscription) {
+      this.preferenceSubscription.unsubscribe();
+    }
+  }
+
   onAddPreference() {
     const preference: Preference = {
       qualityAttribute: null,
@@ -72,4 +80,6 @@ export class PreferencesDetailComponent implements OnInit, DoCheck {
   onRemovePreference(index: number) {
     this.preferences.splice(index, 1);
   }
+
+
 }

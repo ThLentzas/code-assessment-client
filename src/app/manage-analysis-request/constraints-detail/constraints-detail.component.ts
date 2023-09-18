@@ -50,6 +50,12 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck, OnDestroy {
       next: constraints => {
         if (this.dataLoaded === false && constraints.length > 0) {
           this.constraints = constraints;
+          this.constraints = constraints.map(constraint => {
+            return {
+              ...constraint,
+              qualityMetricOperator: this.mapOperatorToSymbol(constraint.qualityMetricOperator)
+            };
+          });
           this.dataLoaded = true;
         }
       }
@@ -92,5 +98,18 @@ export class ConstraintsDetailComponent implements OnInit, DoCheck, OnDestroy {
     this.constraints = [];
     this.onAddConstraint();
     this.analysisService.setConstraints(this.constraints);
+  }
+
+  mapOperatorToSymbol(qualityMetricOperator: string): string {
+    const operatorMap: { [key: string]: string } = {
+      'GT': '>',
+      'GTE': '>=',
+      'LT': '<',
+      'LTE': '<=',
+      'EQ': '==',
+      'NEQ': '<>'
+    };
+
+    return operatorMap[qualityMetricOperator];
   }
 }

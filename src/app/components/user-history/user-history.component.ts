@@ -61,8 +61,8 @@ export class UserHistoryComponent implements OnInit {
         this.analysisService.setConstraints(request.constraints);
         this.analysisService.setPreferences(request.preferences);
         this.analysisService.projectUrlsUpdated.next(this.analysisService.getProjectUrls());
-        this.analysisService.projectUrlsUpdated.next(this.analysisService.getProjectUrls());
-        this.analysisService.projectUrlsUpdated.next(this.analysisService.getProjectUrls());
+        this.analysisService.preferencesUpdated.next(this.analysisService.getPreferences());
+        this.analysisService.constraintsUpdated.next(this.analysisService.getConstraints());
 
         this.router.navigate(['/analysis']);
       }, error: error => {
