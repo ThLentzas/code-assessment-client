@@ -86,7 +86,7 @@
   <form #updateEmailForm="ngForm" (ngSubmit)="onUpdateEmail(updateEmailForm)">
     <div class="row">
       <div class="col-12 text-start">
-        <h4 class="fs-5 fw-normal mt-4">Update Email</h4>
+        <h4 class="fs-5 fw-normal mt-2">Update Email</h4>
       </div>
     </div>
 
@@ -140,4 +140,35 @@
       </div>
     </div>
   </form>
+  <form #deleteAccountForm="ngForm" (ngSubmit)="onDeleteAccount(deleteAccountForm)">
+    <div class="row">
+      <div class="col-12 text-start">
+        <h4 class="fs-5 fw-normal mt-2">Actions</h4>
+        <div class="col-md-12">
+          <p class="text-danger">Once you delete your account, there is no going back. Please be certain.</p>
+        </div>
+      </div>
+      <div class="mb-2">
+        <div class="col-md-3 text-start mb-0">
+          <label>Password </label>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <input #accountPasswordRef="ngModel" type="password" required class="form-control my-2 custom-focus"
+                   [(ngModel)]="accountDeleteRequest.password" name="accountPassword">
+          </div>
+          <div class="col-md-7">
+            <div *ngIf="accountPasswordRef.errors?.['required'] && (accountPasswordRef.dirty || accountPasswordRef.touched)"
+                 class="text-danger">Password is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <button [disabled]="deleteAccountForm.invalid" class="btn btn-danger mt-2">Delete Account</button>
+      </div>
+    </div>
+  </form>
+
 </div>
+

@@ -5,6 +5,8 @@ import { NotificationService } from '../../services/notification.service';
 import { UserPasswordUpdateRequest } from '../../models/user/user-password-update-request.model';
 import { UserEmailUpdateRequest } from '../../models/user/user-email-update-request.model';
 import { UserDTO } from '../../models/user/userDto-model';
+import {UserAccountDeleteRequest} from "../../models/user/user-account-delete-request.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -16,11 +18,13 @@ export class SettingsComponent implements OnInit {
   oldPassword: string;
   newPassword: string;
   confirmPassword: string;
+  accountDeleteRequest: UserAccountDeleteRequest ={};
   emailUpdateRequest: UserEmailUpdateRequest = {};
   userDTO: UserDTO;
 
   constructor(private userService: UserService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -62,6 +66,19 @@ export class SettingsComponent implements OnInit {
     this.userService.updateUserEmail(this.emailUpdateRequest).subscribe({
       next: () => {
         this.notificationService.onInfo("A verification link will be sent shortly to your email")
+        form.reset();
+      }, error: error => {
+        this.notificationService.onError(error.error.message);
+      }
+    });
+  }
+
+  onDeleteAccount(form: NgForm) {
+    console.log(this.accountDeleteRequest);
+    this.userService.deleteUserAccount(this.accountDeleteRequest).subscribe({
+      next: () => {
+        console.log('called');
+        this.router.navigate(['/login']);
         form.reset();
       }, error: error => {
         this.notificationService.onError(error.error.message);

@@ -7,6 +7,7 @@ import { UserProfileUpdateRequest } from '../models/user/user-profile-update-req
 import { UserPasswordUpdateRequest } from '../models/user/user-password-update-request.model';
 import { UserEmailUpdateRequest } from '../models/user/user-email-update-request.model';
 import { UserDTO } from '../models/user/userDto-model';
+import {UserAccountDeleteRequest} from "../models/user/user-account-delete-request.model";
 
 
 @Injectable({
@@ -30,11 +31,11 @@ export class UserService {
     return this.http.put<void>('http://localhost:8080/api/v1/user/profile', profileUpdateRequest);
   }
 
-  updateUserPassword(passwordUpdateRequest: UserPasswordUpdateRequest) {
+  updateUserPassword(passwordUpdateRequest: UserPasswordUpdateRequest): Observable<void>  {
     return this.http.put<void>('http://localhost:8080/api/v1/user/settings/password', passwordUpdateRequest);
   }
 
-  updateUserEmail(emailUpdateRequest: UserEmailUpdateRequest) {
+  updateUserEmail(emailUpdateRequest: UserEmailUpdateRequest): Observable<void>  {
     return this.http.post<void>('http://localhost:8080/api/v1/user/settings/email', emailUpdateRequest);
   }
 
@@ -48,6 +49,10 @@ export class UserService {
     }
 
     return this.http.get<UserHistory>('http://localhost:8080/api/v1/user/history');
+  }
+
+  deleteUserAccount(accountDeleteRequest: UserAccountDeleteRequest): Observable<void> {
+    return this.http.put<void>('http://localhost:8080/api/v1/user/settings/account', accountDeleteRequest);
   }
 
   private formatDate(date: Date): string {
