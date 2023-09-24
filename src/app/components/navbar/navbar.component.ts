@@ -26,11 +26,13 @@ export class NavbarComponent {
       }
     }
 
-    this.router.navigate([
-      '/dashboard',
-      'analysis',
-      analysisResponse.analysisId
-    ]);
+    if(analysisResponse) {
+      this.router.navigate([
+        '/dashboard',
+        'analysis',
+        analysisResponse.analysisId
+      ]);
+    }
   }
 
   onLogout() {

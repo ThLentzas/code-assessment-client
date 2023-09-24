@@ -4,9 +4,9 @@ import { UserService } from '../../services/user.service';
 import { NotificationService } from '../../services/notification.service';
 import { UserPasswordUpdateRequest } from '../../models/user/user-password-update-request.model';
 import { UserEmailUpdateRequest } from '../../models/user/user-email-update-request.model';
+import { UserAccountDeleteRequest } from '../../models/user/user-account-delete-request.model';
 import { UserDTO } from '../../models/user/userDto-model';
-import {UserAccountDeleteRequest} from "../../models/user/user-account-delete-request.model";
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -77,7 +77,6 @@ export class SettingsComponent implements OnInit {
     console.log(this.accountDeleteRequest);
     this.userService.deleteUserAccount(this.accountDeleteRequest).subscribe({
       next: () => {
-        console.log('called');
         this.router.navigate(['/login']);
         form.reset();
       }, error: error => {
