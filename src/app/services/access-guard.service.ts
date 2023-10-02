@@ -1,15 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthResponse } from '../models/auth/auth-response.model';
-import { AuthService } from './auth.service';
 
 
 @Injectable({
   providedIn: "root"
 })
 class AccessGuardService {
-  constructor(private authService: AuthService,
-              private router: Router) {
+  constructor(private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -29,6 +27,6 @@ class AccessGuardService {
   }
 }
 
-  export const isAuthenticated: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
-    return inject(AccessGuardService).canActivate(route, state);
-  }
+export const isAuthenticated: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
+  return inject(AccessGuardService).canActivate(route, state);
+}

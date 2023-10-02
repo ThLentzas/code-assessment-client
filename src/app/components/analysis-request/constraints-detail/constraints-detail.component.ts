@@ -1,9 +1,9 @@
 import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Constraint } from '../../models/analysis/request/constraint.model';
-import { QualityMetric } from '../../models/analysis/request/quality-metric.model';
-import { QualityMetricOperator } from '../../models/analysis/request/quality-metric-operator.model';
-import { AnalysisService } from '../../services/analysis.service';
+import { Constraint } from '../../../models/analysis/request/constraint.model';
+import { QualityMetric } from '../../../models/analysis/request/quality-metric.model';
+import { QualityMetricOperator } from '../../../models/analysis/request/quality-metric-operator.model';
+import { AnalysisService } from '../../../services/analysis.service';
 
 
 @Component({

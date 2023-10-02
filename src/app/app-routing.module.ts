@@ -1,10 +1,10 @@
 import { RouterModule, Routes } from '@angular/router';
-import { AnalysisListComponent } from './analysis/analysis-list/analysis-list.component';
+import { AnalysisListComponent } from './components/analysis-list/analysis-list.component';
 import { NgModule } from '@angular/core';
-import { ManageAnalysisRequestComponent } from './manage-analysis-request/manage-analysis-request.component';
-import { RefreshRequestComponent } from './analysis/refresh-request/refresh-request.component';
-import { AnalysisReviewComponent } from './analysis/analysis-overeview/analysis-review.component';
-import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue/report-issue.component';
+import { AnalysisReviewComponent } from './components/analysis-list/analysis-review/analysis-review.component';
+import { AnalysisRequestComponent}  from './components/analysis-request/analysis-request.component';
+import { RefreshRequestComponent } from './components/analysis-list/refresh-request/refresh-request.component';
+import { ReportIssueComponent } from './components/analysis-list/analysis-review/report-issue/report-issue.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,6 +15,8 @@ import { isAuthenticated } from './services/access-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordResetConfirmComponent } from './components/password-reset-confirm/password-reset-confirm.component';
+import { EmailUpdateErrorComponent } from './components/email-update-error/email-update-error.component';
+import { PasswordResetErrorComponent } from './components/password-reset-error/password-reset-error.component';
 
 
 const appRoutes: Routes = [{
@@ -27,6 +29,9 @@ const appRoutes: Routes = [{
     path: 'password_reset',
     component: PasswordResetComponent
   }, {
+    path: 'password_reset_error',
+    component: PasswordResetErrorComponent
+  }, {
     path: 'password_reset/confirm',
     component: PasswordResetConfirmComponent
   }, {
@@ -35,7 +40,7 @@ const appRoutes: Routes = [{
     canActivate: [isAuthenticated],
     children: [{
       path: 'analysis',
-      component: ManageAnalysisRequestComponent
+      component: AnalysisRequestComponent
     }, {
       path: 'analysis/:analysisId/refresh',
       component: RefreshRequestComponent
@@ -54,6 +59,9 @@ const appRoutes: Routes = [{
     }, {
       path: 'settings',
       component: SettingsComponent
+    }, {
+      path: 'email_update_error',
+      component: EmailUpdateErrorComponent
     }, {
       path: 'profile',
       component: UserProfileComponent

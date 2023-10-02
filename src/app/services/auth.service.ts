@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegisterRequest } from '../models/auth/register-request.model';
 import { LoginRequest } from '../models/auth/login-request.model';
@@ -30,8 +30,12 @@ export class AuthService {
     return this.http.post<void>("http://localhost:8080/api/v1/auth/password_reset", passwordResetRequest)
   }
 
-  confirmPasswordReset(passwordResetConfirmationRequest: PasswordResetConfirmationRequest): Observable<void> {
-    return this.http.put<void>("http://localhost:8080/api/v1/auth/password_reset/confirm", passwordResetConfirmationRequest);
+  confirmPasswordReset(passwordResetConfirmationRequest: PasswordResetConfirmationRequest):
+    Observable<HttpResponse<void>> {
+    return this.http.put<void>(
+      "http://localhost:8080/api/v1/auth/password_reset/confirm",
+      passwordResetConfirmationRequest,
+      { observe: 'response' });
   }
 
   getAuthToken() {

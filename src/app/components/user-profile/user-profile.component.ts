@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../services/user.service";
-import {UserProfileUpdateRequest} from "../../models/user/user-profile-update-request.model";
-import {UserProfile} from "../../models/user/user-profile.model";
-import {NotificationService} from "../../services/notification.service";
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { UserProfileUpdateRequest } from '../../models/user/user-profile-update-request.model';
+import { UserProfile } from '../../models/user/user-profile.model';
+import { NotificationService } from '../../services/notification.service';
 
 
 @Component({

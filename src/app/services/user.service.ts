@@ -7,7 +7,7 @@ import { UserProfileUpdateRequest } from '../models/user/user-profile-update-req
 import { UserPasswordUpdateRequest } from '../models/user/user-password-update-request.model';
 import { UserEmailUpdateRequest } from '../models/user/user-email-update-request.model';
 import { UserDTO } from '../models/user/userDto-model';
-import {UserAccountDeleteRequest} from "../models/user/user-account-delete-request.model";
+import { UserAccountDeleteRequest } from '../models/user/user-account-delete-request.model';
 
 
 @Injectable({

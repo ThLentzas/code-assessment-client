@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AnalysisService } from '../../services/analysis.service';
-import { StorageService } from '../../services/storage.service';
-import { OverviewService } from '../../services/overview.service';
-import { AnalysisReport } from '../../models/analysis/response/analysis-report.model';
-import { Issue } from '../../models/analysis/response/issues-report.model';
-import { Hotspot } from '../../models/analysis/response/hotspots-report.model';
+import { StorageService } from '../../../services/storage.service';
+import { OverviewService } from '../../../services/overview.service';
+import { AnalysisReport } from '../../../models/analysis/response/analysis-report.model';
+import { Issue } from '../../../models/analysis/response/issues-report.model';
+import { Hotspot } from '../../../models/analysis/response/hotspots-report.model';
 
 
 @Component({
@@ -23,8 +22,7 @@ export class AnalysisReviewComponent implements OnInit {
   languages: { key: string, value: number }[] = [];
   analysisReport: AnalysisReport;
 
-  constructor(private analysisService: AnalysisService,
-              private overviewService: OverviewService,
+  constructor(private overviewService: OverviewService,
               private storageService: StorageService,
               private route: ActivatedRoute) {
   }

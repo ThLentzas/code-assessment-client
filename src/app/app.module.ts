@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { ProjectUrlsComponent } from './manage-analysis-request/project-urls/project-urls.component';
+import { ProjectUrlsComponent } from './components/analysis-request/project-urls/project-urls.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ManageAnalysisRequestComponent } from './manage-analysis-request/manage-analysis-request.component';
-import { ConstraintsDetailComponent } from './manage-analysis-request/constraints-detail/constraints-detail.component';
-import { PreferencesDetailComponent } from './manage-analysis-request/preferences-detail/preferences-detail.component';
-import { AnalysisComponent } from './analysis/analysis.component';
-import { AnalysisReviewComponent } from './analysis/analysis-overeview/analysis-review.component';
-import { AnalysisListComponent } from './analysis/analysis-list/analysis-list.component';
+import { ConstraintsDetailComponent } from './components/analysis-request/constraints-detail/constraints-detail.component';
+import { PreferencesDetailComponent } from './components/analysis-request/preferences-detail/preferences-detail.component';
+import { AnalysisReviewComponent } from './components/analysis-list/analysis-review/analysis-review.component';
+import { AnalysisListComponent } from './components/analysis-list/analysis-list.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RefreshRequestComponent } from './analysis/refresh-request/refresh-request.component';
+import { RefreshRequestComponent } from './components/analysis-list/refresh-request/refresh-request.component';
 import { StickyNoteComponent } from './components/sticky-note/sticky-note.component';
-import { ReportIssueComponent } from './analysis/analysis-overeview/report-issue/report-issue.component';
+import { ReportIssueComponent } from './components/analysis-list/analysis-review/report-issue/report-issue.component';
 import { UserHistoryComponent } from './components/user-history/user-history.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LayoutComponent } from './components/layout/layout.component';
@@ -29,6 +27,10 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordResetConfirmComponent } from './components/password-reset-confirm/password-reset-confirm.component';
+import { AnalysisRequestComponent } from './components/analysis-request/analysis-request.component';
+import { EmailUpdateErrorComponent } from './components/email-update-error/email-update-error.component';
+import { PasswordResetErrorComponent } from './components/password-reset-error/password-reset-error.component';
+
 
 
 
@@ -36,10 +38,9 @@ import { PasswordResetConfirmComponent } from './components/password-reset-confi
   declarations: [
     AppComponent,
     ProjectUrlsComponent,
-    ManageAnalysisRequestComponent,
+    AnalysisRequestComponent,
     ConstraintsDetailComponent,
     PreferencesDetailComponent,
-    AnalysisComponent,
     AnalysisReviewComponent,
     AnalysisListComponent,
     NavbarComponent,
@@ -54,7 +55,10 @@ import { PasswordResetConfirmComponent } from './components/password-reset-confi
     SettingsComponent,
     PageNotFoundComponent,
     PasswordResetComponent,
-    PasswordResetConfirmComponent
+    PasswordResetConfirmComponent,
+    AnalysisRequestComponent,
+    EmailUpdateErrorComponent,
+    PasswordResetErrorComponent
   ],
   imports: [
     BrowserModule,

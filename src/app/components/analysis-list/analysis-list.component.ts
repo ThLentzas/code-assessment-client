@@ -14,7 +14,6 @@ import { AnalysisResult } from '../../models/analysis/response/analysis-result.m
 export class AnalysisListComponent implements OnInit, OnDestroy {
   analysisResult: AnalysisResult;
   subscription: Subscription;
-  rank: number;
 
   constructor(private analysisService: AnalysisService,
               private storageService: StorageService,
@@ -27,13 +26,11 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
 
     if (analysisResult) {
       this.analysisResult = JSON.parse(analysisResult);
-      this.formatRank(this.analysisResult);
     }
 
     this.subscription = this.analysisService.analysisResultUpdated.subscribe({
       next: analysisResult => {
         if(analysisResult) {
-          this.formatRank(analysisResult);
           this.analysisResult = analysisResult;
           this.storageService.saveItem('analysisResult', JSON.stringify(this.analysisResult));
         }
@@ -60,18 +57,7 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
     return this.route.snapshot.params['analysisId'];
   }
 
-  private isFirstDigitZeroOrOne(num: number) {
-    return num.toString().startsWith('0') || num.toString().startsWith('1');
-  }
-
-
-  private formatRank(analysisResponse: AnalysisResult) {
-    for (const reportList of analysisResponse.reports) {
-      for (const report of reportList) {
-        if (this.isFirstDigitZeroOrOne(report.rank)) {
-          this.rank = Math.floor(report.rank * 100);
-        }
-      }
-    }
+  public formatRank(rank : number) : number {
+      return Math.floor(rank * 100)
   }
 }

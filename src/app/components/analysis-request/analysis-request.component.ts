@@ -1,27 +1,25 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
-import { AnalysisRequest } from '../models/analysis/request/analysis-request.model';
-import { AnalysisService } from '../services/analysis.service';
-import { NotificationService } from '../services/notification.service';
-import { TreeService } from '../services/tree.service';
+import { AnalysisRequest } from '../../models/analysis/request/analysis-request.model';
+import { AnalysisService } from '../../services/analysis.service';
+import { NotificationService } from '../../services/notification.service';
 import { tap } from 'rxjs';
 
 
 @Component({
-  selector: 'app-manage-analysis-request',
-  templateUrl: './manage-analysis-request.component.html',
-  styleUrls: ['./manage-analysis-request.component.css']
+  selector: 'app-analysis-request',
+  templateUrl: './analysis-request.component.html',
+  styleUrls: ['./analysis-request.component.css']
 })
-export class ManageAnalysisRequestComponent {
+export class AnalysisRequestComponent {
   constructor(private analysisService: AnalysisService,
-              private treeService: TreeService,
               private notificationService: NotificationService,
               private router: Router) {
   }
 
   onAnalyze() {
-    let id;
+    let id: number;
     const analysisRequest: AnalysisRequest = {
       projectUrls: this.analysisService.getProjectUrls(),
       constraints: this.analysisService.getConstraints(),
@@ -54,6 +52,7 @@ export class ManageAnalysisRequestComponent {
       next: response => {
         this.analysisService.setAnalysisResult(response);
         this.analysisService.analysisResultUpdated.next(this.analysisService.getAnalysisResult());
+        console.log(this.analysisService.getAnalysisResult())
         this.router.navigate([
           '/dashboard',
           'analysis',
@@ -63,8 +62,6 @@ export class ManageAnalysisRequestComponent {
       }
     });
   }
-
-
 
   private extractIdFromLocationHeader(location: string): string {
     const parts = location.split('/');

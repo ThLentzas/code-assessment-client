@@ -37,7 +37,6 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-
   onUpdatePassword(form: NgForm) {
     if (this.newPassword !== this.confirmPassword) {
       return this.notificationService.onError("Passwords do not match");

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnalysisService } from '../../services/analysis.service';
-import { StorageService } from '../../services/storage.service';
 
 
 @Component({
@@ -11,11 +10,9 @@ import { StorageService } from '../../services/storage.service';
 })
 export class NavbarComponent {
 
-  constructor(private storageService: StorageService,
-              private analysisService: AnalysisService,
+  constructor(private analysisService: AnalysisService,
               private router: Router) {
   }
-
   onDashboard() {
     let analysisResponse = this.analysisService.getAnalysisResult();
 

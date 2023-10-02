@@ -1,7 +1,7 @@
 import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
-import { Preference } from '../../models/analysis/request/preference.model';
-import { QualityAttribute } from '../../models/analysis/request/quality-attribute.model';
-import { AnalysisService } from '../../services/analysis.service';
+import { Preference } from '../../../models/analysis/request/preference.model';
+import { QualityAttribute } from '../../../models/analysis/request/quality-attribute.model';
+import { AnalysisService } from '../../../services/analysis.service';
 import { Subscription } from 'rxjs';
 
 

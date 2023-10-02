@@ -38,13 +38,20 @@ export class PasswordResetConfirmComponent implements OnInit{
       password: this.password
     }
 
-    this.authService.confirmPasswordReset(passwordResetConfirmRequest).subscribe( {
-      next: () => {
-        this.router.navigate(['login']);
-        this.notificationService.onSuccess("A confirmation email was sent about your recent password changes");
-        form.resetForm();
-      }, error: error => {
-        this.notificationService.onError(error.error.message);
+    this.authService.confirmPasswordReset(passwordResetConfirmRequest).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.router.navigate(['login']);
+          this.notificationService.onSuccess("A confirmation email was sent about your recent password changes");
+          form.resetForm();
+        }
+      },
+      error: (error) => {
+        if (error.status === 401) {
+          this.router.navigate(['password_reset_error']);
+        } else {
+          this.notificationService.onError(error.error.message);
+        }
       }
     });
   }

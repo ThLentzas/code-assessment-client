@@ -180,7 +180,7 @@ export class AnalysisService {
     return node.children.length === 0;
   }
 
-  private readableQualityParameter(value) {
+  private readableQualityParameter(value: string) {
     return value
       .split('_')
       .map(word => word.toLowerCase())

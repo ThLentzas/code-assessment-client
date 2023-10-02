@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AnalysisService } from '../../services/analysis.service';
-import { NotificationService } from '../../services/notification.service';
-import { RefreshRequest } from '../../models/analysis/request/refresh-request.model';
+import { AnalysisService } from '../../../services/analysis.service';
+import { NotificationService } from '../../../services/notification.service';
+import { RefreshRequest } from '../../../models/analysis/request/refresh-request.model';
 
 
 @Component({

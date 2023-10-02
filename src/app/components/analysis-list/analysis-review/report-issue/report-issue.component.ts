@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OverviewService } from '../../../services/overview.service';
-import { Issue } from '../../../models/analysis/response/issues-report.model';
-import { Hotspot } from '../../../models/analysis/response/hotspots-report.model';
-import { AnalysisReport } from '../../../models/analysis/response/analysis-report.model';
+import { OverviewService } from '../../../../services/overview.service';
+import { Issue } from '../../../../models/analysis/response/issues-report.model';
+import { Hotspot } from '../../../../models/analysis/response/hotspots-report.model';
+import { AnalysisReport } from '../../../../models/analysis/response/analysis-report.model';
 
 
 @Component({

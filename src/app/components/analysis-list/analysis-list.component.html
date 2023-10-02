@@ -18,8 +18,8 @@
               </div>
               <div class="col-4 d-flex justify-content-end">
                 <div class="progress-bar d-flex justify-content-center align-items-center position-relative"
-                     [style.--rank]="rank + '%'" [style.--color]="'#198754'">
-                  <div class="progress-text">{{ rank }}%</div>
+                     [style.--rank]="formatRank(report.rank) + '%'" [style.--color]="'#198754'">
+                  <div class="progress-text">{{ formatRank(report.rank)}}%</div>
                 </div>
               </div>
             </div>
@@ -43,8 +43,8 @@
               </div>
               <div class="col-4 d-flex justify-content-end">
                 <div class="progress-bar d-flex justify-content-center align-items-center position-relative"
-                     [style.--rank]="rank + '%'" [style.--color]="'#198754'">
-                  <div class="progress-text">{{ rank }}%</div>
+                     [style.--rank]="formatRank(report.rank) + '%'" [style.--color]="'#198754'">
+                  <div class="progress-text">{{ formatRank(report.rank)}}%</div>
                 </div>
               </div>
             </div>
@@ -71,8 +71,8 @@
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                   <div class="progress-bar d-flex justify-content-center align-items-center position-relative"
-                       [style.--rank]="rank + '%'" [style.--color]="'#198754'">
-                    <div class="progress-text">{{ rank }}%</div>
+                       [style.--rank]="formatRank(report.rank) + '%'" [style.--color]="'#198754'">
+                    <div class="progress-text">{{ formatRank(report.rank)}}%</div>
                   </div>
                 </div>
               </div>
