@@ -57,7 +57,7 @@ export class AnalysisListComponent implements OnInit, OnDestroy {
     return this.route.snapshot.params['analysisId'];
   }
 
-  public formatRank(rank : number) : number {
+  formatRank(rank : number) : number {
       return Math.floor(rank * 100)
   }
 }
